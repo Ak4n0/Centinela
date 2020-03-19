@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import modelo.dao.UsuarioDAO;
 import modelo.pojo.Usuario;
 
 @LocalBean
@@ -20,5 +21,21 @@ public class ControlUsuariosEJB {
 		}
 		
 		return user;
+	}
+	
+	public Usuario getDatabaseUser(String email, String passwd) {
+		Usuario usuarioResult = null;
+		
+		Usuario usuarioArgumento = new Usuario();
+		usuarioArgumento.setEmail(email);
+		usuarioArgumento.setPasswd(passwd);
+		
+		usuarioResult = UsuarioDAO.getUsuario(usuarioArgumento);
+		
+		return usuarioResult;
+	}
+
+	public void setSessionUser(HttpServletRequest request, Usuario usuarioRegistrado) {
+		request.getSession().setAttribute("usuario", usuarioRegistrado);
 	}
 }

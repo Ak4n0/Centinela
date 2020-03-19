@@ -3,7 +3,8 @@
 <configuration>
 	<properties resource='jdbc.properties' />
 	<typeAliases>
-		<!-- <typeAlias type='direccion.desde.la.raiz.del.proyecto.al.tipo' alias='Alias'></typeAlias>  -->
+		<!-- <typeAlias type='direccion.desde.la.carpeta.src.del.proyecto.al.tipo' alias='Alias' /> -->
+		<typeAlias type='modelo.pojo.Usuario' alias='Usuario' />
 	</typeAliases>
 	<environments default='development'>
 		<environment id='development'>
@@ -17,6 +18,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<!-- <mapper resource='direccion/desde/la/raiz/del/proyecto/al/mapper.xml' /> -->
+		<!-- <mapper resource='direccion/desde/la/carpeta/src/del/proyecto/al/mapper.xml' /> -->
+		<mapper resource='modelo/dao/mapper/UsuarioMapper.xml' />
 	</mappers>
 </configuration>
