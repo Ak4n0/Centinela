@@ -65,6 +65,9 @@ public class Login extends HttpServlet {
 		
 		// Si existe guardarlo en la sesión con el objeto Usuario
 		controlUsuariosEJB.setSessionUser(request, usuarioRegistrado);
+		
+		// Regresar a la página principal
+		response.sendRedirect("Principal");
 	}
 
 }
