@@ -9,7 +9,7 @@
 <body>
 <main>
 	<form method="post" action="Login">
-		<label for="email">e-Mail:</label>
+		<label for="email">Email:</label>
 		<input type="text" id="email" name="email" required>
 		<label for="passwd">Contraseña:</label>
 		<input type="password" id="passwd" name="passwd" required>
