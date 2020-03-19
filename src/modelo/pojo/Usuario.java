@@ -72,6 +72,14 @@ public class Usuario {
 	public Boolean getAdministrador() {
 		return administrador;
 	}
+	
+	/**
+	 * Alias de getAdministrador()
+	 * @return the administrador
+	 */
+	public Boolean isAdministrador() {
+		return getAdministrador();
+	}
 
 	/**
 	 * @param administrador the administrador to set
