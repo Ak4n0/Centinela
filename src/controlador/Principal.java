@@ -3,6 +3,7 @@ package controlador;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,9 @@ public class Principal extends HttpServlet {
 			return;
 		}
 		
-		// TODO: continuar con la página índice
+		// El usuario tiene sesión. Continuar con la carga de la página principale
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/index.jsp");
+		rs.forward(request, response);
 	}
 
 	/**
