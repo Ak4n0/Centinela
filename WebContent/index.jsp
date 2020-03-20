@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Centinela</title>
+<%@include file="bootstrap_header.html" %>
 </head>
 <body>
 <strong>Usuario</strong>
