@@ -75,4 +75,4 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON centinela.* TO 'centinelapp'@'localhost'
 
 -- Creación del usuario administrador
 INSERT INTO USUARIO (nombre, passwd, email, administrador)
-VALUES ('Administrador', 'admin', 'miquelfs1981@gmail.com', 1);
+VALUES ('Administrador', 'admin', 'centinela.soluciones@gmail.com', 1);
