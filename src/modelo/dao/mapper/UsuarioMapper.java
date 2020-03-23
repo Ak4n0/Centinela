@@ -15,5 +15,7 @@ public interface UsuarioMapper {
 	 * @return Retorna un Objeto Usuario que se encuentre en la base de datos con la misma información rellenado con todos los datos.
 	 */
 	public Usuario getUsuario(Usuario usuario);
+
+	public boolean existeUsuario(String email);
 	
 }

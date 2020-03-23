@@ -1,6 +1,6 @@
 package modelo.enumeracion;
 
-public enum ErrorLogin {
+public enum TipoError {
 
 	DATOS_INCOMPLETOS,
 	CREDENCIALES

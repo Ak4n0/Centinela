@@ -5,10 +5,18 @@
   
 <mapper namespace='modelo.dao.mapper.UsuarioMapper'>
 
-	<select id='getUsuario' parameterType ='Usuario' resultType='Usuario'>
+	<select id='getUsuario' parameterType='Usuario' resultType='Usuario'>
 		SELECT id, nombre, passwd, email, administrador
 		  FROM USUARIO
 		 WHERE email = #{email}
 		   AND passwd = #{passwd}
+	</select>
+	
+	<select id='existeUsuario' parameterType='String' resultType='Boolean'>
+		SELECT IF(EXISTS(
+				SELECT *
+              	  FROM USUARIO
+             	 WHERE email = #{email}
+			   ), 1, 0);
 	</select>
 </mapper>

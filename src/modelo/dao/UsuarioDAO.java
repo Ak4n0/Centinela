@@ -18,4 +18,14 @@ public class UsuarioDAO {
 			sqlSession.close();
 		}
 	}
+	
+	public static boolean existeUsuario(String email) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			UsuarioMapper mapper = sqlSession.getMapper(UsuarioMapper.class);
+			return mapper.existeUsuario(email);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

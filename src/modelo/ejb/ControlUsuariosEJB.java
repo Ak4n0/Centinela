@@ -34,6 +34,10 @@ public class ControlUsuariosEJB {
 		
 		return usuarioResult;
 	}
+	
+	public boolean existeUsuario(String email) {
+		return UsuarioDAO.existeUsuario(email);
+	}
 
 	public void setSessionUser(HttpServletRequest request, Usuario usuarioRegistrado) {
 		request.getSession().setAttribute("usuario", usuarioRegistrado);
