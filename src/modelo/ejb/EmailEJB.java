@@ -51,7 +51,7 @@ public class EmailEJB {
                 Multipart multipart = new MimeMultipart();
                 multipart.addBodyPart(mimeBodyPart);    	                
                 
-                // Afegeix arxius
+                // Agrega archivos si hay
                 if(archivos != null) {
                 	for(String archivo: archivos) {
 						MimeBodyPart attachmentBodyPart = new MimeBodyPart();

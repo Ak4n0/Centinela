@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.ejb.ControlUsuariosEJB;
+import modelo.enumeracion.ErrorLogin;
 import modelo.pojo.Usuario;
 
 /**
@@ -40,14 +41,8 @@ public class Login extends HttpServlet {
 		
 		// Control de parámetros
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/login.jsp");
-		if(email == null) {
-			request.setAttribute("error", "email");
-			rs.forward(request, response);
-			return;
-		}
-		
-		if(passwd == null) {
-			request.setAttribute("error", "passwd");
+		if(email == null || passwd == null) {
+			request.setAttribute("error", ErrorLogin.DATOS_INCOMPLETOS);
 			rs.forward(request, response);
 			return;
 		}
@@ -58,7 +53,7 @@ public class Login extends HttpServlet {
 		
 		// El usuario no existe
 		if(usuarioRegistrado == null) {
-			request.setAttribute("error", "credenciales");
+			request.setAttribute("error", ErrorLogin.CREDENCIALES);
 			rs.forward(request, response);
 			return;
 		}
