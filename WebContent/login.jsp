@@ -1,26 +1,26 @@
-<%@page import="modelo.enumeracion.ErrorLogin"%>
+<%@page import="modelo.enumeracion.TipoError"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%
-	ErrorLogin error = (ErrorLogin) request.getAttribute("error");
+	TipoError error = (TipoError) request.getAttribute("error");
 	String titulo = null;
 	String mensaje = null;
 	if(error != null) {
 		switch(error) {
 		case DATOS_INCOMPLETOS:
-			titulo = "Información incompleta";
-			mensaje = "Es obligatorio rellenar todos los campos del formulario.";
-			break;
+	titulo = "Información incompleta";
+	mensaje = "Es obligatorio rellenar todos los campos del formulario.";
+	break;
 		case CREDENCIALES:
-			titulo = "Usuario no reconocido";
-			mensaje = "El e-mail y/o la contrasenya son incorectos.";
-			break;
+	titulo = "Usuario no reconocido";
+	mensaje = "El e-mail y/o la contrasenya son incorectos.";
+	break;
 		default:
-			titulo = "Error inesperado";
-			mensaje = "Ha ocurrido un error durante su proceso de registro.";
+	titulo = "Error inesperado";
+	mensaje = "Ha ocurrido un error durante su proceso de registro.";
 		}
-	}	
+	}
 %>
 
 <!DOCTYPE html>

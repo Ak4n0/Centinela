@@ -1,5 +1,28 @@
+<%@page import="modelo.enumeracion.TipoError"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%
+	TipoError error = (TipoError) request.getAttribute("error");
+	String titulo = null;
+	String mensaje = null;
+	if(error != null) {
+		switch(error) {
+		case DATOS_INCOMPLETOS:
+			titulo = "Información incompleta";
+			mensaje = "Es obligatorio rellenar todos los campos del formulario.";
+			break;
+		case CREDENCIALES:
+			titulo = "Usuario no reconocido";
+			mensaje = "No existe un usuario con este e-mail.";
+			break;
+		default:
+			titulo = "Error inesperado";
+			mensaje = "Ha ocurrido un error en la toma de datos.";
+		}
+	}	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
