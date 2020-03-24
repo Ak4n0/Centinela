@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.ControlUsuariosEJB;
+import modelo.ejb.OperacionesUsuariosEJB;
 import modelo.ejb.EmailEJB;
 import modelo.enumeracion.TipoError;
 
