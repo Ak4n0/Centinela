@@ -21,7 +21,7 @@ public class Principal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	ControlUsuariosEJB controlUsuarioEJB;
+	OperacionesUsuariosEJB controlUsuarioEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

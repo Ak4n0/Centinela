@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.ejb.OperacionesUsuariosEJB;
 import modelo.ejb.EmailEJB;
+import modelo.ejb.OperacionesTokensNuevoPasswordEJB;
 import modelo.enumeracion.TipoError;
+import modelo.pojo.TokenNuevoPassword;
 
 /**
  * Servlet implementation class PasswordOlvidado
@@ -22,10 +24,13 @@ public class PasswordOlvidado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	ControlUsuariosEJB controlusUsuariosEJB;
+	OperacionesUsuariosEJB operacionesUsuariosEJB;
 	
 	@EJB
 	EmailEJB emailEJB;
+	
+	@EJB
+	OperacionesTokensNuevoPasswordEJB operacionesTokensNuevoPasswordEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,6 +53,22 @@ public class PasswordOlvidado extends HttpServlet {
 			rs.forward(request, response);
 			return;
 		}
+		
+		if(!operacionesUsuariosEJB.existeUsuario(email)) {
+			request.setAttribute("error", TipoError.CREDENCIALES);
+			rs.forward(request, response);
+			return;
+		}
+		
+		// El usuario ha introducido correctamente su email
+		// Ahora hay que enviar un mensaje para que pueda introducir una nueva contraseña
+		// Obtener el nombre del usuario
+		String nombre = operacionesUsuariosEJB.getUserName(email);
+		
+		// Obtener el identificador para cambiar la clave
+		// Comprobar si el usuario ya tiene un identificador
+		TokenNuevoPassword tokenNuevoPassowrd = operacionesTokensNuevoPasswordEJB.getTokenFromEmail(email);
+		
 		
 	}
 

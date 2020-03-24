@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	ControlUsuariosEJB controlUsuariosEJB;
+	OperacionesUsuariosEJB operacionesUsuariosEJB;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 		
 		// No hay errores de parámetros
 		// Intenta conseguir el usuario desde la BBDD
-		Usuario usuarioRegistrado = controlUsuariosEJB.getDatabaseUser(email, passwd);
+		Usuario usuarioRegistrado = operacionesUsuariosEJB.getDatabaseUser(email, passwd);
 		
 		// El usuario no existe
 		if(usuarioRegistrado == null) {
@@ -59,7 +59,7 @@ public class Login extends HttpServlet {
 		}
 		
 		// Si existe guardarlo en la sesión con el objeto Usuario
-		controlUsuariosEJB.setSessionUser(request, usuarioRegistrado);
+		operacionesUsuariosEJB.setSessionUser(request, usuarioRegistrado);
 		
 		// Regresar a la página principal
 		response.sendRedirect("Principal");
