@@ -19,4 +19,11 @@
              	 WHERE email = #{email}
 			   ), 1, 0)
 	</select>
+	
+	<select id='getNombreUsuario' parameterType='String' resultType='String'>
+		SELECT nombre
+		  FROM USUARIO
+		 WHERE email = #{email}
+	</select>
+	
 </mapper>
