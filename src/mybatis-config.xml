@@ -3,8 +3,8 @@
 <configuration>
 	<properties resource='jdbc.properties' />
 	<typeAliases>
-		<!-- <typeAlias type='direccion.desde.la.carpeta.src.del.proyecto.al.tipo' alias='Alias' /> -->
 		<typeAlias type='modelo.pojo.Usuario' alias='Usuario' />
+		<typeAlias type='modelo.pojo.TokenNuevoPassword' alias='TokenNuevoPassword' />
 	</typeAliases>
 	<environments default='development'>
 		<environment id='development'>
@@ -20,5 +20,6 @@
 	<mappers>
 		<!-- <mapper resource='direccion/desde/la/carpeta/src/del/proyecto/al/mapper.xml' /> -->
 		<mapper resource='modelo/dao/mapper/UsuarioMapper.xml' />
+		<mapper resource='modelo/dao/mapper/TokenNuevoPassword.xml' />
 	</mappers>
 </configuration>
