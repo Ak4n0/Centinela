@@ -10,7 +10,7 @@ import modelo.pojo.Usuario;
 
 @LocalBean
 @Stateless
-public class ControlUsuariosEJB {
+public class OperacionesUsuariosEJB {
 
 	public Usuario getSessionUser(HttpServletRequest request) {
 		Usuario user = null;
