@@ -15,12 +15,12 @@ CREATE TABLE USUARIO (
 -- Información sobre el hardware blackbox
 CREATE TABLE BLACKBOX (
     id INTEGER PRIMARY KEY, -- Con el uso de un integer las tablas no pesarán tanto.
-    nombre_unico VARCHAR(20) UNIQUE NOT NULL, -- Se usará éste como identificador real de la blackbox.
+    nombre_unico VARCHAR(20) UNIQUE NOT NULL, -- Se usará éste como identificador real de la blackbox. El hardware usará este valor como credencial.
     nombre VARCHAR(32) NOT NULL, -- Nombre con que el usuario podrá identificar a su blackbox.
     ip_v4 VARCHAR(15) NOT NULL, -- Dirección ip v4. Se guardará en formato aaa.bbb.ccc.ddd
     passwd VARCHAR(25) NOT NULL, -- Palabra de seguridad que usará blackbox para cifrar su comunicación.
     info_extra VARCHAR(255), -- Información extra que el usuario crea conveniente incluir.
-    user_id INTEGER NOT NULL, -- Identificador de usuario la que pertenece la blackbox.
+    usuario_id INTEGER NOT NULL, -- Identificador de usuario la que pertenece la blackbox.
     nombre_D2 VARCHAR(32) NOT NULL DEFAULT 'OUT_0', -- Nombre con que el usuario se podrá referir a dicha salida.
     nombre_D3 VARCHAR(32) NOT NULL DEFAULT 'OUT_1', -- Nombre con que el usuario se podrá referir a dicha salida.
     nombre_D4 VARCHAR(32) NOT NULL DEFAULT 'OUT_2', -- Nombre con que el usuario se podrá referir a dicha salida.
@@ -30,7 +30,7 @@ CREATE TABLE BLACKBOX (
     nombre_A2 VARCHAR(32) NOT NULL DEFAULT 'IN_2', -- Nombre con que el usuario se podrá referir a dicha entrada.
     nombre_A3 VARCHAR(32) NOT NULL DEFAULT 'IN_3', -- Nombre con que el usuario se podrá referir a dicha entrada.
     
-    FOREIGN KEY(user_id)
+    FOREIGN KEY(usuario_id)
         REFERENCES USUARIO(id)
         ON UPDATE CASCADE
         ON DELETE CASCADE
@@ -56,6 +56,7 @@ CREATE TABLE IO_PORT (
         ON DELETE CASCADE
 );
 
+-- Información sobre una alarma lanzada por blackbox
 CREATE TABLE ALARMA (
     id INTEGER PRIMARY KEY AUTO_INCREMENT, -- Identificador de esta alarma.
     blackbox_id INTEGER NOT NULL, -- Identificador de la blackbox que lanzó la alarma.
@@ -68,6 +69,19 @@ CREATE TABLE ALARMA (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
+
+-- Control de cambios de contraseñas de usuario
+CREATE TABLE PETICION_NUEVO_PASSWD (
+    id VARCHAR(64) PRIMARY KEY, -- SHA256 como identificador único
+    usuario_id INTEGER UNIQUE NOT NULL, -- Identificador de usuario ha realizado la petición. Un usuario una petición.
+    fecha_hora DATETIME NOT NULL, -- Fecha y hora en que se ha realizdo dicha petición.
+    
+    FOREIGN KEY(usuario_id)
+        REFERENCES USUARIO(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
 
 -- Creación del usuario para manejo desde la aplicación
 CREATE USER 'centinelapp'@'localhost' IDENTIFIED BY 'B0h3m!';
