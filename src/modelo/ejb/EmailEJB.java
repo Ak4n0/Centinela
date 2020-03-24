@@ -68,4 +68,27 @@ public class EmailEJB {
         	e.printStackTrace();
         }
     }
+	
+	public String cuerpoMensajeNuevaClave(String nombre, String enlace) {
+		return 	"<!DOCTYPE html>" +
+				"<html>" +
+			    	"<head>" +
+			    	"<title>Generar nueva contraseña</title>" +
+				    "<meta charset='UTF-8'>" +
+			        "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+				    "</head>" +
+				    "<body>" +
+				        "<h1>Centinela Soluciones</h1>" +
+				        "<p>Hola " + nombre + ",</p>" +
+				        "<p>Recibes este e-mail porque has solicitado un cambio de contraseña." +
+				            "Para ellos debes hacer click en el siguiente <a href='" + enlace + "'>enlace</a>.</p>" +
+				        "<p>En la página del <a href='" + enlace + "'>enlace</a> debes introducir tu" +
+				            "nueva contraseña. Hecho esto podrás entrar en nuestros servicios con la nueva credencial.</p>" +
+				        "<p>La petición de cambio de contraseña caduca a los sesenta minutos desde la petición en la web." +
+				            "Si antes de que pase ese tiempo no has completado el proceso la petición quedará anulada.</p>" +
+				        "<hr>" +
+				        "<p>Si no quieres realizar el cambio de contraseña simplemente ignora o borra este e-mail.</p>" +
+				    "</body>" +
+				"</html>";
+	}
 }
