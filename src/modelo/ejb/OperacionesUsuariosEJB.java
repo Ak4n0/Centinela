@@ -42,4 +42,8 @@ public class OperacionesUsuariosEJB {
 	public void setSessionUser(HttpServletRequest request, Usuario usuarioRegistrado) {
 		request.getSession().setAttribute("usuario", usuarioRegistrado);
 	}
+
+	public String getUserName(String email) {
+		return UsuarioDAO.getNombreUsuario(email);
+	}
 }

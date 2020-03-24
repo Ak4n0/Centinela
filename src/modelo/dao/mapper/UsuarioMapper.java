@@ -17,5 +17,7 @@ public interface UsuarioMapper {
 	public Usuario getUsuario(Usuario usuario);
 
 	public boolean existeUsuario(String email);
+
+	public String getNombreUsuario(String email);
 	
 }

@@ -28,4 +28,14 @@ public class UsuarioDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static String getNombreUsuario(String email) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			UsuarioMapper mapper = sqlSession.getMapper(UsuarioMapper.class);
+			return mapper.getNombreUsuario(email);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
