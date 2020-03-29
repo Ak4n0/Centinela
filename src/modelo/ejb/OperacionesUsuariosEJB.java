@@ -46,4 +46,9 @@ public class OperacionesUsuariosEJB {
 	public String getUserName(String email) {
 		return UsuarioDAO.getNombreUsuario(email);
 	}
+
+	public Integer getIdFromEmail(String email) {
+		return UsuarioDAO.getIdDesdeEmail(email);
+	}
+	
 }

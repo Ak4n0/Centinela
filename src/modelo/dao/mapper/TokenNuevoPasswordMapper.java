@@ -6,4 +6,6 @@ public interface TokenNuevoPasswordMapper {
 
 	TokenNuevoPassword obtenerTokenDesdeEmail(String email);
 
+	void insertarToken(TokenNuevoPassword tokenNuevoPassword);
+
 }

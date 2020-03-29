@@ -19,5 +19,7 @@ public interface UsuarioMapper {
 	public boolean existeUsuario(String email);
 
 	public String getNombreUsuario(String email);
+
+	public Integer getIdDesdeEmail(String email);
 	
 }

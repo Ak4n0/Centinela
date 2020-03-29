@@ -26,4 +26,12 @@
 		 WHERE email = #{email}
 	</select>
 	
+	<select id='getIdDesdeEmail' parameterType='String' resultType='Integer'>
+		SELECT id
+		  FROM USUARIO
+		 WHERE email = #{email}
+	</select>
+	
+	
+	
 </mapper>

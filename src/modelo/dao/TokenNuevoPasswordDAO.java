@@ -18,4 +18,18 @@ public class TokenNuevoPasswordDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static boolean insertarToken(TokenNuevoPassword tokenNuevoPassword) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		boolean retValue = false;
+		try {
+			TokenNuevoPasswordMapper mapper = sqlSession.getMapper(TokenNuevoPasswordMapper.class);
+			mapper.insertarToken(tokenNuevoPassword);
+			sqlSession.commit();
+			retValue = true;
+		} finally {
+			sqlSession.close();
+		}
+		return retValue;
+	}
 }

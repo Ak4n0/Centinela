@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.UtilidadesEJB;
 import modelo.ejb.EmailEJB;
 import modelo.ejb.OperacionesTokensNuevoPasswordEJB;
 import modelo.enumeracion.TipoError;
@@ -31,6 +32,9 @@ public class PasswordOlvidado extends HttpServlet {
 	
 	@EJB
 	OperacionesTokensNuevoPasswordEJB operacionesTokensNuevoPasswordEJB;
+	
+	@EJB
+	UtilidadesEJB utilidadesEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -67,9 +71,47 @@ public class PasswordOlvidado extends HttpServlet {
 		
 		// Obtener el identificador para cambiar la clave
 		// Comprobar si el usuario ya tiene un identificador
-		TokenNuevoPassword tokenNuevoPassowrd = operacionesTokensNuevoPasswordEJB.getTokenFromEmail(email);
+		TokenNuevoPassword tokenNuevoPassword = operacionesTokensNuevoPasswordEJB.getTokenFromEmail(email);
 		
+		// Si no tiene se genera uno
+		if(tokenNuevoPassword == null) {
+			tokenNuevoPassword = operacionesTokensNuevoPasswordEJB.createToken(email);
+		}
 		
+		// Si no se pudo generar informar del error
+		if(tokenNuevoPassword == null) {
+			rs = getServletContext().getRequestDispatcher("/aviso.jsp");	
+			request.setAttribute("titulo", "Ocurrió un error");
+			request.setAttribute("mensaje", "<p>Ha ocurrido un error al acceder a la base de datos.</p>" +
+					"<p>Por favor inténtalo más tarde. Si los problemas persisten envia " +
+						"un email a esta direccion <a href='mailto:centinela.soluciones@gmail.com?subject=Aviso%20de%20error%20web'>" + 
+						"centinela.soluciones@gmail.com</a> explicando el problema.</p>");
+			rs.forward(request, response);
+			return;
+		}
+		
+		// Se pudieron conseguir todos los datos, por lo que se manda por email
+		// Primero conseguir la ip del servidor
+		String enlace = utilidadesEJB.getServerPublicIp();
+		// Si no se obtuvo la ip del servidor avisar al usuario
+		if(enlace == null) {
+			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
+			rs = getServletContext().getRequestDispatcher("/aviso.jsp");	
+			request.setAttribute("titulo", "Ocurrió un error");
+			request.setAttribute("mensaje", "<p>Ha ocurrido un error servidor.</p>" +
+					"<p>Por favor inténtalo más tarde. Si los problemas persisten envia " +
+						"un email a esta direccion <a href='mailto:centinela.soluciones@gmail.com?subject=Aviso%20de%20error%20web'>" + 
+						"centinela.soluciones@gmail.com</a> explicando el problema.</p>");
+			rs.forward(request, response);
+			return;
+		}
+		
+		// No ocurrió ningún error en la toma de datos
+		String cuerpoMensajeEmail = emailEJB.cuerpoMensajeNuevaClave(nombre, enlace);
+		emailEJB.sendMail(email, "Centinela Servicios. Solicitud de cambio de contraseña", cuerpoMensajeEmail);
+		
+		// Regresar Principal
+		response.sendRedirect("Principal");
 	}
 
 }
