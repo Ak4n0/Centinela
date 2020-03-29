@@ -21,5 +21,7 @@ public interface UsuarioMapper {
 	public String getNombreUsuario(String email);
 
 	public Integer getIdDesdeEmail(String email);
+
+	public void setUsuario(Usuario usuario);
 	
 }

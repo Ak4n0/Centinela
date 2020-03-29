@@ -73,11 +73,9 @@
 					</form>
 				</div>
 				<div class="card-footer">
-					<!-- El usuario no se puede registrar, sustituido por <br> -->
-					<br>
-<!-- 					<div class="d-flex justify-content-center links"> -->
-<!-- 						¿Notienes cuenta?<a href="#">Regístrate</a> -->
-<!-- 					</div> -->
+					<div class="d-flex justify-content-center links">
+						¿Notienes cuenta?<a href="#">Regístrate</a>
+					</div>
 					<div class="d-flex justify-content-center">
 						<a href="PasswordOlvidado">Olvidé mi contraseña</a>
 					</div>

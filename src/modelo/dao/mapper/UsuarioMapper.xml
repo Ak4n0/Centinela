@@ -32,6 +32,10 @@
 		 WHERE email = #{email}
 	</select>
 	
+	<select id='setUsuario' parameterType='Usuario'>
+		INSERT INTO USUARIO (nombre, passwd, email, administrador)
+			   VALUES (#{nombre}, #{passwd}, #{email}, #{administrador})
+	</select>
 	
 	
 </mapper>

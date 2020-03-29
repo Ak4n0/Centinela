@@ -48,4 +48,15 @@ public class UsuarioDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static void setUsuario(Usuario usuario) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			UsuarioMapper mapper = sqlSession.getMapper(UsuarioMapper.class);
+			mapper.setUsuario(usuario);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

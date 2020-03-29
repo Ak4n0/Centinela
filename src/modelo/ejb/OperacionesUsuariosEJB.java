@@ -39,8 +39,8 @@ public class OperacionesUsuariosEJB {
 		return UsuarioDAO.existeUsuario(email);
 	}
 
-	public void setSessionUser(HttpServletRequest request, Usuario usuarioRegistrado) {
-		request.getSession().setAttribute("usuario", usuarioRegistrado);
+	public void setSessionUser(HttpServletRequest request, Usuario usuario) {
+		request.getSession().setAttribute("usuario", usuario);
 	}
 
 	public String getUserName(String email) {
@@ -49,6 +49,10 @@ public class OperacionesUsuariosEJB {
 
 	public Integer getIdFromEmail(String email) {
 		return UsuarioDAO.getIdDesdeEmail(email);
+	}
+
+	public void setDatabaseUser(Usuario usuario) {
+		UsuarioDAO.setUsuario(usuario);
 	}
 	
 }
