@@ -4,27 +4,12 @@ import java.util.Date;
 
 public class Alarma {
 
-	private Integer id;
 	private String idBlackbox;
 	private Date fechaHora;
 	private String puerto;
 	private Integer nivel;
 	
 	public Alarma() {}
-
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the idBlackbox

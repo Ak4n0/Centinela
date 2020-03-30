@@ -15,20 +15,20 @@ CREATE TABLE USUARIO (
 -- Información sobre el hardware blackbox
 CREATE TABLE BLACKBOX (
     id INTEGER PRIMARY KEY, -- Con el uso de un integer las tablas no pesarán tanto.
-    nombre_unico VARCHAR(20) UNIQUE NOT NULL, -- Se usará éste como identificador real de la blackbox. El hardware usará este valor como credencial.
+    identificador_unico VARCHAR(20) UNIQUE NOT NULL, -- Se usará éste como identificador real de la blackbox. El hardware usará este valor como credencial.
     nombre VARCHAR(32) NOT NULL, -- Nombre con que el usuario podrá identificar a su blackbox.
     ip_v4 VARCHAR(15) NOT NULL, -- Dirección ip v4. Se guardará en formato aaa.bbb.ccc.ddd
     passwd VARCHAR(25) NOT NULL, -- Palabra de seguridad que usará blackbox para cifrar su comunicación.
     info_extra VARCHAR(255), -- Información extra que el usuario crea conveniente incluir.
     usuario_id INTEGER NOT NULL, -- Identificador de usuario la que pertenece la blackbox.
-    nombre_D2 VARCHAR(32) NOT NULL DEFAULT 'OUT_0', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_D3 VARCHAR(32) NOT NULL DEFAULT 'OUT_1', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_D4 VARCHAR(32) NOT NULL DEFAULT 'OUT_2', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_D5 VARCHAR(32) NOT NULL DEFAULT 'OUT_3', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_A0 VARCHAR(32) NOT NULL DEFAULT 'IN_0', -- Nombre con que el usuario se podrá referir a dicha entrada.
-    nombre_A1 VARCHAR(32) NOT NULL DEFAULT 'IN_1', -- Nombre con que el usuario se podrá referir a dicha entrada.
-    nombre_A2 VARCHAR(32) NOT NULL DEFAULT 'IN_2', -- Nombre con que el usuario se podrá referir a dicha entrada.
-    nombre_A3 VARCHAR(32) NOT NULL DEFAULT 'IN_3', -- Nombre con que el usuario se podrá referir a dicha entrada.
+    nombre_D2 VARCHAR(32) DEFAULT 'OUT_0', -- Nombre con que el usuario se podrá referir a dicha salida.
+    nombre_D3 VARCHAR(32) DEFAULT 'OUT_1', -- Nombre con que el usuario se podrá referir a dicha salida.
+    nombre_D4 VARCHAR(32) DEFAULT 'OUT_2', -- Nombre con que el usuario se podrá referir a dicha salida.
+    nombre_D5 VARCHAR(32) DEFAULT 'OUT_3', -- Nombre con que el usuario se podrá referir a dicha salida.
+    nombre_A0 VARCHAR(32) DEFAULT 'IN_0', -- Nombre con que el usuario se podrá referir a dicha entrada.
+    nombre_A1 VARCHAR(32) DEFAULT 'IN_1', -- Nombre con que el usuario se podrá referir a dicha entrada.
+    nombre_A2 VARCHAR(32) DEFAULT 'IN_2', -- Nombre con que el usuario se podrá referir a dicha entrada.
+    nombre_A3 VARCHAR(32) DEFAULT 'IN_3', -- Nombre con que el usuario se podrá referir a dicha entrada.
     
     FOREIGN KEY(usuario_id)
         REFERENCES USUARIO(id)
@@ -38,7 +38,6 @@ CREATE TABLE BLACKBOX (
 
 
 CREATE TABLE IO_PORT (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, -- Identificador de la captura de datos.
     blackbox_id INTEGER NOT NULL, -- Identificador a la blackbox a la que pertenece esta captura de datos.
     fecha_hora DATETIME NOT NULL, -- Fecha en que se produjo esta captura de datos.
     D2 TINYINT, -- Estado de la salida digital.
@@ -50,7 +49,9 @@ CREATE TABLE IO_PORT (
     A2 TINYINT, -- Estado de la entrada analógica.
     A3 TINYINT, -- Estado de la entrada analógica.
     
-    FOREIGN KEY(blackbox_id)
+    PRIMARY KEY (blackbox_id, fecha_hora),
+    
+    FOREIGN KEY (blackbox_id)
         REFERENCES BLACKBOX(id)
         ON UPDATE CASCADE
         ON DELETE CASCADE
@@ -58,13 +59,14 @@ CREATE TABLE IO_PORT (
 
 -- Información sobre una alarma lanzada por blackbox
 CREATE TABLE ALARMA (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, -- Identificador de esta alarma.
     blackbox_id INTEGER NOT NULL, -- Identificador de la blackbox que lanzó la alarma.
     fecha_hora DATETIME NOT NULL, -- Fecha y hora en que se produjo la alarma.
     puerto CHAR(2) NOT NULL, -- Puerto que hizo saltar la alarma.
     nivel TINYINT NOT NULL, -- Nivel de la alarma: 1 (Alto), 2 (Crítico)
     
-    FOREIGN KEY(blackbox_id)
+    PRIMARY KEY (blackbox_id, fecha_hora, puerto),
+    
+    FOREIGN KEY (blackbox_id)
         REFERENCES BLACKBOX(id)
         ON UPDATE CASCADE
         ON DELETE CASCADE
@@ -83,10 +85,10 @@ CREATE TABLE PETICION_NUEVO_PASSWD (
 );
 
 
--- Creación del usuario para manejo desde la aplicación
-CREATE USER 'centinelapp'@'localhost' IDENTIFIED BY 'B0h3m!';
-GRANT SELECT, INSERT, UPDATE, DELETE ON centinela.* TO 'centinelapp'@'localhost';
-
 -- Creación del usuario administrador
 INSERT INTO USUARIO (nombre, passwd, email, administrador)
 VALUES ('Administrador', 'admin', 'centinela.soluciones@gmail.com', 1);
+
+-- Creación del usuario para manejo desde la aplicación
+CREATE USER 'centinelapp'@'localhost' IDENTIFIED BY 'B0h3m!';
+GRANT SELECT, INSERT, UPDATE, DELETE ON centinela.* TO 'centinelapp'@'localhost';

@@ -83,7 +83,7 @@ public class PasswordOlvidado extends HttpServlet {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");	
 			request.setAttribute("titulo", "Ocurrió un error");
 			request.setAttribute("mensaje", "<p>Ha ocurrido un error al acceder a la base de datos.</p>" +
-					"<p>Por favor inténtalo más tarde. Si los problemas persisten envia " +
+					"<p>Por favor inténtalo más tarde. Si los problemas persisten envía " +
 						"un email a esta direccion <a href='mailto:centinela.soluciones@gmail.com?subject=Aviso%20de%20error%20web'>" + 
 						"centinela.soluciones@gmail.com</a> explicando el problema.</p>");
 			rs.forward(request, response);
