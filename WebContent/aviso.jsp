@@ -29,7 +29,7 @@
 					<br>
 					<div class="d-flex justify-content-center">
 						<div class="form-group">
-							<button type="button" class="btn float-right login_btn"
+							<button type="button" class="btn float-right btn-yellow"
 								onclick="location.href='Principal'">Entendido
 							</button>
 						</div>

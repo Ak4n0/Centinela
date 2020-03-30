@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Centinela</title>
 <%@ include file="bootstrap_header.html" %>
-<link rel="stylesheet" type="text/css" href="css/login.css" />
+<link rel="stylesheet" type="text/css" href="css/aviso.css" />
 </head>
 <body>
 	<div class="container">
@@ -48,7 +48,7 @@
 						</div>
 						<div class="form-group">
 							<input type="submit" value="Registrar"
-								class="btn float-right login_btn">
+								class="btn float-right btn-yellow">
 						</div>
 					</form>
 				</div>
