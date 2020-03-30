@@ -37,7 +37,7 @@ public class Signin extends HttpServlet {
 			request.setAttribute("mensaje", "<p>Actualmente " +
 					((Usuario) session.getAttribute("usuario")).getNombre() +
 					" ya tiene una sesión activa.</p>" +
-					"<p>Antes de iniciar una nueva sesión debe <a href='Logout'>cerrar la actual</a>.");
+					"<p>Antes de iniciar una nueva sesión debe <a href='Logout'>cerrar la actual</a></p>.");
 			rs.forward(request, response);
 			return;
 		}
