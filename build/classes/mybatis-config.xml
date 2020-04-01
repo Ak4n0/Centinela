@@ -20,6 +20,6 @@
 	<mappers>
 		<!-- <mapper resource='direccion/desde/la/carpeta/src/del/proyecto/al/mapper.xml' /> -->
 		<mapper resource='modelo/dao/mapper/UsuarioMapper.xml' />
-		<mapper resource='modelo/dao/mapper/TokenNuevoPassword.xml' />
+		<mapper resource='modelo/dao/mapper/TokenNuevoPasswordMapper.xml' />
 	</mappers>
 </configuration>
