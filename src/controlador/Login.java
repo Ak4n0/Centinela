@@ -32,14 +32,17 @@ public class Login extends HttpServlet {
 		RequestDispatcher rs = null;
 		HttpSession session = request.getSession(false);
 		if(session != null) {
-			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
-			request.setAttribute("titulo", "Ya existe sesión activa");
-			request.setAttribute("mensaje", "<p>Actualmente " +
-					((Usuario) session.getAttribute("usuario")).getNombre() +
-					" ya tiene una sesión activa.</p>" +
-					"<p>Antes de iniciar una nueva sesión debe <a href='Logout'>cerrar la actual</a></p>.");
-			rs.forward(request, response);
-			return;
+			Usuario usuario = (Usuario)session.getAttribute("usuario");
+			if(usuario != null) {
+				rs = getServletContext().getRequestDispatcher("/aviso.jsp");
+				request.setAttribute("titulo", "Ya existe sesión activa");
+				request.setAttribute("mensaje", "<p>Actualmente " +
+						((Usuario) session.getAttribute("usuario")).getNombre() +
+						" ya tiene una sesión activa.</p>" +
+						"<p>Antes de iniciar una nueva sesión debe <a href='Logout'>cerrar la actual</a></p>.");
+				rs.forward(request, response);
+				return;
+			}
 		}
 		rs = getServletContext().getRequestDispatcher("/login.jsp");
 		rs.forward(request, response);
