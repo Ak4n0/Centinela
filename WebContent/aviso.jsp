@@ -1,6 +1,6 @@
-<%@ page import="modelo.enumeracion.TipoError"%>
+<%@ page import="modelo.enumeracion.TipoError" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" %>
 
 <%
 	String titulo = (String) request.getAttribute("titulo");
@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Centinela</title>
-<%@include file="bootstrap_header.html"%>
+<%@ include file="bootstrap_header.html" %>
 <link rel="stylesheet" type="text/css" href="css/aviso.css" />
 </head>
 <body>

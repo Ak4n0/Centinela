@@ -1,6 +1,6 @@
 <%@page import="modelo.enumeracion.TipoError"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" %>
 	
 <%
 	TipoError error = (TipoError) request.getAttribute("error");

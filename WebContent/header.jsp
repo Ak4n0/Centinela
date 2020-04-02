@@ -1,4 +1,4 @@
-<%@page import="modelo.pojo.Usuario"%>
+<%@ page import="modelo.pojo.Usuario" %>
 <header>
 <div class="d-flex flex-row justify-content-between">
 	<h1>Centinela</h1>
