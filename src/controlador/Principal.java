@@ -28,15 +28,19 @@ public class Principal extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Usuario usuario = controlUsuarioEJB.getSessionUser(request);
+		RequestDispatcher rs;
 		
-		// Si el usuario no está logeado mandarlo al servicio de login
-		if(usuario == null) {
-			response.sendRedirect("Login");
-			return;
+		// Comprobar si el usuario tiene una cuenta
+		if(usuario != null) {
+			// Si el usuario es administrador mandarlo su apartado
+			if(usuario.isAdministrador()) {
+				rs = getServletContext().getRequestDispatcher("/administracion.jsp");
+			} else { // el usuario no es administrador, enviarlo a su dashboard
+				rs = getServletContext().getRequestDispatcher("/dashboard.jsp");	
+			}
+		} else { // El usuario no ha iniciado sesión. Mostrar la página genérica.
+			rs = getServletContext().getRequestDispatcher("/index.jsp");
 		}
-		
-		// El usuario tiene sesión. Continuar con la carga de la página principale
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/index.jsp");
 		rs.forward(request, response);
 	}
 
