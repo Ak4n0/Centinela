@@ -1,32 +1,35 @@
 package modelo.ejb;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import modelo.dao.UsuarioDAO;
-import modelo.pojo.Usuario;
+import modelo.pojo.UsuarioAdminInfo;
+import modelo.pojo.UsuarioFullInfo;
 
 @LocalBean
 @Stateless
 public class OperacionesUsuariosEJB {
 
-	public Usuario getSessionUser(HttpServletRequest request) {
-		Usuario user = null;
+	public UsuarioFullInfo getSessionUser(HttpServletRequest request) {
+		UsuarioFullInfo user = null;
 		
 		HttpSession session = request.getSession(false);
 		if(session != null) {
-			user = (Usuario) session.getAttribute("usuario");
+			user = (UsuarioFullInfo) session.getAttribute("usuario");
 		}
 		
 		return user;
 	}
 	
-	public Usuario getDatabaseUser(String email, String passwd) {
-		Usuario usuarioResult = null;
+	public UsuarioFullInfo getDatabaseUser(String email, String passwd) {
+		UsuarioFullInfo usuarioResult = null;
 		
-		Usuario usuarioArgumento = new Usuario();
+		UsuarioFullInfo usuarioArgumento = new UsuarioFullInfo();
 		usuarioArgumento.setEmail(email);
 		usuarioArgumento.setPasswd(passwd);
 		
@@ -39,8 +42,8 @@ public class OperacionesUsuariosEJB {
 		return UsuarioDAO.existeUsuario(email);
 	}
 
-	public void setSessionUser(HttpServletRequest request, Usuario usuario) {
-		request.getSession().setAttribute("usuario", usuario);
+	public void setSessionUser(HttpServletRequest request, UsuarioFullInfo usuarioFullInfo) {
+		request.getSession().setAttribute("usuario", usuarioFullInfo);
 	}
 
 	public String getUserName(String email) {
@@ -51,8 +54,12 @@ public class OperacionesUsuariosEJB {
 		return UsuarioDAO.getIdDesdeEmail(email);
 	}
 
-	public void setDatabaseUser(Usuario usuario) {
-		UsuarioDAO.setUsuario(usuario);
+	public void setDatabaseUser(UsuarioFullInfo usuarioFullInfo) {
+		UsuarioDAO.setUsuario(usuarioFullInfo);
+	}
+
+	public List<UsuarioAdminInfo> getDatabaseUsersForAdmin() {
+		return UsuarioDAO.getListaUsuariosParaAdministracion();
 	}
 	
 }
