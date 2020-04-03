@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.ejb.OperacionesUsuariosEJB;
-import modelo.pojo.Usuario;
+import modelo.pojo.UsuarioFullInfo;
 
 /**
  * Servlet implementation class Principal
@@ -27,13 +27,13 @@ public class Principal extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Usuario usuario = controlUsuarioEJB.getSessionUser(request);
+		UsuarioFullInfo usuarioFullInfo = controlUsuarioEJB.getSessionUser(request);
 		RequestDispatcher rs;
 		
 		// Comprobar si el usuario tiene una cuenta
-		if(usuario != null) {
+		if(usuarioFullInfo != null) {
 			// Si el usuario es administrador mandarlo su apartado
-			if(usuario.isAdministrador()) {
+			if(usuarioFullInfo.isAdministrador()) {
 				rs = getServletContext().getRequestDispatcher("/administracion.jsp");
 			} else { // el usuario no es administrador, enviarlo a su dashboard
 				rs = getServletContext().getRequestDispatcher("/dashboard.jsp");	

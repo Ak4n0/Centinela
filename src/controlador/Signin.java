@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import modelo.ejb.OperacionesUsuariosEJB;
 import modelo.enumeracion.TipoError;
-import modelo.pojo.Usuario;
+import modelo.pojo.UsuarioFullInfo;
 
 /**
  * Servlet implementation class Signin
@@ -32,12 +32,12 @@ public class Signin extends HttpServlet {
 		RequestDispatcher rs = null;
 		HttpSession session = request.getSession(false);
 		if(session != null) {
-			Usuario usuario = (Usuario)session.getAttribute("usuario");
-			if(usuario != null) {
+			UsuarioFullInfo usuarioFullInfo = (UsuarioFullInfo)session.getAttribute("usuario");
+			if(usuarioFullInfo != null) {
 				rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 				request.setAttribute("titulo", "Ya existe sesión activa");
 				request.setAttribute("mensaje", "<p>Actualmente " +
-						((Usuario) session.getAttribute("usuario")).getNombre() +
+						((UsuarioFullInfo) session.getAttribute("usuario")).getNombre() +
 						" ya tiene una sesión activa.</p>" +
 						"<p>Antes de iniciar una nueva sesión debe <a href='Logout'>cerrar la actual</a></p>.");
 				rs.forward(request, response);
@@ -73,15 +73,15 @@ public class Signin extends HttpServlet {
 		}
 		
 		// No existe un usuario con el mismo email, introducirlo en la BBDD
-		Usuario usuario = new Usuario();
-		usuario.setNombre(nombre);
-		usuario.setEmail(email);
-		usuario.setPasswd(passwd);
-		usuario.setAdministrador(false);
-		operacionesUsuariosEJB.setDatabaseUser(usuario);
+		UsuarioFullInfo usuarioFullInfo = new UsuarioFullInfo();
+		usuarioFullInfo.setNombre(nombre);
+		usuarioFullInfo.setEmail(email);
+		usuarioFullInfo.setPasswd(passwd);
+		usuarioFullInfo.setAdministrador(false);
+		operacionesUsuariosEJB.setDatabaseUser(usuarioFullInfo);
 		
 		// Una vez que el usuario existe iniciar la sesión
-		operacionesUsuariosEJB.setSessionUser(request, usuario);
+		operacionesUsuariosEJB.setSessionUser(request, usuarioFullInfo);
 		
 		// Ir a la página principal
 		response.sendRedirect("Principal");

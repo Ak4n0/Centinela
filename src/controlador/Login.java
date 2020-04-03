@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import modelo.ejb.OperacionesUsuariosEJB;
 import modelo.enumeracion.TipoError;
-import modelo.pojo.Usuario;
+import modelo.pojo.UsuarioFullInfo;
 
 /**
  * Servlet implementation class Login
@@ -32,12 +32,12 @@ public class Login extends HttpServlet {
 		RequestDispatcher rs = null;
 		HttpSession session = request.getSession(false);
 		if(session != null) {
-			Usuario usuario = (Usuario)session.getAttribute("usuario");
-			if(usuario != null) {
+			UsuarioFullInfo usuarioFullInfo = (UsuarioFullInfo)session.getAttribute("usuario");
+			if(usuarioFullInfo != null) {
 				rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 				request.setAttribute("titulo", "Ya existe sesión activa");
 				request.setAttribute("mensaje", "<p>Actualmente " +
-						((Usuario) session.getAttribute("usuario")).getNombre() +
+						((UsuarioFullInfo) session.getAttribute("usuario")).getNombre() +
 						" ya tiene una sesión activa.</p>" +
 						"<p>Antes de iniciar una nueva sesión debe <a href='Logout'>cerrar la actual</a></p>.");
 				rs.forward(request, response);
@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
 		
 		// No hay errores de parámetros
 		// Intenta conseguir el usuario desde la BBDD
-		Usuario usuarioRegistrado = operacionesUsuariosEJB.getDatabaseUser(email, passwd);
+		UsuarioFullInfo usuarioRegistrado = operacionesUsuariosEJB.getDatabaseUser(email, passwd);
 		
 		// El usuario no existe
 		if(usuarioRegistrado == null) {
@@ -74,7 +74,7 @@ public class Login extends HttpServlet {
 			return;
 		}
 		
-		// Si existe guardarlo en la sesión con el objeto Usuario
+		// Si existe guardarlo en la sesión con el objeto UsuarioFullInfo
 		operacionesUsuariosEJB.setSessionUser(request, usuarioRegistrado);
 		
 		// Regresar a la página principal
