@@ -14,10 +14,10 @@ CREATE TABLE USUARIO (
 
 -- Información sobre el hardware blackbox
 CREATE TABLE BLACKBOX (
-    id INTEGER PRIMARY KEY, -- Con el uso de un integer las tablas no pesarán tanto.
+    id INTEGER PRIMARY KEY AUTO_INCREMENT, -- Con el uso de un integer las tablas no pesarán tanto.
     identificador_unico VARCHAR(20) UNIQUE NOT NULL, -- Se usará éste como identificador real de la blackbox. El hardware usará este valor como credencial.
-    nombre VARCHAR(32) NOT NULL, -- Nombre con que el usuario podrá identificar a su blackbox.
-    ip_v4 VARCHAR(15) NOT NULL, -- Dirección ip v4. Se guardará en formato aaa.bbb.ccc.ddd
+    nombre VARCHAR(32), -- Nombre con que el usuario podrá identificar a su blackbox.
+    ip_v4 VARCHAR(15), -- Dirección ip v4. Se guardará en formato aaa.bbb.ccc.ddd
     passwd VARCHAR(25) NOT NULL, -- Palabra de seguridad que usará blackbox para cifrar su comunicación.
     info_extra VARCHAR(255), -- Información extra que el usuario crea conveniente incluir.
     usuario_id INTEGER NOT NULL, -- Identificador de usuario la que pertenece la blackbox.
