@@ -32,7 +32,7 @@
 			<td><%= usuario.getEmail() %></td>
 			<td class="text-center"><%= usuario.getNumBlackboxes() %></td>
 			<td class="text-center"><a href="#"><i class="fas fa-user-edit"></i></a></td>
-			<td class="text-center"><a href="#"></a><i class="fas fa-user-slash"></i></td>
+			<td class="text-center"><a href="#"><i class="fas fa-user-slash"></i></a></td>
 		</tr>
 		<% } %>
 	</tbody>
