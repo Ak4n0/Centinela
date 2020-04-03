@@ -1,8 +1,10 @@
-<%@ page import="modelo.pojo.Usuario" %>
+<%@ page import="modelo.pojo.UsuarioFullInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 
-<% Usuario usuario = ((Usuario)session.getAttribute("usuario")); %>
+<%
+	UsuarioFullInfo usuario = ((UsuarioFullInfo)session.getAttribute("usuario"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
