@@ -5,7 +5,7 @@
   
 <mapper namespace='modelo.dao.mapper.UsuarioMapper'>
 
-	<select id='getUsuario' parameterType='Usuario' resultType='Usuario'>
+	<select id='getUsuario' parameterType='UsuarioFullInfo' resultType='UsuarioFullInfo'>
 		SELECT id, nombre, passwd, email, administrador
 		  FROM USUARIO
 		 WHERE email = #{email}
@@ -32,10 +32,13 @@
 		 WHERE email = #{email}
 	</select>
 	
-	<select id='setUsuario' parameterType='Usuario'>
+	<select id='setUsuario' parameterType='UsuarioFullInfo'>
 		INSERT INTO USUARIO (nombre, passwd, email, administrador)
 			   VALUES (#{nombre}, #{passwd}, #{email}, #{administrador})
 	</select>
 	
-	
+	<select id='getListaUsuariosParaAdministracion' resultType='UsuarioAdminInfo'>
+		SELECT id, nombre, email, (SELECT count(*) FROM BLACKBOX WHERE usuario_id = USUARIO.id) AS numBlackboxes
+  		  FROM USUARIO;
+	</select>
 </mapper>

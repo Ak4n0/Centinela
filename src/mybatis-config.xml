@@ -3,7 +3,9 @@
 <configuration>
 	<properties resource='jdbc.properties' />
 	<typeAliases>
-		<typeAlias type='modelo.pojo.Usuario' alias='Usuario' />
+		<typeAlias type='modelo.pojo.UsuarioFullInfo' alias='UsuarioFullInfo' />
+		<typeAlias type='modelo.pojo.UsuarioAdminInfo' alias='UsuarioAdminInfo' />
+		<typeAlias type='modelo.pojo.BlackboxAdminInfo' alias='BlackboxAdminInfo' />
 		<typeAlias type='modelo.pojo.TokenNuevoPassword' alias='TokenNuevoPassword' />
 	</typeAliases>
 	<environments default='development'>
@@ -18,8 +20,8 @@
 		</environment>
 	</environments>
 	<mappers>
-		<!-- <mapper resource='direccion/desde/la/carpeta/src/del/proyecto/al/mapper.xml' /> -->
 		<mapper resource='modelo/dao/mapper/UsuarioMapper.xml' />
+		<mapper resource='modelo/dao/mapper/BlackboxMapper.xml' />
 		<mapper resource='modelo/dao/mapper/TokenNuevoPasswordMapper.xml' />
 	</mappers>
 </configuration>

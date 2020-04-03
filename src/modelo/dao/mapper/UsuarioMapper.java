@@ -1,6 +1,9 @@
 package modelo.dao.mapper;
 
-import modelo.pojo.Usuario;
+import java.util.List;
+
+import modelo.pojo.UsuarioAdminInfo;
+import modelo.pojo.UsuarioFullInfo;
 
 /**
  * Interfaz usada por MyBatis para acceder a la tabla Usuarios
@@ -11,10 +14,10 @@ public interface UsuarioMapper {
 	
 	/**
 	 * Obtiene un objeto de tipo usuario con todos los datos a partir de un usuario con solo el nombre y el pass.
-	 * @param usuario Objeto Usuario con, al menos, los atributos nombre y pass rellenados.
-	 * @return Retorna un Objeto Usuario que se encuentre en la base de datos con la misma información rellenado con todos los datos.
+	 * @param usuarioFullInfo Objeto UsuarioFullInfo con, al menos, los atributos nombre y pass rellenados.
+	 * @return Retorna un Objeto UsuarioFullInfo que se encuentre en la base de datos con la misma información rellenado con todos los datos.
 	 */
-	public Usuario getUsuario(Usuario usuario);
+	public UsuarioFullInfo getUsuario(UsuarioFullInfo usuarioFullInfo);
 
 	public boolean existeUsuario(String email);
 
@@ -22,6 +25,8 @@ public interface UsuarioMapper {
 
 	public Integer getIdDesdeEmail(String email);
 
-	public void setUsuario(Usuario usuario);
+	public void setUsuario(UsuarioFullInfo usuarioFullInfo);
+
+	public List<UsuarioAdminInfo> getListaUsuariosParaAdministracion();
 	
 }

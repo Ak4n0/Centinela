@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+  
+<mapper namespace='modelo.dao.mapper.BlackboxMapper'>
+
+	<select id='getBlackboxes' resultType='BlackboxAdminInfo'>
+		SELECT BLACKBOX.id as id, identificador_unico as identificador, BLACKBOX.nombre as nombre,
+				BLACKBOX.passwd as passwd, DATO_USUARIO.id as idUsuario, DATO_USUARIO.nombre as nombreUsuario
+		  FROM BLACKBOX, (
+		SELECT id, nombre
+		  FROM USUARIO) as DATO_USUARIO
+		 WHERE DATO_USUARIO.id = BLACKBOX.usuario_id;
+	</select>
+
+</mapper>

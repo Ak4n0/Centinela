@@ -1,15 +1,18 @@
 package modelo.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import modelo.dao.mapper.UsuarioMapper;
-import modelo.pojo.Usuario;
+import modelo.pojo.UsuarioAdminInfo;
+import modelo.pojo.UsuarioFullInfo;
 
 public class UsuarioDAO {
 
 	private UsuarioDAO() {}
 	
-	public static Usuario getUsuario(Usuario usuario) {
+	public static UsuarioFullInfo getUsuario(UsuarioFullInfo usuario) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			UsuarioMapper mapper = sqlSession.getMapper(UsuarioMapper.class);
@@ -49,12 +52,22 @@ public class UsuarioDAO {
 		}
 	}
 
-	public static void setUsuario(Usuario usuario) {
+	public static void setUsuario(UsuarioFullInfo usuarioFullInfo) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			UsuarioMapper mapper = sqlSession.getMapper(UsuarioMapper.class);
-			mapper.setUsuario(usuario);
+			mapper.setUsuario(usuarioFullInfo);
 			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static List<UsuarioAdminInfo> getListaUsuariosParaAdministracion() {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			UsuarioMapper mapper = sqlSession.getMapper(UsuarioMapper.class);
+			return mapper.getListaUsuariosParaAdministracion();
 		} finally {
 			sqlSession.close();
 		}
