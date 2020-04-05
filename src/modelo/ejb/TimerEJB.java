@@ -1,5 +1,9 @@
 package modelo.ejb;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -20,7 +24,13 @@ public class TimerEJB {
     private void eliminarUsuariosNoValidados(final Timer t) {
         List<PeticionNuevoUsuario> lista = operacionesUsuario.getNewUserPetitions();
 		for(PeticionNuevoUsuario peticion: lista) {
-			operacionesUsuario.removeDatabaseUser(peticion.getIdUsuario());
+			Date ahora = new Date();
+			Calendar fechaPeticion = Calendar.getInstance();
+			fechaPeticion.setTime(peticion.getFechaHora());
+			fechaPeticion.add(Calendar.DATE, 1);
+			if(ahora.after(fechaPeticion.getTime())) {
+				operacionesUsuario.removeDatabaseUser(peticion.getIdUsuario());
+			}
 		}
     }
 }
