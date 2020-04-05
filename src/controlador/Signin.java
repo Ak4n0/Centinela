@@ -98,7 +98,21 @@ public class Signin extends HttpServlet {
 		// Enviar un email al cliente para que valide su dirección
 		String enlace = utilidadesEJB.getServerPublicIp() + "/ValidarNuevoUsuario?v=" + clave;
 		String mensaje = emailEJB.cuerpoMensajeNuevoUsuario(usuario.getNombre(), enlace);
-		emailEJB.sendMail(usuario.getEmail(), "CENTINELA - Validar email", mensaje);
+		if(!emailEJB.sendMail(usuario.getEmail(), "CENTINELA - Validar email", mensaje)) {
+			// Falló el envío del email. Borrar el usuario que se había creado y el temporizador.
+			operacionesUsuariosEJB.removeDatabaseUser(usuario.getId());
+			operacionesUsuariosEJB.removeKeyNewUser(clave);
+			
+			// Informar del error al usuario para que se ponga en contacto con su email informando dle fallo.
+			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
+			request.setAttribute("titulo", "Error en el proceso");
+			request.setAttribute("mensaje", "<p>No se pudo completar el proceso satisfactoriamente.</p>" + 
+											"<p>Inténtalo más tarde. Si los problemas persisten envía un email a " +
+											"<a href='mailto:centinela.soluciones@gmail.com?subject=Aviso%20de%20error%20web'>" + 
+											"centinela.soluciones@gmail.com</a> explicando lo sucedido.</p>");
+			rs.forward(request, response);
+			return;
+		}
 		
 		// Una vez que el usuario existe iniciar la sesión
 		operacionesUsuariosEJB.setSessionUser(request, usuario);
