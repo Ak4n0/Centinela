@@ -20,11 +20,13 @@ import javax.mail.internet.MimeMultipart;
 @LocalBean
 public class EmailEJB {
 	
-	public void sendMail(String para, String asunto, String mensaje) {
-		this.sendMail(para, asunto, mensaje, null);
+	public boolean sendMail(String para, String asunto, String mensaje) {
+		return this.sendMail(para, asunto, mensaje, null);
 	}
 	
-	public void sendMail(String para, String asunto, String mensaje, String[] archivos) {
+	public boolean sendMail(String para, String asunto, String mensaje, String[] archivos) {
+		boolean exito = true;
+		
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
         prop.put("mail.smtp.starttls.enable", "true");
@@ -64,9 +66,12 @@ public class EmailEJB {
                 Transport.send(message);
 
         } catch (Exception e) {
-        	// TODO: añadir el logger y quitar e.printStackTrace();
+        	// TODO: Informar del fallo con el logger
         	e.printStackTrace();
+        	exito = false;
         }
+        
+        return exito;
     }
 	
 	public String cuerpoMensajeNuevaClave(String nombre, String enlace) {
