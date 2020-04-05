@@ -91,4 +91,25 @@ public class EmailEJB {
 				    "</body>" +
 				"</html>";
 	}
+	
+	public String cuerpoMensajeNuevoUsuario(String nombre, String enlace) {
+		return 	"<!DOCTYPE html>" +
+				"<html>" +
+			    	"<head>" +
+			    	"<title>Validar contraseña</title>" +
+				    "<meta charset='UTF-8'>" +
+			        "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+				    "</head>" +
+				    "<body>" +
+				        "<h1>Centinela Soluciones</h1>" +
+				        "<p>Hola " + nombre + ",</p>" +
+				        "<p>Desde Centinela Soluciones te damos las gracias por haber confiado en nosotros." +
+				            "Para completar el registro debes hacer click en este <a href='" + enlace + "'>enlace</a>.</p>" +
+				        "<p>Si el enlace no funciona copia la siguiente dirección y pégala en el omnibox de tu navegador: " + enlace + "</p>" +
+				            "<p>Tienes 24 horas desde que iniciaste el registro para validar el email, en caso contrario tu cuenta será borrada.</p>" +
+				        "<hr>" +
+				        "<p>En caso de que no hayas iniciado un registro y este mensaje es un error óbvialo y bórralo.</p>" +
+				    "</body>" +
+				"</html>";
+	}
 }

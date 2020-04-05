@@ -2,6 +2,9 @@ package modelo.dao.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import modelo.pojo.PeticionNuevoUsuario;
 import modelo.pojo.UsuarioAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
@@ -28,5 +31,15 @@ public interface UsuarioMapper {
 	public void setUsuario(UsuarioFullInfo usuarioFullInfo);
 
 	public List<UsuarioAdminInfo> getListaUsuariosParaAdministracion();
+
+	public void setTemporizadorNuevoUsuario(@Param("usuario") UsuarioFullInfo usuario, @Param("clave") String clave);
+
+	public boolean existeClaveUsuarioNuevo(String clave);
+
+	public void eliminarClaveUsuarioNuevo(String clave);
+
+	public List<PeticionNuevoUsuario> getPeticionesNuevoUsuario();
+
+	public void eliminarUsuario(Integer idUsuario);
 	
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import modelo.dao.UsuarioDAO;
+import modelo.pojo.PeticionNuevoUsuario;
 import modelo.pojo.UsuarioAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
@@ -42,8 +43,8 @@ public class OperacionesUsuariosEJB {
 		return UsuarioDAO.existeUsuario(email);
 	}
 
-	public void setSessionUser(HttpServletRequest request, UsuarioFullInfo usuarioFullInfo) {
-		request.getSession().setAttribute("usuario", usuarioFullInfo);
+	public void setSessionUser(HttpServletRequest request, UsuarioFullInfo usuario) {
+		request.getSession().setAttribute("usuario", usuario);
 	}
 
 	public String getUserName(String email) {
@@ -54,12 +55,32 @@ public class OperacionesUsuariosEJB {
 		return UsuarioDAO.getIdDesdeEmail(email);
 	}
 
-	public void setDatabaseUser(UsuarioFullInfo usuarioFullInfo) {
-		UsuarioDAO.setUsuario(usuarioFullInfo);
+	public void setDatabaseUser(UsuarioFullInfo usuario) {
+		UsuarioDAO.setUsuario(usuario);
 	}
 
 	public List<UsuarioAdminInfo> getDatabaseUsersForAdmin() {
 		return UsuarioDAO.getListaUsuariosParaAdministracion();
+	}
+
+	public void setNewUserTimer(UsuarioFullInfo usuario, String clave) {
+		UsuarioDAO.setTemporizadorNuevoUsuario(usuario, clave);
+	}
+
+	public boolean keyNewUserExists(String clave) {
+		return UsuarioDAO.existeClaveUsuarioNuevo(clave);
+	}
+
+	public void removeKeyNewUser(String clave) {
+		UsuarioDAO.eliminarClaveUsuarioNuevo(clave);
+	}
+
+	public List<PeticionNuevoUsuario> getNewUserPetitions() {
+		return UsuarioDAO.getPeticionesNuevoUsuario();
+	}
+
+	public void removeDatabaseUser(Integer idUsuario) {
+		UsuarioDAO.eliminarUsuario(idUsuario);
 	}
 	
 }

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.ejb.EmailEJB;
 import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.UtilidadesEJB;
 import modelo.enumeracion.TipoError;
 import modelo.pojo.UsuarioFullInfo;
 
@@ -24,6 +26,12 @@ public class Signin extends HttpServlet {
 
 	@EJB
 	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	
+	@EJB
+	EmailEJB emailEJB;
+	
+	@EJB
+	UtilidadesEJB utilidadesEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -73,18 +81,35 @@ public class Signin extends HttpServlet {
 		}
 		
 		// No existe un usuario con el mismo email, introducirlo en la BBDD
-		UsuarioFullInfo usuarioFullInfo = new UsuarioFullInfo();
-		usuarioFullInfo.setNombre(nombre);
-		usuarioFullInfo.setEmail(email);
-		usuarioFullInfo.setPasswd(passwd);
-		usuarioFullInfo.setAdministrador(false);
-		operacionesUsuariosEJB.setDatabaseUser(usuarioFullInfo);
+		UsuarioFullInfo usuario = new UsuarioFullInfo();
+		usuario.setNombre(nombre);
+		usuario.setEmail(email);
+		usuario.setPasswd(passwd);
+		usuario.setAdministrador(false);
+		operacionesUsuariosEJB.setDatabaseUser(usuario);
+		
+		// Obtener la id que nos ha dado la base de datos
+		usuario = operacionesUsuariosEJB.getDatabaseUser(usuario.getEmail(), usuario.getPasswd());
+		
+		// Agregar una entrada al temporizador para que el usuario pueda validar su cuenta
+		String clave = utilidadesEJB.convertirSHA256(usuario.getEmail() + usuario.getId());
+		operacionesUsuariosEJB.setNewUserTimer(usuario, clave);
+		
+		// Enviar un email al cliente para que valide su dirección
+		String enlace = utilidadesEJB.getServerPublicIp() + "/ValidarNuevoUsuario?v=" + clave;
+		String mensaje = emailEJB.cuerpoMensajeNuevoUsuario(usuario.getNombre(), enlace);
+		emailEJB.sendMail(usuario.getEmail(), "CENTINELA - Validar email", mensaje);
 		
 		// Una vez que el usuario existe iniciar la sesión
-		operacionesUsuariosEJB.setSessionUser(request, usuarioFullInfo);
+		operacionesUsuariosEJB.setSessionUser(request, usuario);
 		
-		// Ir a la página principal
-		response.sendRedirect("Principal");
+		// Informar al usuario que le han mandado un email para que valide su cuenta
+		// en caso contrario esta será borrada en un venticuatro horas.
+		rs = getServletContext().getRequestDispatcher("/aviso.jsp");
+		request.setAttribute("Validar cuenta", "<p>Acabamos de enviarte un email con un link para que puedas validar " +
+							"tu dirección de correo.</p>" + 
+							"<p>Si esta validación no se realiza en las próximas 24 horas tu cuenta eliminada.</p>");
+		
 	}
 
 }

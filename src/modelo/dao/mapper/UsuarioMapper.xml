@@ -32,13 +32,41 @@
 		 WHERE email = #{email}
 	</select>
 	
-	<select id='setUsuario' parameterType='UsuarioFullInfo'>
+	<insert id='setUsuario' parameterType='UsuarioFullInfo'>
 		INSERT INTO USUARIO (nombre, passwd, email, administrador)
 			   VALUES (#{nombre}, #{passwd}, #{email}, #{administrador})
-	</select>
+	</insert>
 	
 	<select id='getListaUsuariosParaAdministracion' resultType='UsuarioAdminInfo'>
 		SELECT id, nombre, email, (SELECT count(*) FROM BLACKBOX WHERE usuario_id = USUARIO.id) AS numBlackboxes
-  		  FROM USUARIO;
+  		  FROM USUARIO
 	</select>
+	
+	<insert id='setTemporizadorNuevoUsuario'>
+		INSERT INTO PETICION_NUEVO_USUARIO
+			   VALUES (#{clave}, #{usuario.id}, NOW())
+	</insert>
+	
+	<select id='existeClaveUsuarioNuevo' parameterType='String' resultType='Boolean'>
+		SELECT IF(EXISTS(
+				SELECT *
+              	  FROM PETICION_NUEVO_USUARIO
+             	 WHERE id = #{clave}
+			   ), 1, 0)
+	</select>
+	
+	<delete id='eliminarClaveUsuarioNuevo' parameterType='String'>
+		DELETE FROM PETICION_NUEVO_USUARIO
+		 WHERE id = #{clave}
+	</delete>
+	
+	<select id='getPeticionesNuevoUsuario' parameterType='PeticionNuevoUsuario'>
+		SELECT id, usuario_id as idUsuario, fecha_hora as fechaHora
+		  FROM PETICION_NUEVO_USUARIO;
+	</select>
+	
+	<delete id='eliminarUsuario' parameterType='Integer'>
+		DELETE FROM USUARIO
+		 WHERE id = #{idUsuario}
+	</delete>
 </mapper>

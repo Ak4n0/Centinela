@@ -36,7 +36,7 @@ CREATE TABLE BLACKBOX (
         ON DELETE CASCADE
 );
 
-
+-- Información sobre el estado de los puertos
 CREATE TABLE IO_PORT (
     blackbox_id INTEGER NOT NULL, -- Identificador a la blackbox a la que pertenece esta captura de datos.
     fecha_hora DATETIME NOT NULL, -- Fecha en que se produjo esta captura de datos.
@@ -84,6 +84,17 @@ CREATE TABLE PETICION_NUEVO_PASSWD (
         ON DELETE CASCADE
 );
 
+-- Control de nuevos usuarios. Guarda cuándo un nuevo usuario se registra, así se podrá borrar si no ha validado su cuenta.
+CREATE TABLE PETICION_NUEVO_USUARIO (
+    id VARCHAR(64) PRIMARY KEY, -- SHA256 como identificador único
+    usuario_id INTEGER UNIQUE NOT NULL, -- Id del usuario registrado
+    fecha_hora DATETIME NOT NULL, -- momento en que se registra
+    
+    FOREIGN KEY(usuario_id)
+        REFERENCES USUARIO(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
 
 -- Creación del usuario administrador
 INSERT INTO USUARIO (nombre, passwd, email, administrador)
