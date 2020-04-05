@@ -54,7 +54,7 @@ public class ValidarNuevoUsuario extends HttpServlet {
 		// informar al usuario que está correctamente registrado
 		rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 		request.setAttribute("titulo", "Registro completo");
-		request.setAttribute("mensaje", "<p>Has validado completamente tu cuenta. A partir de este momento puedes hacer .</p>");
+		request.setAttribute("mensaje", "<p>Has validado completamente tu cuenta. A partir de este momento puedes ponerte en contacto con el servicio de ventas para adquirir el hardware Blackbox.</p>");
 		rs.forward(request, response);
 	}
 

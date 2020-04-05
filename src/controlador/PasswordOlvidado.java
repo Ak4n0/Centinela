@@ -92,7 +92,7 @@ public class PasswordOlvidado extends HttpServlet {
 		
 		// Se pudieron conseguir todos los datos, por lo que se manda por email
 		// Primero conseguir la ip del servidor
-		String enlace = utilidadesEJB.getServerPublicIp();
+		String enlace = utilidadesEJB.getServerPublicIp(request);
 		// Si no se obtuvo la ip del servidor avisar al usuario
 		if(enlace == null) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");

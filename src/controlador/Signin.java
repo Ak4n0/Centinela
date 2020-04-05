@@ -96,7 +96,7 @@ public class Signin extends HttpServlet {
 		operacionesUsuariosEJB.setNewUserTimer(usuario, clave);
 		
 		// Enviar un email al cliente para que valide su dirección
-		String enlace = utilidadesEJB.getServerPublicIp() + "/ValidarNuevoUsuario?v=" + clave;
+		String enlace = utilidadesEJB.getServerPublicIp(request) + ":8080" + request.getContextPath() + "/ValidarNuevoUsuario?v=" + clave;
 		String mensaje = emailEJB.cuerpoMensajeNuevoUsuario(usuario.getNombre(), enlace);
 		if(!emailEJB.sendMail(usuario.getEmail(), "CENTINELA - Validar email", mensaje)) {
 			// Falló el envío del email. Borrar el usuario que se había creado y el temporizador.
@@ -120,10 +120,11 @@ public class Signin extends HttpServlet {
 		// Informar al usuario que le han mandado un email para que valide su cuenta
 		// en caso contrario esta será borrada en un venticuatro horas.
 		rs = getServletContext().getRequestDispatcher("/aviso.jsp");
-		request.setAttribute("Validar cuenta", "<p>Acabamos de enviarte un email con un link para que puedas validar " +
+		request.setAttribute("titulo", "Validar cuenta");
+		request.setAttribute("mensaje", "<p>Acabamos de enviarte un email con un link para que puedas validar " +
 							"tu dirección de correo.</p>" + 
 							"<p>Si esta validación no se realiza en las próximas 24 horas tu cuenta eliminada.</p>");
-		
+		rs.forward(request, response);
 	}
 
 }

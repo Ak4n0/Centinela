@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.servlet.http.HttpServletRequest;
 
 @LocalBean
 @Stateless
@@ -33,16 +34,8 @@ public class UtilidadesEJB {
 		return sb.toString();
 	}
 	
-	public String getServerPublicIp() {
-		InetAddress inetAddres;
-		try {
-			inetAddres = InetAddress.getLocalHost();
-			return inetAddres.getHostName();
-		} catch (UnknownHostException e) {
-			// TODO: informar del error por el logger
-			e.printStackTrace();
-			return null;
-		}
+	public String getServerPublicIp(HttpServletRequest request) {
+		return request.getLocalAddr();
 	}
 	
 }
