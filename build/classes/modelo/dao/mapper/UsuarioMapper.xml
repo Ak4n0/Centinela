@@ -60,7 +60,7 @@
 		 WHERE id = #{clave}
 	</delete>
 	
-	<select id='getPeticionesNuevoUsuario' parameterType='PeticionNuevoUsuario'>
+	<select id='getPeticionesNuevoUsuario' resultType='PeticionNuevoUsuario'>
 		SELECT id, usuario_id as idUsuario, fecha_hora as fechaHora
 		  FROM PETICION_NUEVO_USUARIO;
 	</select>
