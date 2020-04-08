@@ -11,7 +11,7 @@
 
 <h1>Editar blackbox</h1>
 
-<form action="AddBlackBox" method="post" class="needs-validation" novalidate>
+<form class="needs-validation" novalidate>
   <div class="form-group">
     <label for="idUnico">Identificador Blackbox:</label>
     <input type="text" class="form-control" id="idUnico" placeholder="Introduce el identificador para la Blackbox" name="id" required>
@@ -20,7 +20,7 @@
   </div>
   <div class="form-group">
     <label for="passwd">Password Blackbox:</label>
-    <input type="password" class="form-control" id="passwd" placeholder="Intorduce la contraseña para la Blackbox" name="passwd" required>
+    <input type="text" class="form-control" id="passwd" placeholder="Intorduce la contraseña para la Blackbox" name="passwd" required>
     <div class="valid-feedback">Correcto.</div>
     <div class="invalid-feedback">Debes rellenar este campo.</div>
   </div>
@@ -35,24 +35,30 @@
       <div class="valid-feedback">Correcto.</div>
       <div class="invalid-feedback">Debes seleccionar un cliente.</div>
   </div>
-  <button type="submit" class="btn btn-primary">Crear</button>
-  <button type="reset" class="btn btn-primary" onclick="reset()">Resetear</button>
-  <button type="button" class="btn btn-primary">Cancelar</button>
+  <button type="submit" class="btn btn-primary">Modificar</button>
+  <button type="button" class="btn btn-danger" onclick="resetear()">Resetear</button>
+  <button type="button" class="btn btn-secondary" onclick="cancelar()">Cancelar</button>
 </form>
 
 <script>
 	// Disable form submissions if there are invalid fields
     var forms = $(".needs-validation");
 	
-	function reset() {
+	function resetear() {
 		$("#idUnico").val("<%= blackbox.getIdentificador() %>");
 		$("#passwd").val("<%= blackbox.getPasswd() %>");
-		$("#usuario").val("<%= blackbox.getIdUsuario() %>");
+		$("#usuario").val(<%= blackbox.getIdUsuario() %>);
+	}
+	
+	function cancelar() {
+		$.get("ObtenerBlackboxes", function(respuesta) {
+    		$("#content").html(respuesta);
+    	});
 	}
 	
     // Loop over them and prevent submission
     (function() {
-    	reset();
+    	resetear();
 		Array.prototype.filter.call(forms, function(form) {
 			form.addEventListener("submit", function(event) {
 				event.preventDefault();
@@ -62,7 +68,7 @@
 					let paramId = $("#idUnico").val();
 					let paramPasswd = $("#passwd").val();
 					let paramUsuario = $("#usuario").val();
-		        	$.post("AddBlackbox",
+		        	$.post("EditarBlackbox",
 		        	{
 		        		id: <%= blackbox.getId() %>,
 		        		idUnico: paramId,

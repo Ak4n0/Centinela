@@ -72,7 +72,6 @@ public class EditarBlackbox extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Añadir el id de la base de datos de la blackbox
 		// A esta págian solo puede entrar un administrador
 		UsuarioFullInfo usuario = operacionesUsuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
@@ -100,9 +99,10 @@ public class EditarBlackbox extends HttpServlet {
 			
 			// Comprueba que idCliente es un número válido
 			try {
-				id = Integer.parseInt("idArg");
+				id = Integer.parseInt(idArg);
 				idUsuario = Integer.parseInt(idUsuarioArg);
 			} catch(NumberFormatException e) {
+				e.printStackTrace();
 				response.sendRedirect("ObtenerBlackboxes");
 				return;
 			}

@@ -86,21 +86,20 @@
 				</div>
 			</nav>
 
-			<h2 class="mb-4">Sidebar #01</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-				ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-				ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.</p>
+			<h1 class="mb-4">Administración</h1>
+			<h5>Ten en cuenta lo siguiente</h5>
+			<ol>
+				<li>Puedes crear, editar y eliminar tanto usuarios como blackboxes.</li>
+				<li>Ten en cuenta que un usuario creado desde la administración está
+					directamente validado, por tanto si hay un error en la dirección
+					de su email no los recibiría.</li>
+				<li>Igualmente revisa el propietaro al cuál le asignas una blackbox,
+					por un despiste podría ser sencillo asignársela a otro.</li>
+				<li>En la lista de propietarios de la blackbox únicamente aparecen
+					los usuarios que han validado su cuenta de email. Si un usuario
+					acaba de hacerse una cuenta pero no está validada no se le puede
+					asignar un equipo.</li>
+			</ol>
 		</div>
 	</div>
 	<script>

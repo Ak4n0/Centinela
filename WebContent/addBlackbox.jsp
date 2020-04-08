@@ -16,7 +16,7 @@
   </div>
   <div class="form-group">
     <label for="passwd">Password Blackbox:</label>
-    <input type="password" class="form-control" id="passwd" placeholder="Intorduce la contraseña para la Blackbox" name="passwd" required>
+    <input type="text" class="form-control" id="passwd" placeholder="Intorduce la contraseña para la Blackbox" name="passwd" required>
     <div class="valid-feedback">Correcto.</div>
     <div class="invalid-feedback">Debes rellenar este campo.</div>
   </div>

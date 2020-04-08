@@ -37,8 +37,8 @@
 		$.get("AddBlackbox", function(htmlExterno) {$("#content").html(htmlExterno)});
 	}
 	
-	function editarBlackbox() {
-		$.get("EditarBlackbox", function(htmlExterno) {$("#content").html(htmlExterno)});
+	function editarBlackbox(id) {
+		$.get("EditarBlackbox", {id: id}, function(htmlExterno) {$("#content").html(htmlExterno)});
 	}
 	
 	function borrarBlackbox(id) {
