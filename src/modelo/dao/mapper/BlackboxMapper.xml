@@ -13,5 +13,30 @@
 		  FROM USUARIO) as DATO_USUARIO
 		 WHERE DATO_USUARIO.id = BLACKBOX.usuario_id;
 	</select>
+	
+	<insert id='addBlackbox'>
+		INSERT INTO BLACKBOX (identificador_unico, passwd, usuario_id)
+			   VALUES (#{idUnico}, #{passwd}, #{idUsuario})
+	</insert>
 
+	<delete id='borrarBlackbox' parameterType="Integer">
+		DELETE FROM BLACKBOX
+		 WHERE id = #{id}
+	</delete>
+	
+	<update id='editarBlackbox'>
+		UPDATE BLACKBOX
+		   SET id=#{id}, identificador_unico=#{idUnico}, passwd=#{passwd}, usuario_id=#{idUsuario}
+		 WHERE id = #{id}
+	</update>
+	
+	<select id='getBlackbox' parameterType='Integer' resultType='BlackboxAdminInfo'>
+		SELECT BLACKBOX.id as id, identificador_unico as identificador, BLACKBOX.nombre as nombre,
+				BLACKBOX.passwd as passwd, DATO_USUARIO.id as idUsuario, DATO_USUARIO.nombre as nombreUsuario
+		  FROM BLACKBOX, (
+		SELECT id, nombre
+		  FROM USUARIO) as DATO_USUARIO
+		 WHERE DATO_USUARIO.id = BLACKBOX.usuario_id
+		   AND BLACKBOX.id = #{id}
+	</select>
 </mapper>

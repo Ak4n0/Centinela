@@ -126,4 +126,14 @@ public class UsuarioDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static List<UsuarioAdminInfo> getUsuariosValidados() {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			UsuarioMapper mapper = sqlSession.getMapper(UsuarioMapper.class);
+			return mapper.getUsuariosValidados();
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

@@ -82,5 +82,9 @@ public class OperacionesUsuariosEJB {
 	public void removeDatabaseUser(Integer idUsuario) {
 		UsuarioDAO.eliminarUsuario(idUsuario);
 	}
+
+	public List<UsuarioAdminInfo> getDatabaseValidatedUsers() {
+		return UsuarioDAO.getUsuariosValidados();
+	}
 	
 }

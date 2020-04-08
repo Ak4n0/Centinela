@@ -17,5 +17,20 @@ public class OperacionesBlackboxesEJB {
 		return BlackboxDAO.getBlackboxes();
 	}
 
+	public void addBlackbox(String id, String passwd, int idUsuario) {
+		BlackboxDAO.addBlackbox(id, passwd, idUsuario);
+	}
+
+	public void deleteBlackbox(int id) {
+		BlackboxDAO.borrarBlackbox(id);
+	}
+
+	public BlackboxAdminInfo getBlackbox(int id) {
+		return BlackboxDAO.getBlackbox(id);
+	}
+
+	public void editBlackbox(int id, String idUnico, String passwd, int idUsuario) {
+		BlackboxDAO.editarBlackbox(id, idUnico, passwd, idUsuario);
+	}
 	
 }

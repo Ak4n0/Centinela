@@ -25,10 +25,28 @@
 			<td><%= blackbox.getIdentificador() %></td>
 			<td><a href="EditarUsuario?id=<%= blackbox.getIdUsuario() %>"><%= blackbox.getNombreUsuario() %></a></td>
 			<td><%= blackbox.getPasswd() %></td>
-			<td class="text-center"><a href="#"><i class="fas fa-pen-square"></i></a></td>
-			<td class="text-center"><a href="#"><i class="fas fa-trash-alt"></i></a></td>
+			<td class="text-center"><a href="#" onclick="editarBlackbox(<%= blackbox.getId() %>)"><i class="fas fa-pen-square"></i></a></td>
+			<td class="text-center"><a href="#" onclick="borrarBlackbox(<%= blackbox.getId() %>)"><i class="fas fa-trash-alt"></i></a></td>
 		</tr>
 		<% } %>
 	</tbody>
 </table>
-<p><a href="AddBlackbox"><i class="fas fa-plus-square"></i> Añadir Blackbox</a><p>
+<p><a href="#" onclick="crearBlackbox()"><i class="fas fa-plus-square"></i> Añadir Blackbox</a></p>
+<script>
+	function crearBlackbox() {
+		$.get("AddBlackbox", function(htmlExterno) {$("#content").html(htmlExterno)});
+	}
+	
+	function editarBlackbox() {
+		$.get("EditarBlackbox", function(htmlExterno) {$("#content").html(htmlExterno)});
+	}
+	
+	function borrarBlackbox(id) {
+		if(confirm("¿Estás seguro de querer borrar la Blackbox #" + id + "?")) {
+			$.post("EliminarBlackbox", {id: id});
+			$.get("ObtenerBlackboxes", function(respuesta) {
+        		$("#content").html(respuesta);
+        	});
+		}
+	}
+</script>

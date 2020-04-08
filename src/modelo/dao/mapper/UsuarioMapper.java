@@ -41,5 +41,7 @@ public interface UsuarioMapper {
 	public List<PeticionNuevoUsuario> getPeticionesNuevoUsuario();
 
 	public void eliminarUsuario(Integer idUsuario);
+
+	public List<UsuarioAdminInfo> getUsuariosValidados();
 	
 }
