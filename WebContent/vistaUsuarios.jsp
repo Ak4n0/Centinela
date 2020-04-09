@@ -31,9 +31,23 @@
 			<td><%= usuario.getNombre() %></td>
 			<td><%= usuario.getEmail() %></td>
 			<td class="text-center"><%= usuario.getNumBlackboxes() %></td>
-			<td class="text-center"><a href="#"><i class="fas fa-user-edit"></i></a></td>
-			<td class="text-center"><a href="#"><i class="fas fa-user-slash"></i></a></td>
+			<td class="text-center"><a href="#" onclick="editarUsuario(<%= usuario.getId() %>)"><i class="fas fa-user-edit"></i></a></td>
+			<td class="text-center"><a href="#" onclick="borrarUsuario(<%= usuario.getId() %>)"><i class="fas fa-user-slash"></i></a></td>
 		</tr>
 		<% } %>
 	</tbody>
 </table>
+<script>
+	function editarUsuario(id) {
+		$.get("EditarUsuario", {id: id}, function(htmlExterno) {$("#content").html(htmlExterno)});
+	}
+	
+	function borrarUsuario(id) {
+		if(confirm("¿Estás seguro de querer borrar el usuario #" + id + "?")) {
+			$.post("EliminarUsuario", {id: id});
+			$.get("ObtenerUsuarios", function(respuesta) {
+        		$("#content").html(respuesta);
+        	});
+		}
+	}
+</script>

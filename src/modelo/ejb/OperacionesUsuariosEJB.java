@@ -38,6 +38,10 @@ public class OperacionesUsuariosEJB {
 		
 		return usuarioResult;
 	}
+
+	public UsuarioFullInfo getDatabaseUser(int id) {
+		return UsuarioDAO.getUsuario(id);
+	}
 	
 	public boolean existeUsuario(String email) {
 		return UsuarioDAO.existeUsuario(email);

@@ -43,5 +43,7 @@ public interface UsuarioMapper {
 	public void eliminarUsuario(Integer idUsuario);
 
 	public List<UsuarioAdminInfo> getUsuariosValidados();
+
+	public UsuarioFullInfo getUsuarioPorId(int id);
 	
 }

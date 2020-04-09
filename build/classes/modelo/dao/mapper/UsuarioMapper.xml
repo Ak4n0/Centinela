@@ -75,4 +75,10 @@
 		  FROM USUARIO LEFT JOIN PETICION_NUEVO_USUARIO ON USUARIO.id = PETICION_NUEVO_USUARIO.usuario_id
 		 WHERE PETICION_NUEVO_USUARIO.usuario_id IS NULL;
 	</select>
+	
+	<select id='getUsuarioPorId' parameterType='Integer' resultType='UsuarioFullInfo'>
+		SELECT id, nombre, passwd, email, administrador
+		  FROM USUARIO
+		 WHERE id = #{id}
+	</select>
 </mapper>

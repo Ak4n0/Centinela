@@ -1,7 +1,5 @@
 package modelo.ejb;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +18,7 @@ public class TimerEJB {
     OperacionesUsuariosEJB operacionesUsuario;
 	
 	@SuppressWarnings("unused")
-	@Schedule(second="0", minute="*/5", hour="*", info="Operacion de limpieza")
+	@Schedule(second="0", minute="*/10", hour="*")
     private void eliminarUsuariosNoValidados(final Timer t) {
         List<PeticionNuevoUsuario> lista = operacionesUsuario.getNewUserPetitions();
 		for(PeticionNuevoUsuario peticion: lista) {
