@@ -21,14 +21,14 @@ CREATE TABLE BLACKBOX (
     passwd VARCHAR(25) NOT NULL, -- Palabra de seguridad que usará blackbox para cifrar su comunicación.
     info_extra VARCHAR(255), -- Información extra que el usuario crea conveniente incluir.
     usuario_id INTEGER NOT NULL, -- Identificador de usuario la que pertenece la blackbox.
-    nombre_D2 VARCHAR(32) DEFAULT 'OUT_0', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_D3 VARCHAR(32) DEFAULT 'OUT_1', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_D4 VARCHAR(32) DEFAULT 'OUT_2', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_D5 VARCHAR(32) DEFAULT 'OUT_3', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_A0 VARCHAR(32) DEFAULT 'IN_0', -- Nombre con que el usuario se podrá referir a dicha entrada.
-    nombre_A1 VARCHAR(32) DEFAULT 'IN_1', -- Nombre con que el usuario se podrá referir a dicha entrada.
-    nombre_A2 VARCHAR(32) DEFAULT 'IN_2', -- Nombre con que el usuario se podrá referir a dicha entrada.
-    nombre_A3 VARCHAR(32) DEFAULT 'IN_3', -- Nombre con que el usuario se podrá referir a dicha entrada.
+    nombre_O0 VARCHAR(32) DEFAULT 'OUT_0', -- Nombre con que el usuario se podrá referir a dicha salida.
+    nombre_O1 VARCHAR(32) DEFAULT 'OUT_1', -- Nombre con que el usuario se podrá referir a dicha salida.
+    nombre_O2 VARCHAR(32) DEFAULT 'OUT_2', -- Nombre con que el usuario se podrá referir a dicha salida.
+    nombre_O3 VARCHAR(32) DEFAULT 'OUT_3', -- Nombre con que el usuario se podrá referir a dicha salida.
+    nombre_I0 VARCHAR(32) DEFAULT 'IN_0', -- Nombre con que el usuario se podrá referir a dicha entrada.
+    nombre_I1 VARCHAR(32) DEFAULT 'IN_1', -- Nombre con que el usuario se podrá referir a dicha entrada.
+    nombre_I2 VARCHAR(32) DEFAULT 'IN_2', -- Nombre con que el usuario se podrá referir a dicha entrada.
+    nombre_I3 VARCHAR(32) DEFAULT 'IN_3', -- Nombre con que el usuario se podrá referir a dicha entrada.
     
     FOREIGN KEY(usuario_id)
         REFERENCES USUARIO(id)
@@ -40,14 +40,14 @@ CREATE TABLE BLACKBOX (
 CREATE TABLE IO_PORT (
     blackbox_id INTEGER NOT NULL, -- Identificador a la blackbox a la que pertenece esta captura de datos.
     fecha_hora DATETIME NOT NULL, -- Fecha en que se produjo esta captura de datos.
-    D2 TINYINT, -- Estado de la salida digital.
-    D3 TINYINT, -- Estado de la salida digital.
-    D4 TINYINT, -- Estado de la salida digital.
-    D5 TINYINT, -- Estado de la salida digital.
-    A0 TINYINT, -- Estado de la entrada analógica.
-    A1 TINYINT, -- Estado de la entrada analógica.
-    A2 TINYINT, -- Estado de la entrada analógica.
-    A3 TINYINT, -- Estado de la entrada analógica.
+    O0 TINYINT, -- Estado de la salida digital.
+    O1 TINYINT, -- Estado de la salida digital.
+    O2 TINYINT, -- Estado de la salida digital.
+    O3 TINYINT, -- Estado de la salida digital.
+    I0 TINYINT, -- Estado de la entrada analógica.
+    I1 TINYINT, -- Estado de la entrada analógica.
+    I2 TINYINT, -- Estado de la entrada analógica.
+    I3 TINYINT, -- Estado de la entrada analógica.
     
     PRIMARY KEY (blackbox_id, fecha_hora),
     
@@ -63,6 +63,7 @@ CREATE TABLE ALARMA (
     fecha_hora DATETIME NOT NULL, -- Fecha y hora en que se produjo la alarma.
     puerto CHAR(2) NOT NULL, -- Puerto que hizo saltar la alarma.
     nivel TINYINT NOT NULL, -- Nivel de la alarma: 1 (Alto), 2 (Crítico)
+    valor_umbral TINYINT NOT NULL, -- Valor que ha sobrepasado y activado la alarma
     
     PRIMARY KEY (blackbox_id, fecha_hora, puerto),
     
@@ -96,6 +97,23 @@ CREATE TABLE PETICION_NUEVO_USUARIO (
         ON DELETE CASCADE
 );
 
+CREATE TABLE UMBRAL_ALARMA (
+    blackbox_id INT PRIMARY KEY, -- Id de la blackbox al que pertenece
+    I0_bajo TINYINT, -- Nivel de umbral bajo para activar la alarma
+    I0_alto TINYINT, -- Nivel de umbral alto para actiar la alarma
+    I1_bajo TINYINT, -- Nivel de umbral bajo para activar la alarma
+    I1_alto TINYINT, -- Nivel de umbral alto para actiar la alarma
+    I2_bajo TINYINT, -- Nivel de umbral bajo para activar la alarma
+    I2_alto TINYINT, -- Nivel de umbral alto para actiar la alarma
+    I3_bajo TINYINT, -- Nivel de umbral bajo para activar la alarma
+    I3_alto TINYINT, -- Nivel de umbral alto para actiar la alarma
+    
+    FOREIGN KEY(blackbox_id)
+        REFERENCES BLACKBOX(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+    
 -- Creación del usuario administrador
 INSERT INTO USUARIO (nombre, passwd, email, administrador)
 VALUES ('Administrador', 'admin', 'centinela.soluciones@gmail.com', 1);
