@@ -90,5 +90,9 @@ public class OperacionesUsuariosEJB {
 	public List<UsuarioAdminInfo> getDatabaseValidatedUsers() {
 		return UsuarioDAO.getUsuariosValidados();
 	}
+
+	public void updateDatabaseUser(UsuarioFullInfo usuario) {
+		UsuarioDAO.modificarUsuario(usuario);
+	}
 	
 }

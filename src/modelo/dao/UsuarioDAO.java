@@ -146,4 +146,15 @@ public class UsuarioDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static void modificarUsuario(UsuarioFullInfo usuario) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			UsuarioMapper mapper = sqlSession.getMapper(UsuarioMapper.class);
+			mapper.modificarUsuario(usuario);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

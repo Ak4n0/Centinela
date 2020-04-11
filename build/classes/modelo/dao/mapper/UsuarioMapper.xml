@@ -81,4 +81,10 @@
 		  FROM USUARIO
 		 WHERE id = #{id}
 	</select>
+	
+	<update id="modificarUsuario" parameterType='UsuarioFullInfo'>
+		UPDATE USUARIO
+		   SET nombre = #{nombre}, email = #{email}, passwd = #{passwd}
+		 WHERE id = #{id}
+	</update>
 </mapper>

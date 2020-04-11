@@ -45,5 +45,7 @@ public interface UsuarioMapper {
 	public List<UsuarioAdminInfo> getUsuariosValidados();
 
 	public UsuarioFullInfo getUsuarioPorId(int id);
+
+	public void modificarUsuario(UsuarioFullInfo usuario);
 	
 }

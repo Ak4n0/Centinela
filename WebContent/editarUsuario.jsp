@@ -50,12 +50,11 @@
 	function resetear() {
 		$("#nombre").val("<%= usuario.getNombre() %>");
 		$("#passwd").val("<%= usuario.getPasswd() %>");
-		$("#passwd2").val("<%= usuario.getPasswd() %>");
 		$("#email").val("<%= usuario.getEmail() %>");
 	}
 	
 	function cancelar() {
-		$.get("ObtenerBlackboxes", function(respuesta) {
+		$.get("ObtenerUsuarios", function(respuesta) {
     		$("#content").html(respuesta);
     	});
 	}
@@ -70,17 +69,17 @@
 				if (form.checkValidity() === false) {
 					event.stopPropagation();
 				} else {
-					let paramId = $("#idUnico").val();
+					let paramNombre = $("#nombre").val();
+					let paramEmail = $("#email").val();
 					let paramPasswd = $("#passwd").val();
-					let paramUsuario = $("#usuario").val();
-		        	$.post("EditarBlackbox",
+		        	$.post("EditarUsuario",
 		        	{
 		        		id: <%= usuario.getId() %>,
-		        		idUnico: paramId,
-		        		passwd: paramPasswd,
-		        		usuario: paramUsuario
+		        		nombre: paramNombre,
+		        		email: paramEmail,
+		        		passwd: paramPasswd
 		        	});
-		        	$.get("ObtenerBlackboxes", function(respuesta) {
+		        	$.get("ObtenerUsuarios", function(respuesta) {
 		        		$("#content").html(respuesta);
 		        	});
 				}

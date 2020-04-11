@@ -7,15 +7,15 @@ public class IOPort {
 	private String idBlackbox;
 	private Date fechaHora;
 	
-	private Integer D2;
-	private Integer D3;
-	private Integer D4;
-	private Integer D5;
+	private Integer O0;
+	private Integer O1;
+	private Integer O2;
+	private Integer O3;
 	
-	private Integer A0;
-	private Integer A1;
-	private Integer A2;
-	private Integer A3;
+	private Integer I0;
+	private Integer I1;
+	private Integer I2;
+	private Integer I3;
 	
 	/**
 	 * @return the idBlackbox
@@ -44,117 +44,117 @@ public class IOPort {
 	public void setFechaHora(Date fechaHora) {
 		this.fechaHora = fechaHora;
 	}
-	
+
 	/**
-	 * @return the d2
+	 * @return the o0
 	 */
-	public Integer getD2() {
-		return D2;
+	public Integer getO0() {
+		return O0;
 	}
-	
+
 	/**
-	 * @param d2 the d2 to set
+	 * @param o0 the o0 to set
 	 */
-	public void setD2(Integer d2) {
-		D2 = d2;
+	public void setO0(Integer o0) {
+		O0 = o0;
 	}
-	
+
 	/**
-	 * @return the d3
+	 * @return the o1
 	 */
-	public Integer getD3() {
-		return D3;
+	public Integer getO1() {
+		return O1;
 	}
-	
+
 	/**
-	 * @param d3 the d3 to set
+	 * @param o1 the o1 to set
 	 */
-	public void setD3(Integer d3) {
-		D3 = d3;
+	public void setO1(Integer o1) {
+		O1 = o1;
 	}
-	
+
 	/**
-	 * @return the d4
+	 * @return the o2
 	 */
-	public Integer getD4() {
-		return D4;
+	public Integer getO2() {
+		return O2;
 	}
-	
+
 	/**
-	 * @param d4 the d4 to set
+	 * @param o2 the o2 to set
 	 */
-	public void setD4(Integer d4) {
-		D4 = d4;
+	public void setO2(Integer o2) {
+		O2 = o2;
 	}
-	
+
 	/**
-	 * @return the d5
+	 * @return the o3
 	 */
-	public Integer getD5() {
-		return D5;
+	public Integer getO3() {
+		return O3;
 	}
-	
+
 	/**
-	 * @param d5 the d5 to set
+	 * @param o3 the o3 to set
 	 */
-	public void setD5(Integer d5) {
-		D5 = d5;
+	public void setO3(Integer o3) {
+		O3 = o3;
 	}
-	
+
 	/**
-	 * @return the a0
+	 * @return the i0
 	 */
-	public Integer getA0() {
-		return A0;
+	public Integer getI0() {
+		return I0;
 	}
-	
+
 	/**
-	 * @param a0 the a0 to set
+	 * @param i0 the i0 to set
 	 */
-	public void setA0(Integer a0) {
-		A0 = a0;
+	public void setI0(Integer i0) {
+		I0 = i0;
 	}
-	
+
 	/**
-	 * @return the a1
+	 * @return the i1
 	 */
-	public Integer getA1() {
-		return A1;
+	public Integer getI1() {
+		return I1;
 	}
-	
+
 	/**
-	 * @param a1 the a1 to set
+	 * @param i1 the i1 to set
 	 */
-	public void setA1(Integer a1) {
-		A1 = a1;
+	public void setI1(Integer i1) {
+		I1 = i1;
 	}
-	
+
 	/**
-	 * @return the a2
+	 * @return the i2
 	 */
-	public Integer getA2() {
-		return A2;
+	public Integer getI2() {
+		return I2;
 	}
-	
+
 	/**
-	 * @param a2 the a2 to set
+	 * @param i2 the i2 to set
 	 */
-	public void setA2(Integer a2) {
-		A2 = a2;
+	public void setI2(Integer i2) {
+		I2 = i2;
 	}
-	
+
 	/**
-	 * @return the a3
+	 * @return the i3
 	 */
-	public Integer getA3() {
-		return A3;
+	public Integer getI3() {
+		return I3;
 	}
-	
+
 	/**
-	 * @param a3 the a3 to set
+	 * @param i3 the i3 to set
 	 */
-	public void setA3(Integer a3) {
-		A3 = a3;
+	public void setI3(Integer i3) {
+		I3 = i3;
 	}
 	
 }

@@ -1,7 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -51,10 +50,38 @@ public class EditarUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// A esta págian solo puede entrar un administrador
-		UsuarioFullInfo usuario = operacionesUsuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
-		if(usuario == null || !usuario.isAdministrador()) {
+		String idArg = request.getParameter("id");
+		String nombre = request.getParameter("nombre");
+		String email = request.getParameter("email");
+		String passwd = request.getParameter("passwd");
+		int id;
+		
+		// Falta algún dato
+		if(idArg == null || nombre == null || email == null || passwd == null) {
+			response.sendRedirect("ObtenerUsuarios");
+			return;
+		}
+		
+		// Comprueba que idCliente es un número válido
+		try {
+			id = Integer.parseInt(idArg);
+		} catch(NumberFormatException e) {
+			// TODO: usar el logger para mostrar el error
+			e.printStackTrace();
+			response.sendRedirect("ObtenerUsuarios");
+			return;
+		}
+		
+		UsuarioFullInfo usuarioSesion = operacionesUsuariosEJB.getSessionUser(request);
+		UsuarioFullInfo usuario = new UsuarioFullInfo();
+		usuario.setId(id);
+		usuario.setNombre(nombre);
+		usuario.setEmail(email);
+		usuario.setPasswd(passwd);
+		usuario.setAdministrador(false);
+	
+		if(usuarioSesion == null || !usuarioSesion.isAdministrador() || usuarioSesion.getId() != usuario.getId()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 			request.setAttribute("titulo", "No tiene permiso");
 			request.setAttribute("mensaje", "<p>No dispones permiso para acceder a esta sección.</p>" +
@@ -62,30 +89,7 @@ public class EditarUsuario extends HttpServlet {
 											"Si no eres administrador regresa a la página principal haciendo <a href='Principal'>click aquí</a>.");
 			rs.forward(request, response);
 		} else {
-			String idArg = request.getParameter("id");
-			String idUnico = request.getParameter("idUnico");
-			String passwd = request.getParameter("passwd");
-			String idUsuarioArg = request.getParameter("usuario");
-			int id;
-			int idUsuario;
-			
-			// Falta algún dato
-			if(idArg == null || idUnico == null || passwd == null || idUsuarioArg == null) {
-				response.sendRedirect("ObtenerBlackboxes");
-				return;
-			}
-			
-			// Comprueba que idCliente es un número válido
-			try {
-				id = Integer.parseInt(idArg);
-				idUsuario = Integer.parseInt(idUsuarioArg);
-			} catch(NumberFormatException e) {
-				e.printStackTrace();
-				response.sendRedirect("ObtenerBlackboxes");
-				return;
-			}
-			
-			//operacionesBlackboxesEJB.editBlackbox(id, idUnico, passwd, idUsuario);
+			operacionesUsuariosEJB.updateDatabaseUser(usuario);
 		}
 	}
 
