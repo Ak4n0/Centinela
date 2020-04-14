@@ -37,7 +37,6 @@
   </div>
   <button type="submit" class="btn btn-primary">Modificar</button>
   <button type="button" class="btn btn-danger" onclick="resetear()">Resetear</button>
-  <button type="button" class="btn btn-secondary" onclick="cancelar()">Cancelar</button>
 </form>
 
 <script>
@@ -48,12 +47,6 @@
 		$("#idUnico").val("<%= blackbox.getIdentificador() %>");
 		$("#passwd").val("<%= blackbox.getPasswd() %>");
 		$("#usuario").val(<%= blackbox.getIdUsuario() %>);
-	}
-	
-	function cancelar() {
-		$.get("ObtenerBlackboxes", function(respuesta) {
-    		$("#content").html(respuesta);
-    	});
 	}
 	
     // Loop over them and prevent submission

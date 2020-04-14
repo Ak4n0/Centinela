@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="controlador.ObtenerUsuarios" project="Centinela" 
+    file="/Centinela/src/controlador/ObtenerUsuarios.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3334" y="1295"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="controlador.PasswordOlvidado" project="Centinela" 
+    file="/Centinela/src/controlador/PasswordOlvidado.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3721" y="265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="controlador.ObtenerBlackboxes" project="Centinela" 
+    file="/Centinela/src/controlador/ObtenerBlackboxes.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2986" y="786"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="controlador.Logout" project="Centinela" 
+    file="/Centinela/src/controlador/Logout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="991" y="1466"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="controlador.EliminarBlackbox" project="Centinela" 
+    file="/Centinela/src/controlador/EliminarBlackbox.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2609" y="1364"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="controlador.EditarBlackbox" project="Centinela" 
+    file="/Centinela/src/controlador/EditarBlackbox.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2857" y="1011"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="controlador.Signin" project="Centinela" 
+    file="/Centinela/src/controlador/Signin.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3032" y="234"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="controlador.AddBlackbox" project="Centinela" 
+    file="/Centinela/src/controlador/AddBlackbox.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2999" y="602"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="controlador.Login" project="Centinela" 
+    file="/Centinela/src/controlador/Login.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4122" y="1124"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="controlador.ValidarNuevoUsuario" project="Centinela" 
+    file="/Centinela/src/controlador/ValidarNuevoUsuario.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4118" y="930"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="controlador.EditarUsuario" project="Centinela" 
+    file="/Centinela/src/controlador/EditarUsuario.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4117" y="744"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="controlador.EliminarUsuario" project="Centinela" 
+    file="/Centinela/src/controlador/EliminarUsuario.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4117" y="566"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="controlador.Principal" project="Centinela" 
+    file="/Centinela/src/controlador/Principal.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2708" y="218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="modelo.dao.MyBatisUtil" project="Centinela" 
+    file="/Centinela/src/modelo/dao/MyBatisUtil.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="354" y="70"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="modelo.dao.TokenNuevoPasswordDAO" project="Centinela" 
+    file="/Centinela/src/modelo/dao/TokenNuevoPasswordDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="488" y="312"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="modelo.dao.UsuarioDAO" project="Centinela" 
+    file="/Centinela/src/modelo/dao/UsuarioDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="460" y="597"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="modelo.dao.BlackboxDAO" project="Centinela" 
+    file="/Centinela/src/modelo/dao/BlackboxDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1017" y="1249"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="18" language="java" name="modelo.dao.mapper.TokenNuevoPasswordMapper" project="Centinela" 
+    file="/Centinela/src/modelo/dao/mapper/TokenNuevoPasswordMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="971" y="61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="19" language="java" name="modelo.dao.mapper.BlackboxMapper" project="Centinela" 
+    file="/Centinela/src/modelo/dao/mapper/BlackboxMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1016" y="308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="20" language="java" name="modelo.dao.mapper.UsuarioMapper" project="Centinela" 
+    file="/Centinela/src/modelo/dao/mapper/UsuarioMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1060" y="597"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="21" language="java" name="modelo.ejb.UtilidadesEJB" project="Centinela" 
+    file="/Centinela/src/modelo/ejb/UtilidadesEJB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3393" y="71"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="modelo.ejb.EmailEJB" project="Centinela" 
+    file="/Centinela/src/modelo/ejb/EmailEJB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3374" y="261"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="modelo.ejb.OperacionesTokensNuevoPasswordEJB" project="Centinela" 
+    file="/Centinela/src/modelo/ejb/OperacionesTokensNuevoPasswordEJB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4236" y="259"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="modelo.ejb.OperacionesBlackboxesEJB" project="Centinela" 
+    file="/Centinela/src/modelo/ejb/OperacionesBlackboxesEJB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2558" y="450"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="modelo.ejb.TimerEJB" project="Centinela" 
+    file="/Centinela/src/modelo/ejb/TimerEJB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3701" y="1284"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="modelo.ejb.OperacionesUsuariosEJB" project="Centinela" 
+    file="/Centinela/src/modelo/ejb/OperacionesUsuariosEJB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3536" y="723"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="27" language="java" name="modelo.enumeracion.TipoError" project="Centinela" 
+    file="/Centinela/src/modelo/enumeracion/TipoError.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="646" y="65"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="28" language="java" name="modelo.pojo.Blackbox" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/Blackbox.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1804" y="312"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="modelo.pojo.BlackBoxFullInfo" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/BlackBoxFullInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1574" y="342"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="modelo.pojo.UsuarioFullInfo" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/UsuarioFullInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1573" y="757"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="modelo.pojo.TokenNuevoPassword" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/TokenNuevoPassword.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="956" y="985"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="modelo.pojo.PeticionNuevoUsuario" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/PeticionNuevoUsuario.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="564" y="1380"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="modelo.pojo.Usuario" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/Usuario.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1801" y="780"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="modelo.pojo.Alarma" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/Alarma.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="536" y="975"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="modelo.pojo.BlackboxAdminInfo" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/BlackboxAdminInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2062" y="151"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="modelo.pojo.IOPort" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/IOPort.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="294" y="1161"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="modelo.pojo.UsuarioAdminInfo" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/UsuarioAdminInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2024" y="739"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="38">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="39" name="operacionesBlackboxesEJB">        
+        <position height="18" width="144" x="2417" y="543"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="16" width="23" x="2637" y="550"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="42" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="45" name="operacionesTokensNuevoPasswordEJB"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="47">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <association id="48">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="49" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="50" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="51">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="52" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="54">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="55" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="58" name="operacionesUsuario"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="61" name="emailEJB"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="64" name="emailEJB"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="66">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="67" name="utilidadesEJB"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="70" name="utilidadesEJB"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="72">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="73" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="74" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="75">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="76" name="operacionesBlackboxesEJB">        
+        <position height="18" width="144" x="2666" y="545"/>      
+      </attribute>      
+      <multiplicity id="77" minimum="0" maximum="1">        
+        <position height="16" width="23" x="2570" y="546"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="78">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <association id="79">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="80" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="82">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <association id="83">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="84" name="utilidadesEJB"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="87" name="operacionesBlackboxesEJB"/>      
+      <multiplicity id="88" minimum="0" maximum="1">        
+        <position height="16" width="23" x="2633" y="339"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="90" name="controlUsuarioEJB"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="93" name="operacionesBlackboxesEJB"/>      
+      <multiplicity id="94" minimum="0" maximum="1">        
+        <position height="16" width="23" x="2857" y="483"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="95">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="96" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="99" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="102" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="104">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <association id="105">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="106" name="operacionesBlackboxesEJB">        
+        <position height="18" width="144" x="2517" y="604"/>      
+      </attribute>      
+      <multiplicity id="107" minimum="0" maximum="1">        
+        <position height="16" width="23" x="2671" y="604"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="109" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="110" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="112" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="115" name="operacionesUsuariosEJB"/>      
+      <multiplicity id="116" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

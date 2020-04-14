@@ -35,7 +35,6 @@
   </div>
   <button type="submit" class="btn btn-primary">Modificar</button>
   <button type="button" class="btn btn-danger" onclick="resetear()">Resetear</button>
-  <button type="button" class="btn btn-secondary" onclick="cancelar()">Cancelar</button>
 </form>
 
 <script>
@@ -51,12 +50,6 @@
 		$("#nombre").val("<%= usuario.getNombre() %>");
 		$("#passwd").val("<%= usuario.getPasswd() %>");
 		$("#email").val("<%= usuario.getEmail() %>");
-	}
-	
-	function cancelar() {
-		$.get("ObtenerUsuarios", function(respuesta) {
-    		$("#content").html(respuesta);
-    	});
 	}
 	
     // Loop over them and prevent submission
