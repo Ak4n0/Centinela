@@ -2,12 +2,16 @@
 # Edit at https://www.gitignore.io/?templates=java,eclipse,java-web
 
 ### Eclipse ###
+.metadata
 bin/
 tmp/
 *.tmp
 *.bak
 *.swp
 *~.nib
+local.properties
+.settings/
+.loadpath
 .recommenders
 
 # External tool builders
@@ -56,8 +60,10 @@ tmp/
 
 ### Eclipse Patch ###
 # Eclipse Core
+.project
 
 # JDT-specific (Eclipse Java Development Tools)
+.classpath
 
 # Annotation Processing
 .apt_generated
@@ -78,6 +84,7 @@ tmp/
 .mtj.tmp/
 
 # Package Files #
+*.jar
 *.war
 *.nar
 *.ear
