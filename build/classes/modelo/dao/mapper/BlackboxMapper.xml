@@ -30,7 +30,7 @@
 		 WHERE id = #{id}
 	</update>
 	
-	<select id='getBlackbox' parameterType='Integer' resultType='BlackboxAdminInfo'>
+	<select id='getBlackboxPorId' parameterType='Integer' resultType='BlackboxAdminInfo'>
 		SELECT BLACKBOX.id as id, identificador_unico as identificador, BLACKBOX.nombre as nombre,
 				BLACKBOX.passwd as passwd, DATO_USUARIO.id as idUsuario, DATO_USUARIO.nombre as nombreUsuario
 		  FROM BLACKBOX, (
@@ -39,4 +39,19 @@
 		 WHERE DATO_USUARIO.id = BLACKBOX.usuario_id
 		   AND BLACKBOX.id = #{id}
 	</select>
+	
+	<select id='getBlackboxPorIdUnico' parameterType='String' resultType='BlackboxAdminInfo'>
+		SELECT BLACKBOX.id as id, identificador_unico as identificador, BLACKBOX.nombre as nombre,
+				BLACKBOX.passwd as passwd, DATO_USUARIO.id as idUsuario, DATO_USUARIO.nombre as nombreUsuario
+		  FROM BLACKBOX, (
+		SELECT id, nombre
+		  FROM USUARIO) as DATO_USUARIO
+		 WHERE DATO_USUARIO.id = BLACKBOX.usuario_id
+		   AND BLACKBOX.identificador_unico = #{idUnico}
+	</select>
+	
+	<update id='actualizarIP'>
+		UPDATE BLACKBOX SET ip_v4 = #{ip}
+		 WHERE id = #{id}
+	</update>
 </mapper>

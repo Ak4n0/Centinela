@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
@@ -12,6 +13,7 @@ import javax.ejb.Timer;
 import modelo.pojo.PeticionNuevoUsuario;
 
 @Stateless
+@LocalBean
 public class TimerEJB {
 
     @EJB

@@ -3,6 +3,7 @@
 <configuration>
 	<properties resource='jdbc.properties' />
 	<typeAliases>
+		<typeAlias type='modelo.pojo.IOPort' alias='IOPort' />
 		<typeAlias type='modelo.pojo.UsuarioFullInfo' alias='UsuarioFullInfo' />
 		<typeAlias type='modelo.pojo.UsuarioAdminInfo' alias='UsuarioAdminInfo' />
 		<typeAlias type='modelo.pojo.BlackboxAdminInfo' alias='BlackboxAdminInfo' />
@@ -21,6 +22,7 @@
 		</environment>
 	</environments>
 	<mappers>
+		<mapper resource='modelo/dao/mapper/IOPortMapper.xml' />
 		<mapper resource='modelo/dao/mapper/UsuarioMapper.xml' />
 		<mapper resource='modelo/dao/mapper/BlackboxMapper.xml' />
 		<mapper resource='modelo/dao/mapper/TokenNuevoPasswordMapper.xml' />

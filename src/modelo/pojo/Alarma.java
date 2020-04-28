@@ -4,24 +4,25 @@ import java.util.Date;
 
 public class Alarma {
 
-	private String idBlackbox;
+	private Integer idBlackbox;
 	private Date fechaHora;
 	private String puerto;
 	private Integer nivel;
+	private Integer valorUmbral;
 	
 	public Alarma() {}
 
 	/**
 	 * @return the idBlackbox
 	 */
-	public String getIdBlackbox() {
+	public Integer getIdBlackbox() {
 		return idBlackbox;
 	}
 
 	/**
 	 * @param idBlackbox the idBlackbox to set
 	 */
-	public void setIdBlackbox(String idBlackbox) {
+	public void setIdBlackbox(Integer idBlackbox) {
 		this.idBlackbox = idBlackbox;
 	}
 
@@ -65,6 +66,20 @@ public class Alarma {
 	 */
 	public void setNivel(Integer nivel) {
 		this.nivel = nivel;
+	}
+	
+	/**
+	 * @return the valorUmbral
+	 */
+	public Integer getValorUmbral() {
+		return valorUmbral;
+	}
+
+	/**
+	 * @param valorUmbral the valorUmbral to set
+	 */
+	public void setValorUmbral(Integer valorUmbral) {
+		this.valorUmbral = valorUmbral;
 	}
 	
 }

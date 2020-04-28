@@ -2,7 +2,9 @@ package modelo.enumeracion;
 
 public enum TipoError {
 
+	SIN_ERROR,
 	DATOS_INCOMPLETOS,
-	CREDENCIALES
+	CREDENCIALES,
+	OBJETO_ERRONEO,
 	
 }

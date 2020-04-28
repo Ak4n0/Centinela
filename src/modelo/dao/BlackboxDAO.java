@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import modelo.dao.mapper.BlackboxMapper;
-import modelo.pojo.Blackbox;
 import modelo.pojo.BlackboxAdminInfo;
 
 public class BlackboxDAO {
@@ -48,7 +47,17 @@ public class BlackboxDAO {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			BlackboxMapper mapper = sqlSession.getMapper(BlackboxMapper.class);
-			return mapper.getBlackbox(id);
+			return mapper.getBlackboxPorId(id);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public static BlackboxAdminInfo getBlackbox(String idUnico) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BlackboxMapper mapper = sqlSession.getMapper(BlackboxMapper.class);
+			return mapper.getBlackboxPorIdUnico(idUnico);
 		} finally {
 			sqlSession.close();
 		}
@@ -64,4 +73,16 @@ public class BlackboxDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static void actualizarIP(Integer idBlackbox, String ip) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BlackboxMapper mapper = sqlSession.getMapper(BlackboxMapper.class);
+			mapper.actualizarIP(idBlackbox, ip);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 }

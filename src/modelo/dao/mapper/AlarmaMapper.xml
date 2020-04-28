@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+  
+<mapper namespace='modelo.dao.mapper.AlarmaMapper'>
+
+	<insert id='addAlarm' parameterType='Alarma'>
+		INSERT INTO ALARMA
+			   VALUES(#{idBlackbox}, #{fechaHora}, #{puerto}, #{nivel}, #{valorUmbral})
+	</insert>
+</mapper>

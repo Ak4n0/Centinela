@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+  
+<mapper namespace='modelo.dao.mapper.IOPortMapper'>
+
+	<insert id='addIOPortEntry' parameterType='IOPort'>
+		INSERT INTO IO_PORT
+			   VALUES(#{idBlackbox}, #{fecha_hora}, #{O0}, #{O1}, #{O2}, #{O3}, #{I0}, #{I1}, #{I2}, #{I3});
+	</insert>
+	 
+</mapper>

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class IOPort {
 
-	private String idBlackbox;
+	private Integer idBlackbox;
 	private Date fechaHora;
 	
 	private Integer O0;
@@ -20,14 +20,14 @@ public class IOPort {
 	/**
 	 * @return the idBlackbox
 	 */
-	public String getIdBlackbox() {
+	public Integer getIdBlackbox() {
 		return idBlackbox;
 	}
 	
 	/**
 	 * @param idBlackbox the idBlackbox to set
 	 */
-	public void setIdBlackbox(String idBlackbox) {
+	public void setIdBlackbox(Integer idBlackbox) {
 		this.idBlackbox = idBlackbox;
 	}
 	

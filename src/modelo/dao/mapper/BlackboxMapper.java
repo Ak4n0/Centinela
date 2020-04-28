@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import modelo.pojo.Blackbox;
 import modelo.pojo.BlackboxAdminInfo;
 
 public interface BlackboxMapper {
@@ -17,6 +16,10 @@ public interface BlackboxMapper {
 	
 	void editarBlackbox(@Param("id") int id, @Param("idUnico") String idUnico, @Param("passwd") String passwd, @Param("idUsuario") int idUsuario);
 
-	BlackboxAdminInfo getBlackbox(int id);
+	BlackboxAdminInfo getBlackboxPorId(int id);
+
+	BlackboxAdminInfo getBlackboxPorIdUnico(String idUnico);
+
+	void actualizarIP(@Param("id") Integer idBlackbox, @Param("ip") String ip);
 
 }

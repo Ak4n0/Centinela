@@ -36,7 +36,7 @@ public class EmailEJB {
         Session session = Session.getInstance(prop, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("centinela.soluciones@gmail.com", "centinelapp0");
+                return new PasswordAuthentication("centinela.soluciones@gmail.com", "Canberra0");
             }
         });
 
