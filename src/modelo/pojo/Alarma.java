@@ -7,7 +7,7 @@ public class Alarma {
 	private Integer idBlackbox;
 	private Date fechaHora;
 	private String puerto;
-	private Integer nivel;
+	private Integer valor;
 	private Integer valorUmbral;
 	
 	public Alarma() {}
@@ -55,17 +55,17 @@ public class Alarma {
 	}
 
 	/**
-	 * @return the nivel
+	 * @return the valor
 	 */
-	public Integer getNivel() {
-		return nivel;
+	public Integer getValor() {
+		return valor;
 	}
 
 	/**
-	 * @param nivel the nivel to set
+	 * @param valor the valor to set
 	 */
-	public void setNivel(Integer nivel) {
-		this.nivel = nivel;
+	public void setValor(Integer valor) {
+		this.valor = valor;
 	}
 	
 	/**

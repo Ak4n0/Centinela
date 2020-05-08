@@ -74,12 +74,22 @@ public class BlackboxDAO {
 		}
 	}
 
-	public static void actualizarIP(Integer idBlackbox, String ip) {
+	public static void cambiarPasswd(int id, String passwd) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			BlackboxMapper mapper = sqlSession.getMapper(BlackboxMapper.class);
-			mapper.actualizarIP(idBlackbox, ip);
+			mapper.cambiarPasswd(id, passwd);
 			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static String getNombrePuerto(int id, String puerto) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BlackboxMapper mapper = sqlSession.getMapper(BlackboxMapper.class);
+			return mapper.getNombrePuerto(id, "nombre_" + puerto);
 		} finally {
 			sqlSession.close();
 		}

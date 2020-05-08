@@ -1,7 +1,5 @@
 package modelo.ejb;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.OperacionesBlackboxesEJB;
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.BlackboxEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.pojo.BlackboxAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
@@ -24,16 +24,16 @@ public class ObtenerBlackboxes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	@EJB
-	OperacionesBlackboxesEJB operacionesBlackboxesEJB;
+	BlackboxEJB blackboxEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UsuarioFullInfo usuarioFullInfo = operacionesUsuariosEJB.getSessionUser(request);
+		UsuarioFullInfo usuarioFullInfo = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
 		if(usuarioFullInfo == null || !usuarioFullInfo.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
@@ -43,7 +43,7 @@ public class ObtenerBlackboxes extends HttpServlet {
 											"Si no eres administrador regresa a la página principal haciendo <a href='Principal'>click aquí</a>.");
 		} else {
 			rs = getServletContext().getRequestDispatcher("/vistaBlackboxes.jsp");
-			List<BlackboxAdminInfo> listaBlackboxes = operacionesBlackboxesEJB.getDatabaseBlackboxes();
+			List<BlackboxAdminInfo> listaBlackboxes = blackboxEJB.getDatabaseBlackboxes();
 			request.setAttribute("listaBlackboxes", listaBlackboxes);
 		}
 		rs.forward(request, response);

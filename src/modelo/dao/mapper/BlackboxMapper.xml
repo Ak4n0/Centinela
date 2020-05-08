@@ -50,8 +50,13 @@
 		   AND BLACKBOX.identificador_unico = #{idUnico}
 	</select>
 	
-	<update id='actualizarIP'>
-		UPDATE BLACKBOX SET ip_v4 = #{ip}
+	<update id="cambiarPasswd">
+		UPDATE BLACKBOX
+		   SET passwd=#{passwd}
 		 WHERE id = #{id}
 	</update>
+	
+	<select id="getNombrePuerto" resultType="String">
+		SELECT #{puerto} FROM BLACKBOX WHERE id = #{id}
+	</select>
 </mapper>

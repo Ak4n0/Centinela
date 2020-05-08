@@ -7,7 +7,7 @@
 
 	<insert id='addIOPortEntry' parameterType='IOPort'>
 		INSERT INTO IO_PORT
-			   VALUES(#{idBlackbox}, #{fecha_hora}, #{O0}, #{O1}, #{O2}, #{O3}, #{I0}, #{I1}, #{I2}, #{I3});
+			   VALUES(#{idBlackbox}, #{fechaHora}, #{O0}, #{O1}, #{O2}, #{O3}, #{I0}, #{I1}, #{I2}, #{I3});
 	</insert>
 	 
 </mapper>

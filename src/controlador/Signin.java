@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.ejb.EmailEJB;
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.ejb.UtilidadesEJB;
 import modelo.enumeracion.TipoError;
 import modelo.pojo.UsuarioFullInfo;
@@ -25,7 +25,7 @@ public class Signin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	@EJB
 	EmailEJB emailEJB;
@@ -74,7 +74,7 @@ public class Signin extends HttpServlet {
 		
 		// No hay errores de parámetros
 		// Comprobar si existe un usuario con el mismo email
-		if(operacionesUsuariosEJB.existeUsuario(email)) {
+		if(usuariosEJB.existeUsuario(email)) {
 			request.setAttribute("error", TipoError.CREDENCIALES);
 			rs.forward(request, response);
 			return;
@@ -86,22 +86,22 @@ public class Signin extends HttpServlet {
 		usuario.setEmail(email);
 		usuario.setPasswd(passwd);
 		usuario.setAdministrador(false);
-		operacionesUsuariosEJB.setDatabaseUser(usuario);
+		usuariosEJB.setDatabaseUser(usuario);
 		
 		// Obtener la id que nos ha dado la base de datos
-		usuario = operacionesUsuariosEJB.getDatabaseUser(usuario.getEmail(), usuario.getPasswd());
+		usuario = usuariosEJB.getDatabaseUser(usuario.getEmail(), usuario.getPasswd());
 		
 		// Agregar una entrada al temporizador para que el usuario pueda validar su cuenta
 		String clave = utilidadesEJB.convertirSHA256(usuario.getEmail() + usuario.getId());
-		operacionesUsuariosEJB.setNewUserTimer(usuario, clave);
+		usuariosEJB.setNewUserTimer(usuario, clave);
 		
 		// Enviar un email al cliente para que valide su dirección
 		String enlace = utilidadesEJB.getServerPublicIp(request) + ":8080" + request.getContextPath() + "/ValidarNuevoUsuario?v=" + clave;
 		String mensaje = emailEJB.cuerpoMensajeNuevoUsuario(usuario.getNombre(), enlace);
 		if(!emailEJB.sendMail(usuario.getEmail(), "CENTINELA - Validar email", mensaje)) {
 			// Falló el envío del email. Borrar el usuario que se había creado y el temporizador.
-			operacionesUsuariosEJB.removeDatabaseUser(usuario.getId());
-			operacionesUsuariosEJB.removeKeyNewUser(clave);
+			usuariosEJB.removeDatabaseUser(usuario.getId());
+			usuariosEJB.removeKeyNewUser(clave);
 			
 			// Informar del error al usuario para que se ponga en contacto con su email informando dle fallo.
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
@@ -115,7 +115,7 @@ public class Signin extends HttpServlet {
 		}
 		
 		// Una vez que el usuario existe iniciar la sesión
-		operacionesUsuariosEJB.setSessionUser(request, usuario);
+		usuariosEJB.setSessionUser(request, usuario);
 		
 		// Informar al usuario que le han mandado un email para que valide su cuenta
 		// en caso contrario esta será borrada en un venticuatro horas.

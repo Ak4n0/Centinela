@@ -14,7 +14,7 @@ import modelo.pojo.UsuarioFullInfo;
 
 @LocalBean
 @Stateless
-public class OperacionesUsuariosEJB {
+public class UsuariosEJB {
 
 	public UsuarioFullInfo getSessionUser(HttpServletRequest request) {
 		UsuarioFullInfo user = null;

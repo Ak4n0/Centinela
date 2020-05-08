@@ -20,6 +20,8 @@ public interface BlackboxMapper {
 
 	BlackboxAdminInfo getBlackboxPorIdUnico(String idUnico);
 
-	void actualizarIP(@Param("id") Integer idBlackbox, @Param("ip") String ip);
+	void cambiarPasswd(@Param("id") int id, @Param("passwd") String passwd);
+
+	String getNombrePuerto(@Param("id") int id, @Param("puerto") String puerto); 
 
 }

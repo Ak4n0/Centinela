@@ -7,6 +7,6 @@
 
 	<insert id='addAlarm' parameterType='Alarma'>
 		INSERT INTO ALARMA
-			   VALUES(#{idBlackbox}, #{fechaHora}, #{puerto}, #{nivel}, #{valorUmbral})
+			   VALUES(#{idBlackbox}, #{fechaHora}, #{puerto}, #{valor}, #{valorUmbral})
 	</insert>
 </mapper>

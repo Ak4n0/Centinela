@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
@@ -21,7 +21,7 @@ public class EditarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +40,7 @@ public class EditarUsuario extends HttpServlet {
 			return;
 		}
 		
-		UsuarioFullInfo usuario = operacionesUsuariosEJB.getDatabaseUser(id);
+		UsuarioFullInfo usuario = usuariosEJB.getDatabaseUser(id);
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/editarUsuario.jsp");
 		request.setAttribute("usuario", usuario);
 		rs.forward(request, response);
@@ -73,7 +73,7 @@ public class EditarUsuario extends HttpServlet {
 			return;
 		}
 		
-		UsuarioFullInfo usuarioSesion = operacionesUsuariosEJB.getSessionUser(request);
+		UsuarioFullInfo usuarioSesion = usuariosEJB.getSessionUser(request);
 		UsuarioFullInfo usuario = new UsuarioFullInfo();
 		usuario.setId(id);
 		usuario.setNombre(nombre);
@@ -89,7 +89,7 @@ public class EditarUsuario extends HttpServlet {
 											"Si no eres administrador regresa a la página principal haciendo <a href='Principal'>click aquí</a>.");
 			rs.forward(request, response);
 		} else {
-			operacionesUsuariosEJB.updateDatabaseUser(usuario);
+			usuariosEJB.updateDatabaseUser(usuario);
 		}
 	}
 

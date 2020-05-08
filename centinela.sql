@@ -16,8 +16,7 @@ CREATE TABLE USUARIO (
 CREATE TABLE BLACKBOX (
     id INTEGER PRIMARY KEY AUTO_INCREMENT, -- Con el uso de un integer las tablas no pesarán tanto.
     identificador_unico VARCHAR(20) UNIQUE NOT NULL, -- Se usará éste como identificador real de la blackbox. El hardware usará este valor como credencial.
-    nombre VARCHAR(32), -- Nombre con que el usuario podrá identificar a su blackbox.
-    ip_v4 VARCHAR(15), -- Dirección ip v4. Se guardará en formato aaa.bbb.ccc.ddd
+    nombre VARCHAR(32), -- Nombre con que el usuario podrá identificar a su blackbox.blackbox
     passwd VARCHAR(25) NOT NULL, -- Palabra de seguridad que usará blackbox para cifrar su comunicación.
     info_extra VARCHAR(255), -- Información extra que el usuario crea conveniente incluir.
     usuario_id INTEGER NOT NULL, -- Identificador de usuario la que pertenece la blackbox.
@@ -40,14 +39,14 @@ CREATE TABLE BLACKBOX (
 CREATE TABLE IO_PORT (
     blackbox_id INTEGER NOT NULL, -- Identificador a la blackbox a la que pertenece esta captura de datos.
     fecha_hora DATETIME NOT NULL, -- Fecha en que se produjo esta captura de datos.
-    O0 TINYINT, -- Estado de la salida digital.
-    O1 TINYINT, -- Estado de la salida digital.
-    O2 TINYINT, -- Estado de la salida digital.
-    O3 TINYINT, -- Estado de la salida digital.
-    I0 TINYINT, -- Estado de la entrada analógica.
-    I1 TINYINT, -- Estado de la entrada analógica.
-    I2 TINYINT, -- Estado de la entrada analógica.
-    I3 TINYINT, -- Estado de la entrada analógica.
+    O0 INT, -- Estado de la salida digital.
+    O1 INT, -- Estado de la salida digital.
+    O2 INT, -- Estado de la salida digital.
+    O3 INT, -- Estado de la salida digital.
+    I0 INT, -- Estado de la entrada analógica.
+    I1 INT, -- Estado de la entrada analógica.
+    I2 INT, -- Estado de la entrada analógica.
+    I3 INT, -- Estado de la entrada analógica.
     
     PRIMARY KEY (blackbox_id, fecha_hora),
     
@@ -62,7 +61,7 @@ CREATE TABLE ALARMA (
     blackbox_id INTEGER NOT NULL, -- Identificador de la blackbox que lanzó la alarma.
     fecha_hora DATETIME NOT NULL, -- Fecha y hora en que se produjo la alarma.
     puerto CHAR(2) NOT NULL, -- Puerto que hizo saltar la alarma.
-    nivel TINYINT NOT NULL, -- Nivel de la alarma: 1 (Alto), 2 (Crítico)
+    valor TINYINT NOT NULL, -- Nivel de la alarma: 1 (Alto), 2 (Crítico)
     valor_umbral TINYINT NOT NULL, -- Valor que ha sobrepasado y activado la alarma
     
     PRIMARY KEY (blackbox_id, fecha_hora, puerto),

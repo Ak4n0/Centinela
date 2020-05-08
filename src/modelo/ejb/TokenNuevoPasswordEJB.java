@@ -11,10 +11,10 @@ import modelo.pojo.TokenNuevoPassword;
 
 @LocalBean
 @Stateless
-public class OperacionesTokensNuevoPasswordEJB {
+public class TokenNuevoPasswordEJB {
 
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	@EJB
 	UtilidadesEJB utilidadesEJB;
@@ -28,7 +28,7 @@ public class OperacionesTokensNuevoPasswordEJB {
 		if(email == null) return null;
 		
 		// Obtener id del usuario con ese email
-		Integer idUsuario =  operacionesUsuariosEJB.getIdFromEmail(email);
+		Integer idUsuario =  usuariosEJB.getIdFromEmail(email);
 		
 		// Obtener la nueva hora de creación del token
 		Date momentoAhora = new Date();

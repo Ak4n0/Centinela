@@ -116,4 +116,24 @@ public class EmailEJB {
 				    "</body>" +
 				"</html>";
 	}
+	
+	public String cuerpoMensajeAlarma(String nombre, String nombreBlackbox, String nombrePuerto) {
+		return 	"<!DOCTYPE html>" +
+				"<html>" +
+			    	"<head>" +
+			    	"<title>Aviso de alarma</title>" +
+				    "<meta charset='UTF-8'>" +
+			        "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+				    "</head>" +
+				    "<body>" +
+				        "<h1>Centinela Soluciones</h1>" +
+				        "<p>Hola " + nombre + ",</p>" +
+				        "<p>La blackbox " + nombreBlackbox + " ha informado de una alarma en la entrada " + nombrePuerto + ".</p>" +
+				        "<p>Esto es debido a que el valor capturado por el sensor ha traspasado el umbral.</p>" +
+				        "<p>Debería atender a la blackbox " + nombreBlackbox + " lo antes posible y revisar que pudo causar que se sobrepasara el límite establecido.</p>" +
+				        "<hr>" +
+				        "<p>En caso de que no hayas iniciado un registro y este mensaje es un error óbvialo y bórralo.</p>" +
+				    "</body>" +
+				"</html>";
+	}
 }

@@ -67,20 +67,6 @@ public abstract class Blackbox {
 	}
 	
 	/**
-	 * @return the ip_v4
-	 */
-	public String getIp_v4() {
-		return ip_v4;
-	}
-	
-	/**
-	 * @param ip_v4 the ip_v4 to set
-	 */
-	public void setIp_v4(String ip_v4) {
-		this.ip_v4 = ip_v4;
-	}
-	
-	/**
 	 * @return the informacionExtra
 	 */
 	public String getInformacionExtra() {

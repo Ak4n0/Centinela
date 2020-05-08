@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import com.auth0.jwt.interfaces.Claim;
+
 import modelo.dao.AlarmaDAO;
 import modelo.dao.BlackboxDAO;
 import modelo.dao.IOPortDAO;
@@ -14,7 +16,7 @@ import modelo.pojo.IOPort;
 
 @Stateless
 @LocalBean
-public class OperacionesBlackboxesEJB {
+public class BlackboxEJB {
 
 	public List<BlackboxAdminInfo> getDatabaseBlackboxes() {
 		return BlackboxDAO.getBlackboxes();
@@ -48,8 +50,12 @@ public class OperacionesBlackboxesEJB {
 		AlarmaDAO.addAlarma(alarma);
 	}
 
-	public void actualizarIP(Integer idBlackbox, String ip) {
-		BlackboxDAO.actualizarIP(idBlackbox, ip);
+	public void cambiarPasswd(int id, String passwd) {
+		BlackboxDAO.cambiarPasswd(id, passwd);
+	}
+
+	public String getPortName(int id, String puerto) {
+		return BlackboxDAO.getNombrePuerto(id, puerto);
 	}
 	
 }

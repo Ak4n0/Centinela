@@ -1,7 +1,3 @@
-/modelo/
 /rest/
-/centinela.sql
+/modelo/
 /controlador/
-/jdbc.properties
-/logback.xml
-/mybatis-config.xml

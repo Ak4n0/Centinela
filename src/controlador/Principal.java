@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.OperacionesBlackboxesEJB;
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.BlackboxEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.pojo.BlackboxAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
@@ -24,10 +24,10 @@ public class Principal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	OperacionesUsuariosEJB controlUsuarioEJB;
+	UsuariosEJB controlUsuarioEJB;
 	
 	@EJB
-	OperacionesBlackboxesEJB operacionesBlackboxesEJB;
+	BlackboxEJB blackboxEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +43,7 @@ public class Principal extends HttpServlet {
 				rs = getServletContext().getRequestDispatcher("/administracion.jsp");
 			} else { // el usuario no es administrador, enviarlo a su dashboard
 				rs = getServletContext().getRequestDispatcher("/dashboard.jsp");
-				List<BlackboxAdminInfo> listaBlackboxes = operacionesBlackboxesEJB.getDatabaseBlackboxes();
+				List<BlackboxAdminInfo> listaBlackboxes = blackboxEJB.getDatabaseBlackboxes();
 				request.setAttribute("listaBlackboxes", listaBlackboxes);
 			}
 		} else { // El usuario no ha iniciado sesión. Mostrar la página genérica.

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
@@ -21,7 +21,7 @@ public class EliminarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,7 +36,7 @@ public class EliminarUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// A esta págian solo puede entrar un administrador
-		UsuarioFullInfo usuario = operacionesUsuariosEJB.getSessionUser(request);
+		UsuarioFullInfo usuario = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
 		if(usuario == null || !usuario.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
@@ -63,7 +63,7 @@ public class EliminarUsuario extends HttpServlet {
 			}
 			
 			// Inserta una nueva blackbox
-			operacionesUsuariosEJB.removeDatabaseUser(id);
+			usuariosEJB.removeDatabaseUser(id);
 		}
 	}
 

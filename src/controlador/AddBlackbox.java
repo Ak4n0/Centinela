@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.OperacionesBlackboxesEJB;
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.BlackboxEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.pojo.UsuarioAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
@@ -24,17 +24,17 @@ public class AddBlackbox extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	@EJB
-	OperacionesBlackboxesEJB operacionesBlackboxesEJB;
+	BlackboxEJB blackboxEJB;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// A esta págian solo puede entrar un administrador
-		UsuarioFullInfo usuario = operacionesUsuariosEJB.getSessionUser(request);
+		UsuarioFullInfo usuario = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
 		if(usuario == null || !usuario.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
@@ -45,7 +45,7 @@ public class AddBlackbox extends HttpServlet {
 		} else {
 			rs = getServletContext().getRequestDispatcher("/addBlackbox.jsp");
 			// Obtiene una lista de todos los usuarios validados para a los cuales se les puede dar una blackbox
-			List<UsuarioAdminInfo> listaUsuarios = operacionesUsuariosEJB.getDatabaseValidatedUsers();
+			List<UsuarioAdminInfo> listaUsuarios = usuariosEJB.getDatabaseValidatedUsers();
 			request.setAttribute("listaUsuarios", listaUsuarios);
 		}
 		rs.forward(request, response);
@@ -56,7 +56,7 @@ public class AddBlackbox extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// A esta págian solo puede entrar un administrador
-		UsuarioFullInfo usuario = operacionesUsuariosEJB.getSessionUser(request);
+		UsuarioFullInfo usuario = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
 		if(usuario == null || !usuario.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
@@ -85,7 +85,7 @@ public class AddBlackbox extends HttpServlet {
 			}
 			
 			// Inserta una nueva blackbox
-			operacionesBlackboxesEJB.addBlackbox(id, passwd, idUsuario);
+			blackboxEJB.addBlackbox(id, passwd, idUsuario);
 		}	
 	}
 

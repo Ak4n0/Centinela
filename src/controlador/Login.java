@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.enumeracion.TipoError;
 import modelo.pojo.UsuarioFullInfo;
 
@@ -23,7 +23,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
 		
 		// No hay errores de parámetros
 		// Intenta conseguir el usuario desde la BBDD
-		UsuarioFullInfo usuarioRegistrado = operacionesUsuariosEJB.getDatabaseUser(email, passwd);
+		UsuarioFullInfo usuarioRegistrado = usuariosEJB.getDatabaseUser(email, passwd);
 		
 		// El usuario no existe
 		if(usuarioRegistrado == null) {
@@ -75,7 +75,7 @@ public class Login extends HttpServlet {
 		}
 		
 		// Si existe guardarlo en la sesión con el objeto UsuarioFullInfo
-		operacionesUsuariosEJB.setSessionUser(request, usuarioRegistrado);
+		usuariosEJB.setSessionUser(request, usuarioRegistrado);
 		
 		// Regresar a la página principal
 		response.sendRedirect("Principal");

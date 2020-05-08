@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.OperacionesBlackboxesEJB;
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.BlackboxEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.pojo.BlackboxAdminInfo;
 import modelo.pojo.UsuarioAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
@@ -25,17 +25,17 @@ public class EditarBlackbox extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	@EJB
-	OperacionesBlackboxesEJB operacionesBlackboxesEJB;
+	BlackboxEJB blackboxEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// A esta págian solo puede entrar un administrador
-		UsuarioFullInfo usuario = operacionesUsuariosEJB.getSessionUser(request);
+		UsuarioFullInfo usuario = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
 		if(usuario == null || !usuario.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
@@ -59,9 +59,9 @@ public class EditarBlackbox extends HttpServlet {
 			
 			rs = getServletContext().getRequestDispatcher("/editarBlackbox.jsp");
 			// Obtiene una lista de todos los usuarios validados para a los cuales se les puede dar una blackbox
-			List<UsuarioAdminInfo> listaUsuarios = operacionesUsuariosEJB.getDatabaseValidatedUsers();
+			List<UsuarioAdminInfo> listaUsuarios = usuariosEJB.getDatabaseValidatedUsers();
 			// Obtiene los datos de la blackbox con ese id
-			BlackboxAdminInfo blackbox = operacionesBlackboxesEJB.getBlackbox(id);
+			BlackboxAdminInfo blackbox = blackboxEJB.getBlackbox(id);
 			request.setAttribute("listaUsuarios", listaUsuarios);
 			request.setAttribute("blackbox", blackbox);
 		}
@@ -73,7 +73,7 @@ public class EditarBlackbox extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// A esta págian solo puede entrar un administrador
-		UsuarioFullInfo usuario = operacionesUsuariosEJB.getSessionUser(request);
+		UsuarioFullInfo usuario = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
 		if(usuario == null || !usuario.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
@@ -108,7 +108,7 @@ public class EditarBlackbox extends HttpServlet {
 			}
 			
 			// Inserta una nueva blackbox
-			operacionesBlackboxesEJB.editBlackbox(id, idUnico, passwd, idUsuario);
+			blackboxEJB.editBlackbox(id, idUnico, passwd, idUsuario);
 		}
 	}
 

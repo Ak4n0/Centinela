@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.OperacionesBlackboxesEJB;
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.BlackboxEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
@@ -22,10 +22,10 @@ public class EliminarBlackbox extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	OperacionesBlackboxesEJB operacionesBlackboxesEJB;
+	BlackboxEJB blackboxEJB;
 	
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +40,7 @@ public class EliminarBlackbox extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// A esta págian solo puede entrar un administrador
-		UsuarioFullInfo usuario = operacionesUsuariosEJB.getSessionUser(request);
+		UsuarioFullInfo usuario = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
 		if(usuario == null || !usuario.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
@@ -67,7 +67,7 @@ public class EliminarBlackbox extends HttpServlet {
 			}
 			
 			// Inserta una nueva blackbox
-			operacionesBlackboxesEJB.deleteBlackbox(id);
+			blackboxEJB.deleteBlackbox(id);
 		}	
 	}
 

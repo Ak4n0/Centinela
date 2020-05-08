@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.UsuariosEJB;
 
 /**
  * Servlet implementation class ValidarNuevoUsuario
@@ -20,7 +20,7 @@ public class ValidarNuevoUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +40,7 @@ public class ValidarNuevoUsuario extends HttpServlet {
 		}
 		
 		// comprobar que existe dicha clave en la base de datos
-		if(!operacionesUsuariosEJB.keyNewUserExists(clave)) {
+		if(!usuariosEJB.keyNewUserExists(clave)) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 			request.setAttribute("titulo", "Petición no reconocida");
 			request.setAttribute("mensaje", "<p>No existe ninguna petición de nuevo usuario correspondiente a dicha clave.</p>");
@@ -49,7 +49,7 @@ public class ValidarNuevoUsuario extends HttpServlet {
 		}
 		
 		// existe, luego se borra
-		operacionesUsuariosEJB.removeKeyNewUser(clave);
+		usuariosEJB.removeKeyNewUser(clave);
 		
 		// informar al usuario que está correctamente registrado
 		rs = getServletContext().getRequestDispatcher("/aviso.jsp");

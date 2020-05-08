@@ -17,7 +17,7 @@ import modelo.pojo.PeticionNuevoUsuario;
 public class TimerEJB {
 
     @EJB
-    OperacionesUsuariosEJB operacionesUsuario;
+    UsuariosEJB operacionesUsuario;
 	
 	@SuppressWarnings("unused")
 	@Schedule(second="0", minute="*/10", hour="*")

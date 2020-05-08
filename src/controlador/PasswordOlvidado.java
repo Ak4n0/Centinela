@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ejb.OperacionesUsuariosEJB;
+import modelo.ejb.UsuariosEJB;
 import modelo.ejb.UtilidadesEJB;
 import modelo.ejb.EmailEJB;
-import modelo.ejb.OperacionesTokensNuevoPasswordEJB;
+import modelo.ejb.TokenNuevoPasswordEJB;
 import modelo.enumeracion.TipoError;
 import modelo.pojo.TokenNuevoPassword;
 
@@ -25,13 +25,13 @@ public class PasswordOlvidado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	OperacionesUsuariosEJB operacionesUsuariosEJB;
+	UsuariosEJB usuariosEJB;
 	
 	@EJB
 	EmailEJB emailEJB;
 	
 	@EJB
-	OperacionesTokensNuevoPasswordEJB operacionesTokensNuevoPasswordEJB;
+	TokenNuevoPasswordEJB tokenNuevoPasswordEJB;
 	
 	@EJB
 	UtilidadesEJB utilidadesEJB;
@@ -58,7 +58,7 @@ public class PasswordOlvidado extends HttpServlet {
 			return;
 		}
 		
-		if(!operacionesUsuariosEJB.existeUsuario(email)) {
+		if(!usuariosEJB.existeUsuario(email)) {
 			request.setAttribute("error", TipoError.CREDENCIALES);
 			rs.forward(request, response);
 			return;
@@ -67,15 +67,15 @@ public class PasswordOlvidado extends HttpServlet {
 		// El usuario ha introducido correctamente su email
 		// Ahora hay que enviar un mensaje para que pueda introducir una nueva contraseña
 		// Obtener el nombre del usuario
-		String nombre = operacionesUsuariosEJB.getUserName(email);
+		String nombre = usuariosEJB.getUserName(email);
 		
 		// Obtener el identificador para cambiar la clave
 		// Comprobar si el usuario ya tiene un identificador
-		TokenNuevoPassword tokenNuevoPassword = operacionesTokensNuevoPasswordEJB.getTokenFromEmail(email);
+		TokenNuevoPassword tokenNuevoPassword = tokenNuevoPasswordEJB.getTokenFromEmail(email);
 		
 		// Si no tiene se genera uno
 		if(tokenNuevoPassword == null) {
-			tokenNuevoPassword = operacionesTokensNuevoPasswordEJB.createToken(email);
+			tokenNuevoPassword = tokenNuevoPasswordEJB.createToken(email);
 		}
 		
 		// Si no se pudo generar informar del error
