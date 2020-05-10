@@ -9,5 +9,10 @@
 		INSERT INTO IO_PORT
 			   VALUES(#{idBlackbox}, #{fechaHora}, #{O0}, #{O1}, #{O2}, #{O3}, #{I0}, #{I1}, #{I2}, #{I3});
 	</insert>
-	 
+	
+	<select id='getIOPorts' parameterType='Integer' resultType='IOPort'>
+		SELECT blackbox_id as idBlackbox, fecha_hora as fechaHora, O0, O1, O2, O3, I0, I1, I2, I3 
+		  FROM IO_PORT
+		 WHERE blackbox_id = #{id}
+	</select>	 
 </mapper>

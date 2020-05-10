@@ -6,6 +6,7 @@
 		<typeAlias type='modelo.pojo.IOPort' alias='IOPort' />
 		<typeAlias type='modelo.pojo.UsuarioFullInfo' alias='UsuarioFullInfo' />
 		<typeAlias type='modelo.pojo.UsuarioAdminInfo' alias='UsuarioAdminInfo' />
+		<typeAlias type='modelo.pojo.BlackboxFullInfo' alias='BlackboxFullInfo'/>
 		<typeAlias type='modelo.pojo.BlackboxAdminInfo' alias='BlackboxAdminInfo' />
 		<typeAlias type='modelo.pojo.TokenNuevoPassword' alias='TokenNuevoPassword' />
 		<typeAlias type='modelo.pojo.PeticionNuevoUsuario' alias='PeticionNuevoUsuario' /> 

@@ -253,7 +253,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="modelo.pojo.BlackBoxFullInfo" project="Centinela" 
+  <class id="29" language="java" name="modelo.pojo.BlackboxFullInfo" project="Centinela" 
     file="/Centinela/src/modelo/pojo/BlackBoxFullInfo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1574" y="342"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

@@ -6,7 +6,6 @@ public abstract class Blackbox {
 	protected String identificador;
 	protected String nombre;
 	protected String passwd;
-	protected String ip_v4;
 	protected String informacionExtra;
 	protected int idUsuario;
 	

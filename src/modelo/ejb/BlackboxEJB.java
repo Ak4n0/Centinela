@@ -5,12 +5,11 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import com.auth0.jwt.interfaces.Claim;
-
 import modelo.dao.AlarmaDAO;
 import modelo.dao.BlackboxDAO;
 import modelo.dao.IOPortDAO;
 import modelo.pojo.Alarma;
+import modelo.pojo.BlackboxFullInfo;
 import modelo.pojo.BlackboxAdminInfo;
 import modelo.pojo.IOPort;
 
@@ -56,6 +55,14 @@ public class BlackboxEJB {
 
 	public String getPortName(int id, String puerto) {
 		return BlackboxDAO.getNombrePuerto(id, puerto);
+	}
+
+	public BlackboxFullInfo getBlackboxFullInfo(String uid) {
+		return BlackboxDAO.getBlackboxFullInfo(uid);
+	}
+
+	public List<IOPort> getIOPorts(int id) {
+		return IOPortDAO.getIOPorts(id);
 	}
 	
 }

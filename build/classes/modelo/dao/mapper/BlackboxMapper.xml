@@ -59,4 +59,11 @@
 	<select id="getNombrePuerto" resultType="String">
 		SELECT #{puerto} FROM BLACKBOX WHERE id = #{id}
 	</select>
+	
+	<select id="getBlackboxFullInfo" parameterType='String' resultType='BlackboxFullInfo'>
+		SELECT id, identificador_unico as identificador, nombre, passwd, usuario_id as idUsuario,
+				nombre_O0, nombre_O1, nombre_O2, nombre_O3, nombre_I0, nombre_I1, nombre_I2, nombre_I3
+		  FROM BLACKBOX
+		 WHERE identificador_unico = #{uid}
+	</select>
 </mapper>

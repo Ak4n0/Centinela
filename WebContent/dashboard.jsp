@@ -19,7 +19,11 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/main.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
+<script src="js/interaction.js"></script>
 <script src="js/main.js" defer></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
+<link rel="stylesheet" href="css/graficas.css">
 </head>
 <body>
 
@@ -45,7 +49,7 @@
 							<li>No tiene equipos afiliados</li>
 						<% } else { %>
 							<% for(BlackboxAdminInfo blackbox: listaBlackboxes) { %>
-								<li><a href="#">
+								<li><a href="#" class="linkBlackbox" id="<%= blackbox.getIdentificador() %>">
 									<% if(blackbox.getNombre() != null) {%>
 										<%= blackbox.getNombre() %>
 									<% } %>
@@ -54,17 +58,17 @@
 						<% } %>
 						</ul>
 					</li>
-					<li class="active"><a href="#IOMenu"
-						data-toggle="collapse" aria-expanded="false"
-						class="dropdown-toggle">Visualición</a>
-						<ul class="collapse list-unstyled" id="IOMenu">
-							<li><input type="checkbox" id="verSalida1"> Entradas</li>
-							<li><input type="checkbox" id="verSalida1"> Salida 1</li>
-							<li><input type="checkbox" id="verSalida1"> Salida 2</li>
-							<li><input type="checkbox" id="verSalida1"> Salida 3</li>
-							<li><input type="checkbox" id="verSalida1"> Salida 4</li>
-						</ul>
-					</li>
+<!-- 					<li class="active"><a href="#IOMenu" -->
+<!-- 						data-toggle="collapse" aria-expanded="false" -->
+<!-- 						class="dropdown-toggle">Visualición</a> -->
+<!-- 						<ul class="collapse list-unstyled" id="IOMenu"> -->
+<!-- 							<li><input type="checkbox" id="verSalida1"> Entradas</li> -->
+<!-- 							<li><input type="checkbox" id="verSalida1"> Salida 1</li> -->
+<!-- 							<li><input type="checkbox" id="verSalida1"> Salida 2</li> -->
+<!-- 							<li><input type="checkbox" id="verSalida1"> Salida 3</li> -->
+<!-- 							<li><input type="checkbox" id="verSalida1"> Salida 4</li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
 				</ul>
 
 				<div class="footer">
@@ -134,14 +138,11 @@
 					$("#content").html(htmlExterno);
 				});
 			});
-			$("#linkUsuarios").click(function() {
-				$.get("ObtenerUsuarios", function(htmlExterno) {
-					$("#content").html(htmlExterno)
-				});
-			});
 			
-			$("#linkBlackboxes").click(function() {
-				$.get("ObtenerBlackboxes", function(htmlExterno) {
+			$(".linkBlackbox").click(function() {
+				// Obtener el nombre de la blackbox
+				let uid = $(this).attr("id");
+				$.get("ObtenerDatosBlackbox", {id: uid}, function(htmlExterno) {
 					$("#content").html(htmlExterno)
 				});
 			});

@@ -218,11 +218,19 @@ public class JwtEJB {
 	
 	private String obtenerRespuesta(String blackboxUID) {
 		String token = null;
+		String passwd = null;
+		
+		// Obtener el password para cifrar
+		BlackboxAdminInfo b = blackboxEJB.getBlackbox(blackboxUID);
+		if(b != null) {
+			passwd = b.getPasswd();
+		}
 		
 		// Obtener datos que se deben enviar a la blackbox
 		BlackboxBuffer blackbox = BlackboxBufferEJB.extraer(blackboxUID);
 		Builder jwt = newCommonToken(blackboxUID);
 		jwt.withIssuedAt(new Date());
+		
 		// No hay modificaciones. Devolver EOT (fin de transmisión)
 		if(blackbox == null) {
 			jwt.withSubject("EOT");
@@ -285,9 +293,8 @@ public class JwtEJB {
 				}
 				jwt.withClaim("I3", salidas);
 			}
-			token = sign(jwt, blackbox.getPasswd());
 		}
-		
+		token = sign(jwt, passwd);
 		return token;
 	}
 	

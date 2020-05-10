@@ -1,6 +1,6 @@
 package modelo.pojo;
 
-public class BlackBoxFullInfo extends Blackbox {
+public class BlackboxFullInfo extends Blackbox {
 	
 	private String nombre_O0;
 	private String nombre_O1;
