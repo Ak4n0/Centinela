@@ -58,17 +58,6 @@
 						<% } %>
 						</ul>
 					</li>
-<!-- 					<li class="active"><a href="#IOMenu" -->
-<!-- 						data-toggle="collapse" aria-expanded="false" -->
-<!-- 						class="dropdown-toggle">Visualición</a> -->
-<!-- 						<ul class="collapse list-unstyled" id="IOMenu"> -->
-<!-- 							<li><input type="checkbox" id="verSalida1"> Entradas</li> -->
-<!-- 							<li><input type="checkbox" id="verSalida1"> Salida 1</li> -->
-<!-- 							<li><input type="checkbox" id="verSalida1"> Salida 2</li> -->
-<!-- 							<li><input type="checkbox" id="verSalida1"> Salida 3</li> -->
-<!-- 							<li><input type="checkbox" id="verSalida1"> Salida 4</li> -->
-<!-- 						</ul> -->
-<!-- 					</li> -->
 				</ul>
 
 				<div class="footer">
@@ -120,22 +109,22 @@
 					</div>
 				</div>
 			</nav>
-
-			<h1 class="mb-4">Control</h1>
-			<h5>Visualiza los datos enviados por tu blackbox</h5>
-			<p>Las gráficas informan de los datos recogidos por sus sensores a través del tiempo</p>
-			<h5>Modifica sus salidas</h5>
-			<p>Activa y desactiva remotamente los dispositivos que estén conectados a la blackbox</p>
-			<h5>Personaliza la visualización</h5>
-			<p>Nombra los puertos I/O de forma representativa</p>
-			
+			<div id="contenido">
+				<h1 class="mb-4">Control</h1>
+				<h5>Visualiza los datos enviados por tu blackbox</h5>
+				<p>Las gráficas informan de los datos recogidos por sus sensores a través del tiempo</p>
+				<h5>Modifica sus salidas</h5>
+				<p>Activa y desactiva remotamente los dispositivos que estén conectados a la blackbox</p>
+				<h5>Personaliza la visualización</h5>
+				<p>Nombra los puertos I/O de forma representativa</p>
+			</div>
 		</div>
 	</div>
 	<script>
 		$(function() {
 			$("#administrarUsuario").click(function() {
 				$.get("EditarUsuario", {id: <%= ((UsuarioFullInfo) session.getAttribute("usuario")).getId() %>}, function(htmlExterno) {
-					$("#content").html(htmlExterno);
+					$("#contenido").html(htmlExterno);
 				});
 			});
 			
@@ -143,7 +132,7 @@
 				// Obtener el nombre de la blackbox
 				let uid = $(this).attr("id");
 				$.get("ObtenerDatosBlackbox", {id: uid}, function(htmlExterno) {
-					$("#content").html(htmlExterno)
+					$("#contenido").html(htmlExterno)
 				});
 			});
 		});

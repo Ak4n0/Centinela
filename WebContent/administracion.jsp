@@ -85,34 +85,35 @@
 					</div>
 				</div>
 			</nav>
-
-			<h1 class="mb-4">Administración</h1>
-			<h5>Ten en cuenta lo siguiente</h5>
-			<ol>
-				<li>Puedes crear, editar y eliminar tanto usuarios como blackboxes.</li>
-				<li>Ten en cuenta que un usuario creado desde la administración está
-					directamente validado, por tanto si hay un error en la dirección
-					de su email no los recibiría.</li>
-				<li>Igualmente revisa el propietaro al cuál le asignas una blackbox,
-					por un despiste podría ser sencillo asignársela a otro.</li>
-				<li>En la lista de propietarios de la blackbox únicamente aparecen
-					los usuarios que han validado su cuenta de email. Si un usuario
-					acaba de hacerse una cuenta pero no está validada no se le puede
-					asignar un equipo.</li>
-			</ol>
+			<div id="contenido">
+				<h1 class="mb-4">Administración</h1>
+				<h5>Ten en cuenta lo siguiente</h5>
+				<ol>
+					<li>Puedes crear, editar y eliminar tanto usuarios como blackboxes.</li>
+					<li>Ten en cuenta que un usuario creado desde la administración está
+						directamente validado, por tanto si hay un error en la dirección
+						de su email no los recibiría.</li>
+					<li>Igualmente revisa el propietaro al cuál le asignas una blackbox,
+						por un despiste podría ser sencillo asignársela a otro.</li>
+					<li>En la lista de propietarios de la blackbox únicamente aparecen
+						los usuarios que han validado su cuenta de email. Si un usuario
+						acaba de hacerse una cuenta pero no está validada no se le puede
+						asignar un equipo.</li>
+				</ol>
+			</div>
 		</div>
 	</div>
 	<script>
 		$(function() {
 			$("#linkUsuarios").click(function() {
 				$.get("ObtenerUsuarios", function(htmlExterno) {
-					$("#content").html(htmlExterno)
+					$("#contenido").html(htmlExterno)
 				});
 			});
 			
 			$("#linkBlackboxes").click(function() {
 				$.get("ObtenerBlackboxes", function(htmlExterno) {
-					$("#content").html(htmlExterno)
+					$("#contenido").html(htmlExterno)
 				});
 			});
 		});

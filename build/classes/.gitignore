@@ -1,6 +1,3 @@
 /controlador/
-/jdbc.properties
-/logback.xml
 /modelo/
-/mybatis-config.xml
 /rest/
