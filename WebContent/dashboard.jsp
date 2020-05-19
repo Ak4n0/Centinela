@@ -19,6 +19,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/switch.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
 <script src="js/interaction.js"></script>
 <script src="js/main.js" defer></script>

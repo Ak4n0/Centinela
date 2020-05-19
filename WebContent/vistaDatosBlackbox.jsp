@@ -7,70 +7,162 @@
 
 <%
 	BlackboxFullInfo blackbox = (BlackboxFullInfo) request.getAttribute("blackbox");
-List<IOPort> puertos = (List<IOPort>) request.getAttribute("io");
+	List<IOPort> puertos = (List<IOPort>) request.getAttribute("io");
 %>
 
 <h1><%=blackbox.getNombre()%><small>[<%=blackbox.getIdentificador()%>]
 	<a href="#" title="Modificar Blackbox"><i class="fas fa-pencil-ruler"></i></a></small>
 </h1>
-<hr>
 
-<h4><%=blackbox.getNombre_I0()%></h4>
-<div id="I0" class="grafica" style="width:auto"></div>
-<h4><%=blackbox.getNombre_I1()%></h4>
-<div id="I1" class="grafica" style="width:auto"></div>
-<h4><%=blackbox.getNombre_I2()%></h4>
-<div id="I2" class="grafica" style="width:auto"></div>
-<h4><%=blackbox.getNombre_I3()%></h4>
-<div id="I3" class="grafica" style="width:auto"></div>
+<hr>
+<fieldset>
+	<legend>Salidas</legend>
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item">
+			<%= blackbox.getNombre_O0() %><label class="switch"><input type="checkbox" class="warning" id="O0" /><span class="slider"></span></label>
+		</li>
+		<li class="list-group-item">
+			<%= blackbox.getNombre_O1() %><label class="switch"><input type="checkbox" class="warning" id="O1" /><span class="slider"></span></label>
+		</li>
+		<li class="list-group-item">
+			<%= blackbox.getNombre_O2() %><label class="switch"><input type="checkbox" class="warning" id="O2" /><span class="slider"></span></label>
+		</li>
+		<li class="list-group-item">
+			<%= blackbox.getNombre_O3() %><label class="switch"><input type="checkbox" class="warning" id="O3" /><span class="slider"></span></label>
+		</li>
+	</ul>
+</fieldset>
+<hr>
+<fieldset>
+	<legend>Entradas</legend>
+	<h4><%=blackbox.getNombre_I0()%></h4>
+	<div id="I0" class="grafica" style="width:auto"></div>
+	<h4><%=blackbox.getNombre_I1()%></h4>
+	<div id="I1" class="grafica" style="width:auto"></div>
+	<h4><%=blackbox.getNombre_I2()%></h4>
+	<div id="I2" class="grafica" style="width:auto"></div>
+	<h4><%=blackbox.getNombre_I3()%></h4>
+	<div id="I3" class="grafica" style="width:auto"></div>
+</fieldset>
 <script>
 	document.addEventListener("mousewheel", function() {
     	lastClickedGraph = null;
   	}, false);
   	document.addEventListener("click", function() { lastClickedGraph = null; }, false);
   	
+  	// Preparar dato de las gráficas
+  	let dataI0 = [];
+  	let dataI1 = [];
+  	let dataI2 = [];
+  	let dataI3 = [];
+  	
+
+	let date;
+	
+	<%for (IOPort entrada : puertos) {%>
+		date = new Date(<%= entrada.getFechaHora().getTime() %>);
+		dataI0.push([date, <%= entrada.getI0() %>]);
+		dataI1.push([date, <%= entrada.getI1() %>]);
+		dataI2.push([date, <%= entrada.getI2() %>]);
+		dataI3.push([date, <%= entrada.getI3() %>]);
+	<%}%>
+	
 	i0 = new Dygraph(
 		document.getElementById("I0"),
-		"Date,<%=blackbox.getNombre_I0()%>\n" + 
-		<%for (IOPort entrada : puertos) {%>
-			"<%=(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(entrada.getFechaHora())%>,<%=entrada.getI0()%>\n" + 
-		<%}%>"",
+		dataI0,
 		{
-			errorBars : true
+			drawPoints: true,
+			drawLabels: true,
+            labels: ['Time', 'Valores']
 		}        
 	);
 	
 	i1 = new Dygraph(
 		document.getElementById("I1"),
-		"Date,<%=blackbox.getNombre_I1()%>\n" + 
-		<%for (IOPort entrada : puertos) {%>
-			"<%=(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(entrada.getFechaHora())%>,<%=entrada.getI1()%>\n" + 
-		<%}%>"",
+		dataI1,
 		{
-			errorBars : true
+			drawPoints: true,
+			drawLabels: true,
+            labels: ['Time', 'Valores']
 		} 
 	);
 	
 	i2 = new Dygraph(
 		document.getElementById("I2"),
-		"Date,<%=blackbox.getNombre_I2()%>\n" + 
-		<%for (IOPort entrada : puertos) {%>
-			"<%=(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(entrada.getFechaHora())%>,<%=entrada.getI2()%>\n" + 
-		<%}%>"",
+		dataI2,
 		{
-			errorBars : true
-		} 
+			drawPoints: true,
+			drawLabels: true,
+            labels: ['Time', 'Valores']
+		}  
 	);
 	
 	i3 = new Dygraph(
 		document.getElementById("I3"),
-		"Date,<%=blackbox.getNombre_I3()%>\n" + 
-		<%for (IOPort entrada : puertos) {%>
-			"<%=(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(entrada.getFechaHora())%>,<%=entrada.getI3()%>\n" + 
-		<%}%>"",
+		dataI3,
 		{
-			errorBars : true
+			drawPoints: true,
+			drawLabels: true,
+            labels: ['Time', 'Valores']
 		} 
 	);
+	
+	socket = new WebSocket("ws://" + "192.168.0.16" + ":8080/Centinela/ws");
+	socket.onopen = function() {
+		let obj = {
+			"op": "conn",
+			"uid": "<%= blackbox.getIdentificador() %>"
+		};
+		socket.send(JSON.stringify(obj));
+	};
+	
+	socket.onmessage = function(event) {
+		let obj = JSON.parse(event.data);
+		fecha = new Date(obj.fecha);
+		dataI0.push([fecha, obj.I0]);
+		dataI1.push([fecha, obj.I1]);
+		dataI2.push([fecha, obj.I2]);
+		dataI3.push([fecha, obj.I3]);
+		i0.updateOptions( {'file': dataI0});
+		i1.updateOptions( {'file': dataI1});
+		i2.updateOptions( {'file': dataI2});
+		i3.updateOptions( {'file': dataI3});
+	}
+	
+	document.getElementById("O0").addEventListener("click", function(e) {
+		let obj = {
+			"op": "outp",
+			"port": "O0",
+			"valor": this.checked
+		};
+		socket.send(JSON.stringify(obj));
+	});
+	
+	document.getElementById("O1").addEventListener("click", function(e) {
+		let obj = {
+			"op": "outp",
+			"port": "O1",
+			"valor": this.checked
+		};
+		socket.send(JSON.stringify(obj));
+	});
+	
+	document.getElementById("O2").addEventListener("click", function(e) {
+		let obj = {
+			"op": "outp",
+			"port": "O2",
+			"valor": this.checked
+		};
+		socket.send(JSON.stringify(obj));
+	});
 
+	document.getElementById("O3").addEventListener("click", function(e) {
+		let obj = {
+			"op": "outp",
+			"port": "O3",
+			"valor": this.checked
+		};
+		socket.send(JSON.stringify(obj))
+	});
+	
 </script>

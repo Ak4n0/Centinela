@@ -14,7 +14,7 @@ public class BlackboxBufferEJB {
 		BlackboxBufferDAO.insertar(blackbox);
 	}
 	
-	static public BlackboxBuffer extraer(String identificadorUnico) {
+	public BlackboxBuffer extraer(String identificadorUnico) {
 		return BlackboxBufferDAO.extraer(identificadorUnico);
 	}
 }

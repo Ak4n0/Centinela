@@ -7,10 +7,10 @@ public class IOPort {
 	private Integer idBlackbox;
 	private Date fechaHora;
 	
-	private Integer O0;
-	private Integer O1;
-	private Integer O2;
-	private Integer O3;
+	private Boolean O0;
+	private Boolean O1;
+	private Boolean O2;
+	private Boolean O3;
 	
 	private Integer I0;
 	private Integer I1;
@@ -48,56 +48,56 @@ public class IOPort {
 	/**
 	 * @return the o0
 	 */
-	public Integer getO0() {
+	public Boolean getO0() {
 		return O0;
 	}
 
 	/**
 	 * @param o0 the o0 to set
 	 */
-	public void setO0(Integer o0) {
+	public void setO0(Boolean o0) {
 		O0 = o0;
 	}
 
 	/**
 	 * @return the o1
 	 */
-	public Integer getO1() {
+	public Boolean getO1() {
 		return O1;
 	}
 
 	/**
 	 * @param o1 the o1 to set
 	 */
-	public void setO1(Integer o1) {
+	public void setO1(Boolean o1) {
 		O1 = o1;
 	}
 
 	/**
 	 * @return the o2
 	 */
-	public Integer getO2() {
+	public Boolean getO2() {
 		return O2;
 	}
 
 	/**
 	 * @param o2 the o2 to set
 	 */
-	public void setO2(Integer o2) {
+	public void setO2(Boolean o2) {
 		O2 = o2;
 	}
 
 	/**
 	 * @return the o3
 	 */
-	public Integer getO3() {
+	public Boolean getO3() {
 		return O3;
 	}
 
 	/**
 	 * @param o3 the o3 to set
 	 */
-	public void setO3(Integer o3) {
+	public void setO3(Boolean o3) {
 		O3 = o3;
 	}
 
