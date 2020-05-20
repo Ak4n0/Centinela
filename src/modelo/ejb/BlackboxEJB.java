@@ -64,5 +64,10 @@ public class BlackboxEJB {
 	public List<IOPort> getIOPorts(int id) {
 		return IOPortDAO.getIOPorts(id);
 	}
+
+	public void editBlackbox(BlackboxFullInfo blackbox) {
+		BlackboxDAO.editarBlackbox(blackbox);
+		
+	}
 	
 }

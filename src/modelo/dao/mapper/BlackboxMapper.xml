@@ -26,7 +26,7 @@
 	
 	<update id='editarBlackbox'>
 		UPDATE BLACKBOX
-		   SET id=#{id}, identificador_unico=#{idUnico}, passwd=#{passwd}, usuario_id=#{idUsuario}
+		   SET identificador_unico=#{idUnico}, passwd=#{passwd}, usuario_id=#{idUsuario}
 		 WHERE id = #{id}
 	</update>
 	
@@ -66,4 +66,19 @@
 		  FROM BLACKBOX
 		 WHERE identificador_unico = #{uid}
 	</select>
+	
+	<update id="editarBlackboxFullInfo" parameterType='BlackboxFullInfo'>
+		UPDATE BLACKBOX
+		   SET nombre = #{nombre},
+		   	   info_extra = #{informacionExtra},
+		   	   nombre_O0 = #{nombre_O0},
+		   	   nombre_O1 = #{nombre_O1},
+		   	   nombre_O2 = #{nombre_O2},
+		   	   nombre_O3 = #{nombre_O3},
+		   	   nombre_I0 = #{nombre_I0},
+		   	   nombre_I1 = #{nombre_I1},
+		   	   nombre_I2 = #{nombre_I2},
+		   	   nombre_I3 = #{nombre_I3}
+		 WHERE id = #{id}
+	</update>
 </mapper>

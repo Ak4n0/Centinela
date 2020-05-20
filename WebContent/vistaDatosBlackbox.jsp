@@ -11,8 +11,11 @@
 %>
 
 <h1><%=blackbox.getNombre()%><small>[<%=blackbox.getIdentificador()%>]
-	<a href="#" title="Modificar Blackbox"><i class="fas fa-pencil-ruler"></i></a></small>
+	<a href="#" id="modificar" title="Modificar Blackbox"><i class="fas fa-pencil-ruler"></i></a></small>
 </h1>
+<% if(blackbox.getInformacionExtra() != null) {%>
+<p><%= blackbox.getInformacionExtra() %></p>
+<% } %>
 
 <hr>
 <fieldset>
@@ -45,6 +48,12 @@
 	<div id="I3" class="grafica" style="width:auto"></div>
 </fieldset>
 <script>
+	document.getElementById("modificar").addEventListener("click", function(e) {
+		$.get("EditarBlackboxCliente", {"uid": "<%= blackbox.getIdentificador() %>"}, function(htmlExterno) {
+			$("#contenido").html(htmlExterno);
+		});
+	});
+	
 	document.addEventListener("mousewheel", function() {
     	lastClickedGraph = null;
   	}, false);
@@ -107,7 +116,7 @@
 		} 
 	);
 	
-	socket = new WebSocket("ws://" + "192.168.0.16" + ":8080/Centinela/ws");
+	socket = new WebSocket("ws://" + "<%= request.getLocalAddr() %>" + ":8080/Centinela/ws");
 	socket.onopen = function() {
 		let obj = {
 			"op": "conn",

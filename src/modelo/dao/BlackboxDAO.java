@@ -105,5 +105,16 @@ public class BlackboxDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static void editarBlackbox(BlackboxFullInfo blackbox) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BlackboxMapper mapper = sqlSession.getMapper(BlackboxMapper.class);
+			mapper.editarBlackboxFullInfo(blackbox);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 }

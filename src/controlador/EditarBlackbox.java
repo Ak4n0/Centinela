@@ -79,8 +79,8 @@ public class EditarBlackbox extends HttpServlet {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 			request.setAttribute("titulo", "No tiene permiso");
 			request.setAttribute("mensaje", "<p>No dispones permiso para acceder a esta sección.</p>" +
-											"<p>Si tienes una cuenta de administrador <a href='Login'>inicia sesión</a> con ella.</a>. " +
-											"Si no eres administrador regresa a la página principal haciendo <a href='Principal'>click aquí</a>.");
+											"<p>Si tienes una cuenta de administrador <a href='Login'>inicia sesión</a> con ella.</p>" +
+											"<p>Si no eres administrador regresa a la página principal haciendo <a href='Principal'>click aquí</a>.</p>");
 			rs.forward(request, response);
 			return;
 		} else {

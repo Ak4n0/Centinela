@@ -25,6 +25,8 @@ public interface BlackboxMapper {
 
 	String getNombrePuerto(@Param("id") int id, @Param("puerto") String puerto);
 
-	BlackboxFullInfo getBlackboxFullInfo(String uid); 
+	BlackboxFullInfo getBlackboxFullInfo(String uid);
+
+	void editarBlackboxFullInfo(BlackboxFullInfo blackbox); 
 
 }
