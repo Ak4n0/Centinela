@@ -21,13 +21,23 @@ CREATE TABLE BLACKBOX (
     info_extra VARCHAR(255), -- Información extra que el usuario crea conveniente incluir.
     usuario_id INTEGER NOT NULL, -- Identificador de usuario la que pertenece la blackbox.
     nombre_O0 VARCHAR(32) DEFAULT 'OUT_0', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_O1 VARCHAR(32) DEFAULT 'OUT_1', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_O2 VARCHAR(32) DEFAULT 'OUT_2', -- Nombre con que el usuario se podrá referir a dicha salida.
-    nombre_O3 VARCHAR(32) DEFAULT 'OUT_3', -- Nombre con que el usuario se podrá referir a dicha salida.
+    nombre_O1 VARCHAR(32) DEFAULT 'OUT_1',
+    nombre_O2 VARCHAR(32) DEFAULT 'OUT_2',
+    nombre_O3 VARCHAR(32) DEFAULT 'OUT_3',
     nombre_I0 VARCHAR(32) DEFAULT 'IN_0', -- Nombre con que el usuario se podrá referir a dicha entrada.
-    nombre_I1 VARCHAR(32) DEFAULT 'IN_1', -- Nombre con que el usuario se podrá referir a dicha entrada.
-    nombre_I2 VARCHAR(32) DEFAULT 'IN_2', -- Nombre con que el usuario se podrá referir a dicha entrada.
-    nombre_I3 VARCHAR(32) DEFAULT 'IN_3', -- Nombre con que el usuario se podrá referir a dicha entrada.
+    nombre_I1 VARCHAR(32) DEFAULT 'IN_1',
+    nombre_I2 VARCHAR(32) DEFAULT 'IN_2',
+    nombre_I3 VARCHAR(32) DEFAULT 'IN_3',
+    unidades_I0 VARCHAR(15), -- Unidades de la medición de dicha entrada, por ejemplo: V, A, ºC, cm...
+    unidades_I1 VARCHAR(15),
+    unidades_I2 VARCHAR(15),
+    unidades_I3 VARCHAR(15),
+    func_trans_I0 VARCHAR(100), -- Función de transferencia para transformar el dato de 0 a 255 de la blackbox
+    func_trans_I1 VARCHAR(100), --    a la lectura de la magnitud real. Debe ser una expresión en javascript tal que
+    func_trans_I2 VARCHAR(100), --    mediante la función js eval(ESTA_CADENA) se pueda transformar dicho valor.
+    func_trans_I3 VARCHAR(100), --    Puede ser ' valor * eval(ESTA_CADENA) ' o, para calculos más complicados, que la cadena
+                                --    haga uso de variables ' Math.log(I0_value) ' donde I0_value será una variable existente
+                                --    en archivo con el valor conseguido de la blackbox.
     
     FOREIGN KEY(usuario_id)
         REFERENCES USUARIO(id)
@@ -116,7 +126,3 @@ CREATE TABLE UMBRAL_ALARMA (
 -- Creación del usuario administrador
 INSERT INTO USUARIO (nombre, passwd, email, administrador)
 VALUES ('Administrador', 'admin', 'centinela.soluciones@gmail.com', 1);
-
--- Creación del usuario para manejo desde la aplicación
-CREATE USER 'centinelapp'@'localhost' IDENTIFIED BY 'B0h3m!';
-GRANT SELECT, INSERT, UPDATE, DELETE ON centinela.* TO 'centinelapp'@'localhost';
