@@ -60,6 +60,12 @@ public class EditarBlackbox extends HttpServlet {
 			rs = getServletContext().getRequestDispatcher("/editarBlackbox.jsp");
 			// Obtiene una lista de todos los usuarios validados para a los cuales se les puede dar una blackbox
 			List<UsuarioAdminInfo> listaUsuarios = usuariosEJB.getDatabaseValidatedUsers();
+			// Eliminar los administradores
+			for(UsuarioAdminInfo u: listaUsuarios) {
+				if(u.isAdministrador()) {
+					listaUsuarios.remove(u);
+				}
+			}
 			// Obtiene los datos de la blackbox con ese id
 			BlackboxAdminInfo blackbox = blackboxEJB.getBlackbox(id);
 			request.setAttribute("listaUsuarios", listaUsuarios);

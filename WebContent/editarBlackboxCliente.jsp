@@ -9,7 +9,7 @@
 
 <h1>Editar blackbox <%= blackbox.getIdentificador() %></h1>
 
-<form>
+<form method="post" action="EditarBlackboxCliente">
   <input type="hidden" name="uid" value="<%= blackbox.getIdentificador() %>">
   <div class="form-group">
     <label for="nombre">Nombre de la blackbox:</label>
@@ -17,7 +17,7 @@
   </div>
   <div class="form-group">
     <label for="descr">Descripción:</label>
-    <textarea class="form-control" id="descripcion" placeholder="Introduzca una descripción para la blackbox" name="descr"></textarea>
+    <textarea class="form-control" id="descr" placeholder="Introduzca una descripción para la blackbox" name="descr"></textarea>
   </div>
   <div class="form-group">
     <label for="I0">Nombre entrada 1:</label>
@@ -35,20 +35,20 @@
     <label for="I3">Nombre entrada 4:</label>
     <input type="text" class="form-control" id="I3" placeholder="Introduzca el identificador para la entrada" name="I3">
   </div><div class="form-group">
-    <label for="O0">Nombre entrada 1:</label>
-    <input type="text" class="form-control" id="O0" placeholder="Introduzca el identificador para la salida" name="I0">
+    <label for="O0">Nombre salida 1:</label>
+    <input type="text" class="form-control" id="O0" placeholder="Introduzca el identificador para la salida" name="O0">
   </div>
   <div class="form-group">
-    <label for="O1">Nombre entrada 2:</label>
-    <input type="text" class="form-control" id="O1" placeholder="Introduzca el identificador para la salida" name="I1">
+    <label for="O1">Nombre salida 2:</label>
+    <input type="text" class="form-control" id="O1" placeholder="Introduzca el identificador para la salida" name="O1">
   </div>
   <div class="form-group">
-    <label for="O2">Nombre entrada 3:</label>
-    <input type="text" class="form-control" id="O2" placeholder="Introduzca el identificador para la salida" name="I2">
+    <label for="O2">Nombre salida 3:</label>
+    <input type="text" class="form-control" id="O2" placeholder="Introduzca el identificador para la salida" name="O2">
   </div>
   <div class="form-group">
-    <label for="O3">Nombre entrada 4:</label>
-    <input type="text" class="form-control" id="O3" placeholder="Introduzca el identificador para la salida" name="I3">
+    <label for="O3">Nombre salida 4:</label>
+    <input type="text" class="form-control" id="O3" placeholder="Introduzca el identificador para la salida" name="O3">
   </div>
   <button type="submit" class="btn btn-primary">Modificar</button>
   <button type="button" class="btn btn-danger" onclick="resetear()">Resetear</button>
@@ -57,7 +57,7 @@
 <script>
 	function resetear() {
 		$("#nombre").val("<%= blackbox.getNombre() %>");
-		$("#descr").text("<%= blackbox.getInformacionExtra() %>");
+		$("#descr").val("<%= blackbox.getInformacionExtra() %>");
 		$("#I0").val("<%= blackbox.getNombre_I0() %>");
 		$("#I1").val("<%= blackbox.getNombre_I1() %>");
 		$("#I2").val("<%= blackbox.getNombre_I2() %>");

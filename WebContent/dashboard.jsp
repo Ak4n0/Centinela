@@ -19,12 +19,11 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/switch.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
+<link rel="stylesheet" href="css/graficas.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
 <script src="js/interaction.js"></script>
 <script src="js/main.js" defer></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
-<link rel="stylesheet" href="css/graficas.css">
 </head>
 <body>
 
@@ -82,30 +81,24 @@
 		<div id="content" class="p-4 p-md-5">
 
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="container-fluid">
+				<div id="container-bar" class="container-fluid">
 
 					<button type="button" id="sidebarCollapse" class="btn btn-primary">
 						<i class="fa fa-bars"></i> <span class="sr-only">Toggle
 							Menu</span>
 					</button>
-					<button class="btn btn-dark d-inline-block d-lg-none ml-auto"
+					<button id="btn-menu" class="btn btn-dark d-inline-block d-lg-none ml-auto"
 						type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
-						aria-label="Toggle navigation">
+						aria-label="Toggle navigation" style="visibility: hidden">
 						<i class="fa fa-bars"></i>
 					</button>
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="nav navbar-nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="#">Home</a>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="#">About</a>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="#">Portfolio</a>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="#">Contact</a>
-							</li>
+							<li class="nav-item"><a id="btn-dashboard" class="nav-link" href="#">Dashboard</a></li>
+							<li class="nav-item"><a id="btn-editar" class="nav-link" href="#">Editar blackbox</a></li>
 						</ul>
 					</div>
 				</div>
@@ -127,6 +120,7 @@
 				$.get("EditarUsuario", {id: <%= ((UsuarioFullInfo) session.getAttribute("usuario")).getId() %>}, function(htmlExterno) {
 					$("#contenido").html(htmlExterno);
 				});
+				document.getElementById("btn-menu").style.visibility = "hidden";
 			});
 			
 			$(".linkBlackbox").click(function() {

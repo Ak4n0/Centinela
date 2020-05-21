@@ -120,6 +120,8 @@ public class EditarBlackboxCliente extends HttpServlet {
 			blackbox.setNombre_O3(O3);
 			
 			blackboxEJB.editBlackbox(blackbox);
+			
+			response.sendRedirect("Principal");
 		}
 	}
 

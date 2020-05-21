@@ -67,7 +67,6 @@ public class BlackboxEJB {
 
 	public void editBlackbox(BlackboxFullInfo blackbox) {
 		BlackboxDAO.editarBlackbox(blackbox);
-		
 	}
 	
 }

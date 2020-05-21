@@ -10,9 +10,9 @@
 	List<IOPort> puertos = (List<IOPort>) request.getAttribute("io");
 %>
 
-<h1><%=blackbox.getNombre()%><small>[<%=blackbox.getIdentificador()%>]
-	<a href="#" id="modificar" title="Modificar Blackbox"><i class="fas fa-pencil-ruler"></i></a></small>
-</h1>
+<h2><%=blackbox.getNombre()%><small>[<%=blackbox.getIdentificador()%>]
+	<a href="#" id="modificar" title="Modificar Blackbox"></a></small>
+</h2>
 <% if(blackbox.getInformacionExtra() != null) {%>
 <p><%= blackbox.getInformacionExtra() %></p>
 <% } %>
@@ -21,17 +21,17 @@
 <fieldset>
 	<legend>Salidas</legend>
 	<ul class="list-group list-group-flush">
-		<li class="list-group-item">
-			<%= blackbox.getNombre_O0() %><label class="switch"><input type="checkbox" class="warning" id="O0" /><span class="slider"></span></label>
+		<li class="list-group-item custom-control custom-switch" style="padding-left: 2.5rem">
+			<input type="checkbox" class="custom-control-input" id="O0" /><label class="custom-control-label" for="O0"><%= blackbox.getNombre_O0() %></label>
 		</li>
-		<li class="list-group-item">
-			<%= blackbox.getNombre_O1() %><label class="switch"><input type="checkbox" class="warning" id="O1" /><span class="slider"></span></label>
+		<li class="list-group-item custom-control custom-switch" style="padding-left: 2.5rem">
+			<input type="checkbox" class="custom-control-input" id="O1" /><label class="custom-control-label" for="O1"><%= blackbox.getNombre_O1() %></label>
 		</li>
-		<li class="list-group-item">
-			<%= blackbox.getNombre_O2() %><label class="switch"><input type="checkbox" class="warning" id="O2" /><span class="slider"></span></label>
+		<li class="list-group-item custom-control custom-switch" style="padding-left: 2.5rem">
+			<input type="checkbox" class="custom-control-input" id="O2" /><label class="custom-control-label" for="O2"><%= blackbox.getNombre_O2() %></label>
 		</li>
-		<li class="list-group-item">
-			<%= blackbox.getNombre_O3() %><label class="switch"><input type="checkbox" class="warning" id="O3" /><span class="slider"></span></label>
+		<li class="list-group-item custom-control custom-switch" style="padding-left: 2.5rem">
+			<input type="checkbox" class="custom-control-input" id="O3" /><label class="custom-control-label" for="O3"><%= blackbox.getNombre_O3() %></label>
 		</li>
 	</ul>
 </fieldset>
@@ -47,26 +47,17 @@
 	<h4><%=blackbox.getNombre_I3()%></h4>
 	<div id="I3" class="grafica" style="width:auto"></div>
 </fieldset>
-<script>
-	document.getElementById("modificar").addEventListener("click", function(e) {
-		$.get("EditarBlackboxCliente", {"uid": "<%= blackbox.getIdentificador() %>"}, function(htmlExterno) {
-			$("#contenido").html(htmlExterno);
-		});
-	});
-	
+<script>	
 	document.addEventListener("mousewheel", function() {
     	lastClickedGraph = null;
   	}, false);
   	document.addEventListener("click", function() { lastClickedGraph = null; }, false);
   	
   	// Preparar dato de las gráficas
-  	let dataI0 = [];
-  	let dataI1 = [];
-  	let dataI2 = [];
-  	let dataI3 = [];
-  	
-
-	let date;
+  	dataI0 = [];
+  	dataI1 = [];
+  	dataI2 = [];
+  	dataI3 = [];
 	
 	<%for (IOPort entrada : puertos) {%>
 		date = new Date(<%= entrada.getFechaHora().getTime() %>);
@@ -172,6 +163,21 @@
 			"valor": this.checked
 		};
 		socket.send(JSON.stringify(obj))
+	});
+	
+	document.getElementById("btn-menu").style.visibility = "visible";
+	
+	document.getElementById("btn-dashboard").addEventListener("click", function() {
+		let uid = $(this).attr("id");
+		$.get("ObtenerDatosBlackbox", {"id": "<%= blackbox.getIdentificador() %>"}, function(htmlExterno) {
+			$("#contenido").html(htmlExterno)
+		});
+	});
+	
+	document.getElementById("btn-editar").addEventListener("click", function() {
+		$.get("EditarBlackboxCliente", {"uid": "<%= blackbox.getIdentificador() %>"}, function(htmlExterno) {
+			$("#contenido").html(htmlExterno);
+		});
 	});
 	
 </script>

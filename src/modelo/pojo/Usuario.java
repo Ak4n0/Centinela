@@ -5,6 +5,7 @@ public abstract class Usuario {
 	protected Integer id;
 	protected String nombre;
 	protected String email;
+	protected Boolean administrador;
 	
 	/**
 	 * @return the id
@@ -46,6 +47,26 @@ public abstract class Usuario {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+
+	
+	/**
+	 * @return the administrador
+	 */
+	public Boolean getAdministrador() {
+		return administrador;
+	}
+	
+	public Boolean isAdministrador() {
+		return getAdministrador();
+	}
+	
+	/**
+	 * @param administrador the administrador to set
+	 */
+	public void setAdministrador(Boolean administrador) {
+		this.administrador = administrador;
 	}
 	
 }

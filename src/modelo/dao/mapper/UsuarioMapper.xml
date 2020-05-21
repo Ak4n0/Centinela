@@ -38,7 +38,7 @@
 	</insert>
 	
 	<select id='getListaUsuariosParaAdministracion' resultType='UsuarioAdminInfo'>
-		SELECT id, nombre, email, (SELECT count(*) FROM BLACKBOX WHERE usuario_id = USUARIO.id) AS numBlackboxes
+		SELECT id, nombre, email, administrador, (SELECT count(*) FROM BLACKBOX WHERE usuario_id = USUARIO.id) AS numBlackboxes
   		  FROM USUARIO
 	</select>
 	

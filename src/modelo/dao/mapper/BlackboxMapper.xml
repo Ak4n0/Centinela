@@ -32,7 +32,8 @@
 	
 	<select id='getBlackboxPorId' parameterType='Integer' resultType='BlackboxAdminInfo'>
 		SELECT BLACKBOX.id as id, identificador_unico as identificador, BLACKBOX.nombre as nombre,
-				BLACKBOX.passwd as passwd, DATO_USUARIO.id as idUsuario, DATO_USUARIO.nombre as nombreUsuario
+				BLACKBOX.passwd as passwd, info_extra as informacionExtra,
+				DATO_USUARIO.id as idUsuario, DATO_USUARIO.nombre as nombreUsuario
 		  FROM BLACKBOX, (
 		SELECT id, nombre
 		  FROM USUARIO) as DATO_USUARIO
@@ -42,7 +43,8 @@
 	
 	<select id='getBlackboxPorIdUnico' parameterType='String' resultType='BlackboxAdminInfo'>
 		SELECT BLACKBOX.id as id, identificador_unico as identificador, BLACKBOX.nombre as nombre,
-				BLACKBOX.passwd as passwd, DATO_USUARIO.id as idUsuario, DATO_USUARIO.nombre as nombreUsuario
+				BLACKBOX.passwd as passwd, info_extra as informacionExtra,
+				DATO_USUARIO.id as idUsuario, DATO_USUARIO.nombre as nombreUsuario
 		  FROM BLACKBOX, (
 		SELECT id, nombre
 		  FROM USUARIO) as DATO_USUARIO
@@ -61,7 +63,7 @@
 	</select>
 	
 	<select id="getBlackboxFullInfo" parameterType='String' resultType='BlackboxFullInfo'>
-		SELECT id, identificador_unico as identificador, nombre, passwd, usuario_id as idUsuario,
+		SELECT id, identificador_unico as identificador, nombre, passwd, info_extra as informacionExtra, usuario_id as idUsuario,
 				nombre_O0, nombre_O1, nombre_O2, nombre_O3, nombre_I0, nombre_I1, nombre_I2, nombre_I3
 		  FROM BLACKBOX
 		 WHERE identificador_unico = #{uid}
