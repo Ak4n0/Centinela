@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.ejb.BlackboxBufferEJB;
 import modelo.ejb.BlackboxEJB;
 import modelo.ejb.UsuariosEJB;
+import modelo.pojo.BlackboxBuffer;
 import modelo.pojo.BlackboxFullInfo;
 import modelo.pojo.UsuarioFullInfo;
 
@@ -27,6 +29,9 @@ public class EditarBlackboxCliente extends HttpServlet {
 	
 	@EJB
 	BlackboxEJB blackboxEJB;
+	
+	@EJB
+	BlackboxBufferEJB bufferEJB;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,6 +57,7 @@ public class EditarBlackboxCliente extends HttpServlet {
 			// Obtiene los datos de la blackbox con ese id
 			BlackboxFullInfo blackbox = blackboxEJB.getBlackboxFullInfo(uid);
 			request.setAttribute("blackbox", blackbox);
+			
 		}
 		rs.forward(request, response);
 	}
@@ -83,6 +89,14 @@ public class EditarBlackboxCliente extends HttpServlet {
 			String O1 = request.getParameter("O1");
 			String O2 = request.getParameter("O2");
 			String O3 = request.getParameter("O3");
+			String I0supArg = request.getParameter("I0sup");
+			String I0infArg = request.getParameter("I0inf");
+			String I1supArg = request.getParameter("I1sup");
+			String I1infArg = request.getParameter("I1inf");
+			String I2supArg = request.getParameter("I2sup");
+			String I2infArg = request.getParameter("I2inf");
+			String I3supArg = request.getParameter("I3sup");
+			String I3infArg = request.getParameter("I3inf");
 			
 			// No se ha pasado un uid válido
 			if(uid == null) {
@@ -108,6 +122,67 @@ public class EditarBlackboxCliente extends HttpServlet {
 				return;
 			}
 			
+			Integer I0sup = null;
+			Integer I0inf = null;
+			Integer I1sup = null;
+			Integer I1inf = null;
+			Integer I2sup = null;
+			Integer I2inf = null;
+			Integer I3sup = null;
+			Integer I3inf = null;
+			
+			try {
+				I0sup = Integer.parseInt(I0supArg);
+			} catch (NumberFormatException e) {
+				// No hacer nada, queda como null
+			}
+			
+			try {
+				I0inf = Integer.parseInt(I0infArg);
+			} catch (NumberFormatException e) {
+				// No hacer nada, queda como null
+			}
+			
+			try {
+				I1sup = Integer.parseInt(I1supArg);
+			}catch (NumberFormatException e) {
+				// No hacer nada, queda como null
+			}
+			
+			try {
+				I1inf = Integer.parseInt(I1infArg);
+			} catch (NumberFormatException e) {
+				// No hacer nada, queda como null
+			}
+				
+			try {
+				I2sup = Integer.parseInt(I2supArg);
+			}
+			catch (NumberFormatException e) {
+				// No hacer nada, queda como null
+			}
+			
+			try {
+				I2inf = Integer.parseInt(I2infArg);
+			}
+			catch (NumberFormatException e) {
+				// No hacer nada, queda como null
+			}
+			
+			try {
+				I3sup = Integer.parseInt(I3supArg);
+			}
+			catch (NumberFormatException e) {
+				// No hacer nada, queda como null
+			}
+			
+			try {
+				I3inf = Integer.parseInt(I3infArg);
+			}
+			catch (NumberFormatException e) {
+				// No hacer nada, queda como null
+			}
+			
 			blackbox.setNombre(nombre);
 			blackbox.setInformacionExtra(descr);
 			blackbox.setNombre_I0(I0);
@@ -118,8 +193,31 @@ public class EditarBlackboxCliente extends HttpServlet {
 			blackbox.setNombre_O1(O1);
 			blackbox.setNombre_O2(O2);
 			blackbox.setNombre_O3(O3);
+			blackbox.setUmbralSuperiorI0(I0sup);
+			blackbox.setUmbralInferiorI0(I0inf);
+			blackbox.setUmbralSuperiorI1(I1sup);
+			blackbox.setUmbralInferiorI1(I1inf);
+			blackbox.setUmbralSuperiorI2(I2sup);
+			blackbox.setUmbralInferiorI2(I2inf);
+			blackbox.setUmbralSuperiorI3(I3sup);
+			blackbox.setUmbralInferiorI3(I3inf);
 			
 			blackboxEJB.editBlackbox(blackbox);
+			
+			BlackboxBuffer blackboxBuffer = bufferEJB.extraer(blackbox.getIdentificador());
+			if(blackboxBuffer == null) {
+				blackboxBuffer = new BlackboxBuffer();
+				blackboxBuffer.setIdentificador(blackbox.getIdentificador());
+			}
+			blackboxBuffer.setLimiteSuperiorI0(I0sup);
+			blackboxBuffer.setLimiteInferiorI0(I0inf);
+			blackboxBuffer.setLimiteSuperiorI1(I1sup);
+			blackboxBuffer.setLimiteInferiorI1(I1inf);
+			blackboxBuffer.setLimiteSuperiorI2(I2sup);
+			blackboxBuffer.setLimiteInferiorI2(I2inf);
+			blackboxBuffer.setLimiteSuperiorI3(I3sup);
+			blackboxBuffer.setLimiteInferiorI3(I3inf);
+			bufferEJB.insertar(blackboxBuffer);
 			
 			response.sendRedirect("Principal");
 		}

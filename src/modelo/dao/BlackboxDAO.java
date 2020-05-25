@@ -22,11 +22,11 @@ public class BlackboxDAO {
 		}
 	}
 
-	public static void addBlackbox(String id, String passwd, int idUsuario) {
+	public static void addBlackbox(BlackboxFullInfo blackbox) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			BlackboxMapper mapper = sqlSession.getMapper(BlackboxMapper.class);
-			mapper.addBlackbox(id, passwd, idUsuario);
+			mapper.addBlackbox(blackbox);
 			sqlSession.commit();
 		} finally {
 			sqlSession.close();

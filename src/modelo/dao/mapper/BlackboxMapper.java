@@ -11,7 +11,7 @@ public interface BlackboxMapper {
 
 	List<BlackboxAdminInfo> getBlackboxes();
 
-	void addBlackbox(@Param("idUnico") String id, @Param("passwd") String passwd, @Param("idUsuario") int idUsuario);
+	void addBlackbox(BlackboxFullInfo blackbox);
 
 	void borrarBlackbox(int id);
 	

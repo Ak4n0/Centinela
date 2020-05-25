@@ -39,14 +39,14 @@
 </table>
 <script>
 	function editarUsuario(id) {
-		$.get("EditarUsuario", {id: id}, function(htmlExterno) {$("#content").html(htmlExterno)});
+		$.get("EditarUsuario", {id: id}, function(htmlExterno) {$("#contenido").html(htmlExterno)});
 	}
 	
 	function borrarUsuario(id) {
 		if(confirm("¿Estás seguro de querer borrar el usuario #" + id + "?")) {
 			$.post("EliminarUsuario", {id: id});
 			$.get("ObtenerUsuarios", function(respuesta) {
-        		$("#content").html(respuesta);
+        		$("#contenido").html(respuesta);
         	});
 		}
 	}

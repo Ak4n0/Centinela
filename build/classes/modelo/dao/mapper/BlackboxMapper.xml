@@ -15,8 +15,16 @@
 	</select>
 	
 	<insert id='addBlackbox'>
-		INSERT INTO BLACKBOX (identificador_unico, passwd, usuario_id)
-			   VALUES (#{idUnico}, #{passwd}, #{idUsuario})
+		INSERT INTO BLACKBOX (identificador_unico, passwd, usuario_id,
+						unidades_I0, unidades_I1, unidades_I2, unidades_I3, 
+						func_trans_I0, func_trans_I1, func_trans_I2, func_trans_I3,
+						func_trans_inv_I0, func_trans_inv_I1, func_trans_inv_I2, func_trans_inv_I3,
+						I0_bajo, I0_alto, I1_bajo, I1_alto, I2_bajo, I2_alto, I3_bajo, I3_alto)
+			   VALUES (#{identificador}, #{passwd}, #{idUsuario},
+			   		#{unidades_I0}, #{unidades_I1}, #{unidades_I2}, #{unidades_I3},
+			   		#{funcionTransferencia_I0}, #{funcionTransferencia_I1}, #{funcionTransferencia_I2}, #{funcionTransferencia_I3},
+			   		#{funcionTransferenciaInversa_I0}, #{funcionTransferenciaInversa_I1}, #{funcionTransferenciaInversa_I2}, #{funcionTransferenciaInversa_I3},
+			   		#{umbralInferiorI0}, #{umbralSuperiorI0}, #{umbralInferiorI1}, #{umbralSuperiorI1}, #{umbralInferiorI2}, #{umbralSuperiorI2}, #{umbralInferiorI3}, #{umbralSuperiorI3})
 	</insert>
 
 	<delete id='borrarBlackbox' parameterType="Integer">
@@ -64,15 +72,23 @@
 	
 	<select id="getBlackboxFullInfo" parameterType='String' resultType='BlackboxFullInfo'>
 		SELECT id, identificador_unico as identificador, nombre, passwd, info_extra as informacionExtra, usuario_id as idUsuario,
-				nombre_O0, nombre_O1, nombre_O2, nombre_O3, nombre_I0, nombre_I1, nombre_I2, nombre_I3
+				nombre_O0, nombre_O1, nombre_O2, nombre_O3, nombre_I0, nombre_I1, nombre_I2, nombre_I3,
+				unidades_I0, unidades_I1, unidades_I2, unidades_I3,
+				func_trans_I0 as funcionTransferencia_I0, func_trans_I1 as funcionTransferencia_I1,
+				func_trans_I2 as funcionTransferencia_I2, func_trans_I3 as funcionTransferencia_I3,
+				func_trans_inv_I0 as funcionTransferenciaInversa_I0, func_trans_inv_I0 as funcionTransferenciaInversa_I1,
+				func_trans_inv_I0 as funcionTransferenciaInversa_I2, func_trans_inv_I0 as funcionTransferenciaInversa_I3
 		  FROM BLACKBOX
 		 WHERE identificador_unico = #{uid}
 	</select>
 	
 	<update id="editarBlackboxFullInfo" parameterType='BlackboxFullInfo'>
 		UPDATE BLACKBOX
-		   SET nombre = #{nombre},
+		   SET identificador_unico = #{identificador},
+		       nombre = #{nombre},
+		       passwd = #{passwd},
 		   	   info_extra = #{informacionExtra},
+		   	   usuario_id = #{idUsuario},
 		   	   nombre_O0 = #{nombre_O0},
 		   	   nombre_O1 = #{nombre_O1},
 		   	   nombre_O2 = #{nombre_O2},
@@ -80,7 +96,27 @@
 		   	   nombre_I0 = #{nombre_I0},
 		   	   nombre_I1 = #{nombre_I1},
 		   	   nombre_I2 = #{nombre_I2},
-		   	   nombre_I3 = #{nombre_I3}
+		   	   nombre_I3 = #{nombre_I3},
+		   	   unidades_I0 = #{unidades_I0},
+		   	   unidades_I1 = #{unidades_I1},
+		   	   unidades_I2 = #{unidades_I2},
+		   	   unidades_I3 = #{unidades_I3},
+		   	   func_trans_I0 = #{funcionTransferencia_I0},
+		   	   func_trans_I1 = #{funcionTransferencia_I1},
+		   	   func_trans_I2 = #{funcionTransferencia_I2},
+		   	   func_trans_I3 = #{funcionTransferencia_I3},
+		   	   func_trans_inv_I0 = #{funcionTransferenciaInversa_I0},
+		   	   func_trans_inv_I1 = #{funcionTransferenciaInversa_I1},
+		   	   func_trans_inv_I2 = #{funcionTransferenciaInversa_I2},
+		   	   func_trans_inv_I3 = #{funcionTransferenciaInversa_I3},
+		   	   I0_bajo = #{umbralInferiorI0},
+		   	   I0_alto = #{umbralSuperiorI0},
+		   	   I1_bajo = #{umbralInferiorI1},
+		   	   I1_alto = #{umbralSuperiorI1},
+		   	   I2_bajo = #{umbralInferiorI2},
+		   	   I2_alto = #{umbralSuperiorI2},
+		   	   I3_bajo = #{umbralInferiorI3},
+		   	   I3_alto = #{umbralSuperiorI3}
 		 WHERE id = #{id}
 	</update>
 </mapper>

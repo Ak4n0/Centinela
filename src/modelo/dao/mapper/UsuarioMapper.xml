@@ -73,7 +73,8 @@
 	<select id='getUsuariosValidados' resultType='UsuarioAdminInfo'>
 		SELECT USUARIO.id as id, nombre, email, (SELECT count(*) FROM BLACKBOX WHERE usuario_id = USUARIO.id) AS numBlackboxes
 		  FROM USUARIO LEFT JOIN PETICION_NUEVO_USUARIO ON USUARIO.id = PETICION_NUEVO_USUARIO.usuario_id
-		 WHERE PETICION_NUEVO_USUARIO.usuario_id IS NULL;
+		 WHERE PETICION_NUEVO_USUARIO.usuario_id IS NULL
+		   AND administrador = 0;
 	</select>
 	
 	<select id='getUsuarioPorId' parameterType='Integer' resultType='UsuarioFullInfo'>

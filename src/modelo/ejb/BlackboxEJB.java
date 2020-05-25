@@ -21,8 +21,8 @@ public class BlackboxEJB {
 		return BlackboxDAO.getBlackboxes();
 	}
 
-	public void addBlackbox(String id, String passwd, int idUsuario) {
-		BlackboxDAO.addBlackbox(id, passwd, idUsuario);
+	public void addBlackbox(BlackboxFullInfo blackbox) {
+		BlackboxDAO.addBlackbox(blackbox);
 	}
 
 	public void deleteBlackbox(int id) {

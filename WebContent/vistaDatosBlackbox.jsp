@@ -10,8 +10,11 @@
 	List<IOPort> puertos = (List<IOPort>) request.getAttribute("io");
 %>
 
-<h2><%=blackbox.getNombre()%><small>[<%=blackbox.getIdentificador()%>]
-	<a href="#" id="modificar" title="Modificar Blackbox"></a></small>
+<h2>
+	<% if(blackbox.getNombre() != null) { %>
+	<%=blackbox.getNombre()%>
+	<% } %>
+	<small>[<%=blackbox.getIdentificador()%>]</small>
 </h2>
 <% if(blackbox.getInformacionExtra() != null) {%>
 <p><%= blackbox.getInformacionExtra() %></p>
@@ -39,12 +42,20 @@
 <fieldset>
 	<legend>Entradas</legend>
 	<h4><%=blackbox.getNombre_I0()%></h4>
+	<% if(blackbox.getUnidades_I0() != null) %>
+	<%= blackbox.getUnidades_I0() %>
 	<div id="I0" class="grafica" style="width:auto"></div>
 	<h4><%=blackbox.getNombre_I1()%></h4>
+	<% if(blackbox.getUnidades_I1() != null) %>
+	<%= blackbox.getUnidades_I1() %>
 	<div id="I1" class="grafica" style="width:auto"></div>
 	<h4><%=blackbox.getNombre_I2()%></h4>
+	<% if(blackbox.getUnidades_I2() != null) %>
+	<%= blackbox.getUnidades_I2() %>
 	<div id="I2" class="grafica" style="width:auto"></div>
 	<h4><%=blackbox.getNombre_I3()%></h4>
+	<% if(blackbox.getUnidades_I3() != null) %>
+	<%= blackbox.getUnidades_I3() %>
 	<div id="I3" class="grafica" style="width:auto"></div>
 </fieldset>
 <script>	
@@ -59,12 +70,36 @@
   	dataI2 = [];
   	dataI3 = [];
 	
+  	// Las siguientes líneas se transforman en las funciones necesarias para modificar los datos
+  	//    devueltos por las blackbox a sus respectivos valores de magnitud real. La función de trans-
+  	//    ferencia es guardada en la base de datos y es específica para cada blackbox. Por tanto
+  	//    la base de datos y este javascript deben concordar en el nombre de la funicón.
+  	function transFunc_I0(val) {
+  		<%= blackbox.getFuncionTransferencia_I0() %>
+  	}
+  	 
+  	function transFunc_I1(val) {
+  		<%= blackbox.getFuncionTransferencia_I1() %>
+  	}
+  	
+  	function transFunc_I2(val) {
+  		<%= blackbox.getFuncionTransferencia_I2() %>
+  	}
+  	
+  	function transFunc_I3(val) {
+  		<%= blackbox.getFuncionTransferencia_I3() %>
+  	}
+  	
 	<%for (IOPort entrada : puertos) {%>
 		date = new Date(<%= entrada.getFechaHora().getTime() %>);
-		dataI0.push([date, <%= entrada.getI0() %>]);
-		dataI1.push([date, <%= entrada.getI1() %>]);
-		dataI2.push([date, <%= entrada.getI2() %>]);
-		dataI3.push([date, <%= entrada.getI3() %>]);
+		val_I0 = transFunc_I0(<%= entrada.getI0() %>);
+		val_I1 = transFunc_I1(<%= entrada.getI1() %>);
+		val_I2 = transFunc_I2(<%= entrada.getI2() %>);
+		val_I3 = transFunc_I3(<%= entrada.getI3() %>);
+		dataI0.push([date, val_I0]);
+		dataI1.push([date, val_I1]);
+		dataI2.push([date, val_I2]);
+		dataI3.push([date, val_I3]);
 	<%}%>
 	
 	i0 = new Dygraph(

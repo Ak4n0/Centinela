@@ -32,12 +32,22 @@ CREATE TABLE BLACKBOX (
     unidades_I1 VARCHAR(15),
     unidades_I2 VARCHAR(15),
     unidades_I3 VARCHAR(15),
-    func_trans_I0 VARCHAR(100), -- Función de transferencia para transformar el dato de 0 a 255 de la blackbox
-    func_trans_I1 VARCHAR(100), --    a la lectura de la magnitud real. Debe ser una expresión en javascript tal que
-    func_trans_I2 VARCHAR(100), --    mediante la función js eval(ESTA_CADENA) se pueda transformar dicho valor.
-    func_trans_I3 VARCHAR(100), --    Puede ser ' valor * eval(ESTA_CADENA) ' o, para calculos más complicados, que la cadena
-                                --    haga uso de variables ' Math.log(I0_value) ' donde I0_value será una variable existente
-                                --    en archivo con el valor conseguido de la blackbox.
+    func_trans_I0 VARCHAR(1024) DEFAULT 'return val;', -- Cuerpo de la función de transferencia para javascript. Este cuerpo espera que la función
+    func_trans_I1 VARCHAR(1024) DEFAULT 'return val;', --   tenga un argumento llamado val, por ejemplo 'funcTrans(val) { ... }'.
+    func_trans_I2 VARCHAR(1024) DEFAULT 'return val;', --   El cuerpo más sencillo sería 'return val;'
+    func_trans_I3 VARCHAR(1024) DEFAULT 'return val;', --   Blackbox devuelve un dato de 0 a 255, esta función debe pasar dicho valor a la medición real.
+    func_trans_inv_I0 VARCHAR(1024) DEFAULT 'return val;', -- La función inversa sirve para transformar el dato real al rango 0 a 255 para,
+    func_trans_inv_I1 VARCHAR(1024) DEFAULT 'return val;', --    por ejemplo, programar los límites de las alarmas. El procedimiento es parecido a la
+    func_trans_inv_I2 VARCHAR(1024) DEFAULT 'return val;', --    función de transferencia
+    func_trans_inv_I3 VARCHAR(1024) DEFAULT 'return val;',
+    I0_bajo INT, -- Nivel de umbral bajo para activar la alarma
+    I0_alto INT, -- Nivel de umbral alto para actiar la alarma
+    I1_bajo INT, -- Nivel de umbral bajo para activar la alarma
+    I1_alto INT, -- Nivel de umbral alto para actiar la alarma
+    I2_bajo INT, -- Nivel de umbral bajo para activar la alarma
+    I2_alto INT, -- Nivel de umbral alto para actiar la alarma
+    I3_bajo INT, -- Nivel de umbral bajo para activar la alarma
+    I3_alto INT, -- Nivel de umbral alto para actiar la alarma
     
     FOREIGN KEY(usuario_id)
         REFERENCES USUARIO(id)
@@ -105,24 +115,11 @@ CREATE TABLE PETICION_NUEVO_USUARIO (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
-
-CREATE TABLE UMBRAL_ALARMA (
-    blackbox_id INT PRIMARY KEY, -- Id de la blackbox al que pertenece
-    I0_bajo TINYINT, -- Nivel de umbral bajo para activar la alarma
-    I0_alto TINYINT, -- Nivel de umbral alto para actiar la alarma
-    I1_bajo TINYINT, -- Nivel de umbral bajo para activar la alarma
-    I1_alto TINYINT, -- Nivel de umbral alto para actiar la alarma
-    I2_bajo TINYINT, -- Nivel de umbral bajo para activar la alarma
-    I2_alto TINYINT, -- Nivel de umbral alto para actiar la alarma
-    I3_bajo TINYINT, -- Nivel de umbral bajo para activar la alarma
-    I3_alto TINYINT, -- Nivel de umbral alto para actiar la alarma
-    
-    FOREIGN KEY(blackbox_id)
-        REFERENCES BLACKBOX(id)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
     
 -- Creación del usuario administrador
 INSERT INTO USUARIO (nombre, passwd, email, administrador)
 VALUES ('Administrador', 'admin', 'centinela.soluciones@gmail.com', 1);
+
+-- Creación del usuario para manejo desde la aplicación
+CREATE USER 'centinelapp'@'localhost' IDENTIFIED BY 'B0h3m!';
+GRANT SELECT, INSERT, UPDATE, DELETE ON centinela.* TO 'centinelapp'@'localhost';

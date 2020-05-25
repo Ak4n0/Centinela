@@ -73,7 +73,7 @@
 		        		passwd: paramPasswd
 		        	});
 		        	$.get("ObtenerUsuarios", function(respuesta) {
-		        		$("#content").html(respuesta);
+		        		$("#contenido").html(respuesta);
 		        	});
 				}
 				form.classList.add('was-validated');
