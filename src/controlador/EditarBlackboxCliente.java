@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.ejb.BlackboxBufferEJB;
 import modelo.ejb.BlackboxEJB;
 import modelo.ejb.UsuariosEJB;
@@ -24,6 +27,8 @@ import modelo.pojo.UsuarioFullInfo;
 public class EditarBlackboxCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(EditarBlackboxCliente.class);
+	
 	@EJB
 	UsuariosEJB usuariosEJB;
 	
@@ -46,11 +51,12 @@ public class EditarBlackboxCliente extends HttpServlet {
 			request.setAttribute("mensaje", "<p>No dispones permiso para acceder a esta sección.</p>" +
 					"<p>Debes ser propietario de esta blackbox para poder editarla. <a href='Login'>Inicia sesión</a> con su cuenta de usuario.</p>. " +
 					"<p>Si no el propietario de esta blackbox regresa a la página haciendo <a href='Principal'>click aquí</a>.</p>");
+			logger.warn("No hay sesión de usuario");;
 		} else {
 			String uid = request.getParameter("uid");
 			if(uid == null) {
 				response.sendRedirect("Principal");
-				return;
+				logger.warn("No se ha pasado el uid de la blackbox en los argumentos.");
 			}
 			
 			rs = getServletContext().getRequestDispatcher("/editarBlackboxCliente.jsp");
@@ -204,6 +210,7 @@ public class EditarBlackboxCliente extends HttpServlet {
 			
 			blackboxEJB.editBlackbox(blackbox);
 			
+			// Preparar la información para enviar a la blackbox
 			BlackboxBuffer blackboxBuffer = bufferEJB.extraer(blackbox.getIdentificador());
 			if(blackboxBuffer == null) {
 				blackboxBuffer = new BlackboxBuffer();
@@ -218,8 +225,6 @@ public class EditarBlackboxCliente extends HttpServlet {
 			blackboxBuffer.setLimiteSuperiorI3(I3sup);
 			blackboxBuffer.setLimiteInferiorI3(I3inf);
 			bufferEJB.insertar(blackboxBuffer);
-			
-			response.sendRedirect("Principal");
 		}
 	}
 

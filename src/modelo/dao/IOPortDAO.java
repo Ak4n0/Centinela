@@ -31,6 +31,17 @@ public class IOPortDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static IOPort getLastIO(int id) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			IOPortMapper mapper = sqlSession.getMapper(IOPortMapper.class);
+			return mapper.getLastIO(id);
+		} finally {
+			sqlSession.close();
+		}
+		
+	}
 	
 	
 }

@@ -18,7 +18,7 @@ import modelo.pojo.UsuarioAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Servlet implementation class AddBlackbox
+ * Servlet para añadir una blackbox a la BBDD
  */
 @WebServlet("/AddBlackbox")
 public class AddBlackbox extends HttpServlet {

@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.ejb.BlackboxEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.BlackboxFullInfo;
@@ -18,12 +21,14 @@ import modelo.pojo.UsuarioAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Servlet implementation class EditarBlackbox
+ * Servlet que actualiza una blackbox en la BBDD
  */
 @WebServlet("/EditarBlackbox")
 public class EditarBlackbox extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(EditarBlackbox.class);
+	
 	@EJB
 	UsuariosEJB usuariosEJB;
 	
@@ -74,6 +79,7 @@ public class EditarBlackbox extends HttpServlet {
 			request.setAttribute("mensaje", "<p>No dispones permiso para acceder a esta sección.</p>" +
 											"<p>Si tienes una cuenta de administrador <a href='Login'>inicia sesión</a> con ella.</p>" +
 											"<p>Si no eres administrador regresa a la página principal haciendo <a href='Principal'>click aquí</a>.</p>");
+			logger.debug("Usuario no válido");
 			rs.forward(request, response);
 			return;
 		} else {
@@ -101,6 +107,7 @@ public class EditarBlackbox extends HttpServlet {
 					unidadesI0 == null || unidadesI1 == null || unidadesI2 == null || unidadesI3 == null ||
 					funcTransI0 == null || funcTransI1 == null || funcTransI2 == null || funcTransI3 == null ||
 					funcTransInvI0 == null || funcTransInvI1 == null || funcTransInvI2 == null || funcTransInvI3 == null) {
+				logger.debug("Faltaron datos en los argumentos");
 				response.sendRedirect("ObtenerBlackboxes");
 				return;
 			}
@@ -110,7 +117,7 @@ public class EditarBlackbox extends HttpServlet {
 				id = Integer.parseInt(idArg);
 				idUsuario = Integer.parseInt(idUsuarioArg);
 			} catch(NumberFormatException e) {
-				e.printStackTrace();
+				logger.error("No se pudieron transformar cadenas a números: id o idUsuario");
 				response.sendRedirect("ObtenerBlackboxes");
 				return;
 			}

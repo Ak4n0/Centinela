@@ -77,7 +77,9 @@
 				func_trans_I0 as funcionTransferencia_I0, func_trans_I1 as funcionTransferencia_I1,
 				func_trans_I2 as funcionTransferencia_I2, func_trans_I3 as funcionTransferencia_I3,
 				func_trans_inv_I0 as funcionTransferenciaInversa_I0, func_trans_inv_I0 as funcionTransferenciaInversa_I1,
-				func_trans_inv_I0 as funcionTransferenciaInversa_I2, func_trans_inv_I0 as funcionTransferenciaInversa_I3
+				func_trans_inv_I0 as funcionTransferenciaInversa_I2, func_trans_inv_I0 as funcionTransferenciaInversa_I3,
+				I0_bajo as umbralInferiorI0, I0_alto as umbralSuperiorI0, I1_bajo as umbralInferiorI1, I1_alto as umbralSuperiorI1, 
+				I2_bajo as umbralInferiorI2, I2_alto as umbralSuperiorI2, I3_bajo as umbralInferiorI3, I3_alto as umbralSuperiorI3
 		  FROM BLACKBOX
 		 WHERE identificador_unico = #{uid}
 	</select>

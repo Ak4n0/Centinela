@@ -1,7 +1,5 @@
 package modelo.ejb;
 
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,11 +15,11 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
-import com.sun.xml.messaging.saaj.packaging.mime.util.BASE64DecoderStream;
 
 import modelo.pojo.Alarma;
 import modelo.pojo.BlackboxAdminInfo;
 import modelo.pojo.BlackboxBuffer;
+import modelo.pojo.BlackboxFullInfo;
 import modelo.pojo.IOPort;
 import modelo.pojo.UsuarioFullInfo;
 
@@ -69,6 +67,9 @@ public class JwtEJB {
 			case "pwd":
 				cambiarPassword(jwt);
 				break;
+			case "init":
+				// Caso especial pues debe devolver información por sí mismo
+				return inicializarBlackbox(jwt);
 			case "SYN":
 				// no hacer nada. Se enviarán datos si los hay
 			}
@@ -79,7 +80,7 @@ public class JwtEJB {
 		
 		return respuesta;
 	}
-	
+
 	/**
 	 * Comprueba que el JWT provenga de una blackbox válida
 	 * @param token JWT cifrado
@@ -118,6 +119,91 @@ public class JwtEJB {
 		}
 		
 		return jwt;
+	}
+	
+
+	
+	private String inicializarBlackbox(DecodedJWT jwt) {
+		String uid = jwt.getIssuer();
+		String token = null;
+		String passwd = null;
+		
+		// Obtener el password para cifrar
+		BlackboxFullInfo blackbox = blackboxEJB.getBlackboxFullInfo(uid);
+		if(blackbox != null) {
+			passwd = blackbox.getPasswd();
+		
+			// Obtener datos que se deben enviar a la blackbox
+			Builder jwtResponse = newCommonToken(uid);
+			jwtResponse.withIssuedAt(new Date());
+			
+			// Obtener los últimos datos de los puertos de salida
+			IOPort io = blackboxEJB.getLastIO(blackbox.getId());
+			
+			// SUB marca que habrá modificaciones
+			// Sólo se enviarán los datos que no sean null en sus respectivos campos
+			jwtResponse.withSubject("SUB");
+			// Añadir las salidas digitales que haya
+			jwtResponse.withClaim("O0", io.getO0() == null? false: io.getO0());
+			jwtResponse.withClaim("O1", io.getO1() == null? false: io.getO1());
+			jwtResponse.withClaim("O2", io.getO2() == null? false: io.getO2());
+			jwtResponse.withClaim("O3", io.getO3() == null? false: io.getO3());
+			
+			// Añadir nuevos límites si los hay
+			/*
+			 * El siguiente algoritmo, extensible a los demas puertos de entrada genera la siguiente
+			 * entrada en el json del JWT
+			 * "I0": [
+			 * 		"inf": x,
+			 * 		"sup": y
+			 * ]
+			 * Incluyendo x y/o y sólo en caso de que existan. Si ninguno de los dos existe el atributo I0
+			 * no se incluye
+			 */
+			if(blackbox.getUmbralInferiorI0() != null || blackbox.getUmbralSuperiorI0() != null) {
+				Map<String, Integer> salidas = new HashMap<>();
+				if(blackbox.getUmbralInferiorI0() != null) {
+					salidas.put("inf", blackbox.getUmbralInferiorI0());
+				}
+				if(blackbox.getUmbralSuperiorI0() != null) {
+					salidas.put("sup", blackbox.getUmbralSuperiorI0());
+				}
+				jwtResponse.withClaim("I0", salidas);
+			}
+			if(blackbox.getUmbralInferiorI1() != null || blackbox.getUmbralSuperiorI1() != null) {
+				Map<String, Integer> salidas = new HashMap<>();
+				if(blackbox.getUmbralInferiorI1() != null) {
+					salidas.put("inf", blackbox.getUmbralInferiorI1());
+				}
+				if(blackbox.getUmbralSuperiorI1() != null) {
+					salidas.put("sup", blackbox.getUmbralSuperiorI1());
+				}
+				jwtResponse.withClaim("I1", salidas);
+			}
+			if(blackbox.getUmbralInferiorI2() != null || blackbox.getUmbralSuperiorI2() != null) {
+				Map<String, Integer> salidas = new HashMap<>();
+				if(blackbox.getUmbralInferiorI2() != null) {
+					salidas.put("inf", blackbox.getUmbralInferiorI2());
+				}
+				if(blackbox.getUmbralSuperiorI2() != null) {
+					salidas.put("sup", blackbox.getUmbralSuperiorI2());
+				}
+				jwtResponse.withClaim("I2", salidas);
+			}
+			if(blackbox.getUmbralInferiorI3() != null || blackbox.getUmbralSuperiorI3() != null) {
+				Map<String, Integer> salidas = new HashMap<>();
+				if(blackbox.getUmbralInferiorI3() != null) {
+					salidas.put("inf", blackbox.getUmbralInferiorI3());
+				}
+				if(blackbox.getUmbralSuperiorI3() != null) {
+					salidas.put("sup", blackbox.getUmbralSuperiorI3());
+				}
+				jwtResponse.withClaim("I3", salidas);
+			}
+			
+			token = sign(jwtResponse, passwd);
+		}
+		return token;
 	}
 
 	/**
@@ -259,92 +345,92 @@ public class JwtEJB {
 		BlackboxAdminInfo b = blackboxEJB.getBlackbox(blackboxUID);
 		if(b != null) {
 			passwd = b.getPasswd();
-		}
 		
-		// Obtener datos que se deben enviar a la blackbox
-		BlackboxBuffer blackbox = blackboxBufferEJB.extraer(blackboxUID);
-		Builder jwt = newCommonToken(blackboxUID);
-		jwt.withIssuedAt(new Date());
-		
-		// No hay modificaciones. Devolver EOT (fin de transmisión)
-		if(blackbox == null) {
-			jwt.withSubject("EOT");
-		} else {
-		// Sí hay datos que devolver. Incluirlos en el jwt
-			// SUB marca que habrá modificaciones
-			// Sólo se enviarán los datos que no sean null en sus respectivos campos
-			jwt.withSubject("SUB");
-			// Añadir password, si lo hay
-			if(blackbox.getNuevoPasswd() != null) {
-				jwt.withClaim("pwd", blackbox.getNuevoPasswd());
-			}
-			// Añadir las salidas digitales que haya
-			if(blackbox.getSalidaO0() != null) {
-				jwt.withClaim("O0", blackbox.getSalidaO0());
-			}
-			if(blackbox.getSalidaO1() != null) {
-				jwt.withClaim("O1", blackbox.getSalidaO1());
-			}
-			if(blackbox.getSalidaO2() != null) {
-				jwt.withClaim("O2", blackbox.getSalidaO2());
-			}
-			if(blackbox.getSalidaO3() != null) {
-				jwt.withClaim("O3", blackbox.getSalidaO3());
-			}
-			// Añadir nuevos límites si los hay
-			/*
-			 * El siguiente algoritmo, extensible a los demas puertos de entrada genera la siguiente
-			 * entrada en el json del JWT
-			 * "I0": [
-			 * 		"inf": x,
-			 * 		"sup": y
-			 * ]
-			 * Incluyendo x y/o y sólo en caso de que existan. Si ninguno de los dos existe el atributo I0
-			 * no se incluye
-			 */
-			if(blackbox.getLimiteInferiorI0() != null || blackbox.getLimiteSuperiorI0() != null) {
-				
-				Map<String, Integer> salidas = new HashMap<>();
-				if(blackbox.getLimiteInferiorI0() != null) {
-					salidas.put("inf", blackbox.getLimiteInferiorI0());
+			// Obtener datos que se deben enviar a la blackbox
+			BlackboxBuffer blackbox = blackboxBufferEJB.extraer(blackboxUID);
+			Builder jwt = newCommonToken(blackboxUID);
+			jwt.withIssuedAt(new Date());
+			
+			// No hay modificaciones. Devolver EOT (fin de transmisión)
+			if(blackbox == null) {
+				jwt.withSubject("EOT");
+			} else {
+			// Sí hay datos que devolver. Incluirlos en el jwt
+				// SUB marca que habrá modificaciones
+				// Sólo se enviarán los datos que no sean null en sus respectivos campos
+				jwt.withSubject("SUB");
+				// Añadir password, si lo hay
+				if(blackbox.getNuevoPasswd() != null) {
+					jwt.withClaim("pwd", blackbox.getNuevoPasswd());
 				}
-				if(blackbox.getLimiteSuperiorI0() != null) {
-					salidas.put("sup", blackbox.getLimiteSuperiorI0());
+				// Añadir las salidas digitales que haya
+				if(blackbox.getSalidaO0() != null) {
+					jwt.withClaim("O0", blackbox.getSalidaO0());
 				}
-				jwt.withClaim("I0", salidas);
+				if(blackbox.getSalidaO1() != null) {
+					jwt.withClaim("O1", blackbox.getSalidaO1());
+				}
+				if(blackbox.getSalidaO2() != null) {
+					jwt.withClaim("O2", blackbox.getSalidaO2());
+				}
+				if(blackbox.getSalidaO3() != null) {
+					jwt.withClaim("O3", blackbox.getSalidaO3());
+				}
+				// Añadir nuevos límites si los hay
+				/*
+				 * El siguiente algoritmo, extensible a los demas puertos de entrada genera la siguiente
+				 * entrada en el json del JWT
+				 * "I0": [
+				 * 		"inf": x,
+				 * 		"sup": y
+				 * ]
+				 * Incluyendo x y/o y sólo en caso de que existan. Si ninguno de los dos existe el atributo I0
+				 * no se incluye
+				 */
+				if(blackbox.getLimiteInferiorI0() != null || blackbox.getLimiteSuperiorI0() != null) {
+					
+					Map<String, Integer> salidas = new HashMap<>();
+					if(blackbox.getLimiteInferiorI0() != null) {
+						salidas.put("inf", blackbox.getLimiteInferiorI0());
+					}
+					if(blackbox.getLimiteSuperiorI0() != null) {
+						salidas.put("sup", blackbox.getLimiteSuperiorI0());
+					}
+					jwt.withClaim("I0", salidas);
+				}
+				if(blackbox.getLimiteInferiorI1() != null || blackbox.getLimiteSuperiorI1() != null) {
+					Map<String, Integer> salidas = new HashMap<>();
+					if(blackbox.getLimiteInferiorI1() != null) {
+						salidas.put("inf", blackbox.getLimiteInferiorI1());
+					}
+					if(blackbox.getLimiteSuperiorI1() != null) {
+						salidas.put("sup", blackbox.getLimiteSuperiorI1());
+					}
+					jwt.withClaim("I1", salidas);
+				}
+				if(blackbox.getLimiteInferiorI2() != null || blackbox.getLimiteSuperiorI2() != null) {
+					Map<String, Integer> salidas = new HashMap<>();
+					if(blackbox.getLimiteInferiorI2() != null) {
+						salidas.put("inf", blackbox.getLimiteInferiorI2());
+					}
+					if(blackbox.getLimiteSuperiorI2() != null) {
+						salidas.put("sup", blackbox.getLimiteSuperiorI2());
+					}
+					jwt.withClaim("I2", salidas);
+				}
+				if(blackbox.getLimiteInferiorI3() != null || blackbox.getLimiteSuperiorI3() != null) {
+					Map<String, Integer> salidas = new HashMap<>();
+					if(blackbox.getLimiteInferiorI3() != null) {
+						salidas.put("inf", blackbox.getLimiteInferiorI3());
+					}
+					if(blackbox.getLimiteSuperiorI3() != null) {
+						salidas.put("sup", blackbox.getLimiteSuperiorI3());
+					}
+					jwt.withClaim("I3", salidas);
+				}
 			}
-			if(blackbox.getLimiteInferiorI1() != null || blackbox.getLimiteSuperiorI1() != null) {
-				Map<String, Integer> salidas = new HashMap<>();
-				if(blackbox.getLimiteInferiorI1() != null) {
-					salidas.put("inf", blackbox.getLimiteInferiorI1());
-				}
-				if(blackbox.getLimiteSuperiorI1() != null) {
-					salidas.put("sup", blackbox.getLimiteSuperiorI1());
-				}
-				jwt.withClaim("I1", salidas);
-			}
-			if(blackbox.getLimiteInferiorI2() != null || blackbox.getLimiteSuperiorI2() != null) {
-				Map<String, Integer> salidas = new HashMap<>();
-				if(blackbox.getLimiteInferiorI2() != null) {
-					salidas.put("inf", blackbox.getLimiteInferiorI2());
-				}
-				if(blackbox.getLimiteSuperiorI2() != null) {
-					salidas.put("sup", blackbox.getLimiteSuperiorI2());
-				}
-				jwt.withClaim("I2", salidas);
-			}
-			if(blackbox.getLimiteInferiorI3() != null || blackbox.getLimiteSuperiorI3() != null) {
-				Map<String, Integer> salidas = new HashMap<>();
-				if(blackbox.getLimiteInferiorI3() != null) {
-					salidas.put("inf", blackbox.getLimiteInferiorI3());
-				}
-				if(blackbox.getLimiteSuperiorI3() != null) {
-					salidas.put("sup", blackbox.getLimiteSuperiorI3());
-				}
-				jwt.withClaim("I3", salidas);
-			}
+			token = sign(jwt, passwd);
 		}
-		token = sign(jwt, passwd);
 		return token;
 	}
 	

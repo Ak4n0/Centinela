@@ -68,5 +68,9 @@ public class BlackboxEJB {
 	public void editBlackbox(BlackboxFullInfo blackbox) {
 		BlackboxDAO.editarBlackbox(blackbox);
 	}
+
+	public IOPort getLastIO(int id) {
+		return IOPortDAO.getLastIO(id);
+	}
 	
 }

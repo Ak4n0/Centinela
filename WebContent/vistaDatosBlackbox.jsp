@@ -42,20 +42,24 @@
 <fieldset>
 	<legend>Entradas</legend>
 	<h4><%=blackbox.getNombre_I0()%></h4>
-	<% if(blackbox.getUnidades_I0() != null) %>
-	<%= blackbox.getUnidades_I0() %>
+	<% if(blackbox.getUnidades_I0() != null) { %>
+		<%= blackbox.getUnidades_I0() %>
+	<% } %>
 	<div id="I0" class="grafica" style="width:auto"></div>
 	<h4><%=blackbox.getNombre_I1()%></h4>
-	<% if(blackbox.getUnidades_I1() != null) %>
-	<%= blackbox.getUnidades_I1() %>
+	<% if(blackbox.getUnidades_I1() != null) { %>
+		<%= blackbox.getUnidades_I1() %>
+	<% } %>
 	<div id="I1" class="grafica" style="width:auto"></div>
 	<h4><%=blackbox.getNombre_I2()%></h4>
-	<% if(blackbox.getUnidades_I2() != null) %>
-	<%= blackbox.getUnidades_I2() %>
+	<% if(blackbox.getUnidades_I2() != null) { %>
+		<%= blackbox.getUnidades_I2() %>
+	<% } %>
 	<div id="I2" class="grafica" style="width:auto"></div>
 	<h4><%=blackbox.getNombre_I3()%></h4>
-	<% if(blackbox.getUnidades_I3() != null) %>
-	<%= blackbox.getUnidades_I3() %>
+	<% if(blackbox.getUnidades_I3() != null) { %>
+		<%= blackbox.getUnidades_I3() %>
+	<% } %>
 	<div id="I3" class="grafica" style="width:auto"></div>
 </fieldset>
 <script>	

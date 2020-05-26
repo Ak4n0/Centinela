@@ -28,10 +28,12 @@ public class EmailEJB {
 		boolean exito = true;
 		
         Properties prop = new Properties();
-        prop.put("mail.smtp.auth", "true"); 
-        prop.put("mail.smtp.starttls.enable", "true");
-        prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "587"); 
+        prop.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
+        prop.put("mail.smtp.user", "centinela.soluciones");
+        prop.put("mail.smtp.clave", "Canberra0");    //La clave de la cuenta
+        prop.put("mail.smtp.auth", "true");    //Usar autenticación mediante usuario y clave
+        prop.put("mail.smtp.starttls.enable", "true"); //Para conectar de manera segura al servidor SMTP
+        prop.put("mail.smtp.port", "587"); //El puerto SMTP seguro de Google
 
         Session session = Session.getInstance(prop, new Authenticator() {
             @Override
@@ -39,9 +41,10 @@ public class EmailEJB {
                 return new PasswordAuthentication("centinela.soluciones@gmail.com", "Canberra0");
             }
         });
+        Message message = new MimeMessage(session);
 
         try {
-                Message message = new MimeMessage(session);
+//                Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress("centinela.soluciones@gmail.com"));
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(para));
                 message.setSubject(asunto);

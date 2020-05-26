@@ -81,8 +81,8 @@ CREATE TABLE ALARMA (
     blackbox_id INTEGER NOT NULL, -- Identificador de la blackbox que lanzó la alarma.
     fecha_hora DATETIME NOT NULL, -- Fecha y hora en que se produjo la alarma.
     puerto CHAR(2) NOT NULL, -- Puerto que hizo saltar la alarma.
-    valor TINYINT NOT NULL, -- Nivel de la alarma: 1 (Alto), 2 (Crítico)
-    valor_umbral TINYINT NOT NULL, -- Valor que ha sobrepasado y activado la alarma
+    valor INT NOT NULL, -- Valor del puerto que hizo disparar la alarma
+    valor_umbral INT NOT NULL, -- Valor que ha sobrepasado y activado la alarma
     
     PRIMARY KEY (blackbox_id, fecha_hora, puerto),
     

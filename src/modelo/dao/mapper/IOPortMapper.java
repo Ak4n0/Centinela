@@ -10,4 +10,6 @@ public interface IOPortMapper {
 
 	public List<IOPort> getIOPorts(int id);
 
+	public IOPort getLastIO(int id);
+
 }
