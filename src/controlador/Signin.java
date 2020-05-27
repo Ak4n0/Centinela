@@ -18,7 +18,7 @@ import modelo.enumeracion.TipoError;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Servlet implementation class Signin
+ * Inserta un usuario al sistema
  */
 @WebServlet("/Signin")
 public class Signin extends HttpServlet {
@@ -34,11 +34,12 @@ public class Signin extends HttpServlet {
 	UtilidadesEJB utilidadesEJB;
 	
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Método get
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rs = null;
 		HttpSession session = request.getSession(false);
+		// Sólo se puede acceder si no hay sesión
 		if(session != null) {
 			UsuarioFullInfo usuarioFullInfo = (UsuarioFullInfo)session.getAttribute("usuario");
 			if(usuarioFullInfo != null) {
@@ -57,7 +58,7 @@ public class Signin extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Método post
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombre = request.getParameter("nombre");
@@ -107,7 +108,7 @@ public class Signin extends HttpServlet {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 			request.setAttribute("titulo", "Error en el proceso");
 			request.setAttribute("mensaje", "<p>No se pudo completar el proceso satisfactoriamente.</p>" + 
-											"<p>Inténtalo más tarde. Si los problemas persisten envía un email a " +
+											"<p>Inténtelo más tarde. Si los problemas persisten envíe un email a " +
 											"<a href='mailto:centinela.soluciones@gmail.com?subject=Aviso%20de%20error%20web'>" + 
 											"centinela.soluciones@gmail.com</a> explicando lo sucedido.</p>");
 			rs.forward(request, response);
@@ -121,9 +122,9 @@ public class Signin extends HttpServlet {
 		// en caso contrario esta será borrada en un venticuatro horas.
 		rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 		request.setAttribute("titulo", "Validar cuenta");
-		request.setAttribute("mensaje", "<p>Acabamos de enviarte un email con un link para que puedas validar " +
-							"tu dirección de correo.</p>" + 
-							"<p>Si esta validación no se realiza en las próximas 24 horas tu cuenta eliminada.</p>");
+		request.setAttribute("mensaje", "<p>Acabamos de enviarle un email con un link para que pueda validar " +
+							"su dirección de correo.</p>" + 
+							"<p>Si esta validación no se realiza en las próximas 24 horas su cuenta será eliminada.</p>");
 		rs.forward(request, response);
 	}
 

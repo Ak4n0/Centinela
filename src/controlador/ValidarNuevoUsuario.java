@@ -23,7 +23,7 @@ public class ValidarNuevoUsuario extends HttpServlet {
 	UsuariosEJB usuariosEJB;
 	
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Método get
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// obtien la clave desde el e-mail
@@ -54,16 +54,8 @@ public class ValidarNuevoUsuario extends HttpServlet {
 		// informar al usuario que está correctamente registrado
 		rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 		request.setAttribute("titulo", "Registro completo");
-		request.setAttribute("mensaje", "<p>Has validado completamente tu cuenta. A partir de este momento puedes ponerte en contacto con el servicio de ventas para adquirir el hardware Blackbox.</p>");
+		request.setAttribute("mensaje", "<p>Ha validado completamente su cuenta. A partir de este momento puede ponerse en contacto con el servicio de ventas para adquirir el hardware Blackbox.</p>");
 		rs.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

@@ -1,30 +1,41 @@
 package modelo.pojo;
 
+/**
+ * Clase abstracta con información básica de una blackbox
+ * @author mique
+ *
+ */
 public abstract class Blackbox {
 
+	// id de la blackbox
 	protected int id;
+	// identificador único de la blackbox
 	protected String identificador;
+	// nombre de la blackbox
 	protected String nombre;
+	// contraseña para el cifrado
 	protected String passwd;
+	// información extra usada por el usuario
 	protected String informacionExtra;
+	// identificador del usuario propietario
 	protected int idUsuario;
 	
 	/**
-	 * @return the id
+	 * @return Devuelve el id la blackbox
 	 */
 	public int getId() {
 		return id;
 	}
 	
 	/**
-	 * @param id the id to set
+	 * @param id Id de la blackbox a establecer
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 	
 	/**
-	 * @return the identificador
+	 * @return Devuelve el identificador único de la blackbox
 	 */
 	public String getIdentificador() {
 		return identificador;
@@ -38,56 +49,56 @@ public abstract class Blackbox {
 	}
 	
 	/**
-	 * @return the nombre
+	 * @return Devuelve el nombre de la blackbox
 	 */
 	public String getNombre() {
 		return nombre;
 	}
 	
 	/**
-	 * @param nombre the nombre to set
+	 * @param nombre Nombre de la blackbox a establecer
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	
 	/**
-	 * @return the passwd
+	 * @return Devuelve la contraseña de la blackbox
 	 */
 	public String getPasswd() {
 		return passwd;
 	}
 	
 	/**
-	 * @param passwd the passwd to set
+	 * @param passwd Contraseña a establecer
 	 */
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
 	
 	/**
-	 * @return the informacionExtra
+	 * @return Devuelve la información extra de la blackbox
 	 */
 	public String getInformacionExtra() {
 		return informacionExtra;
 	}
 	
 	/**
-	 * @param informacionExtra the informacionExtra to set
+	 * @param informacionExtra Información extra a establecer
 	 */
 	public void setInformacionExtra(String informacionExtra) {
 		this.informacionExtra = informacionExtra;
 	}
 	
 	/**
-	 * @return the idUsuario
+	 * @return Devuelve el id del usuario propietario
 	 */
 	public int getIdUsuario() {
 		return idUsuario;
 	}
 	
 	/**
-	 * @param idUsuario the idUsuario to set
+	 * @param idUsuario Id del propietar a establecer
 	 */
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;

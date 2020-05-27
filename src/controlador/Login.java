@@ -16,7 +16,7 @@ import modelo.enumeracion.TipoError;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Servlet implementation class Login
+ * Logea un usuario
  */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -26,11 +26,12 @@ public class Login extends HttpServlet {
 	UsuariosEJB usuariosEJB;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Método get
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rs = null;
 		HttpSession session = request.getSession(false);
+		// Sólo se debe permitir loggin si no existe una sesión activa
 		if(session != null) {
 			UsuarioFullInfo usuarioFullInfo = (UsuarioFullInfo)session.getAttribute("usuario");
 			if(usuarioFullInfo != null) {
@@ -49,7 +50,7 @@ public class Login extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Método post
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");

@@ -24,15 +24,17 @@ public class EditarUsuario extends HttpServlet {
 	UsuariosEJB usuariosEJB;
 	
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Método get
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idArg = request.getParameter("id");
 		int id;
+		// Si no se ha pasado id de usuario volver a desplegar la lista de usuarios
 		if(idArg == null) {
 			response.sendRedirect("ObtenerUsuarios");
 			return;
 		}
+		// No se ha pasado un usuario válido, volver a desplegar la lista
 		try {
 			id = Integer.parseInt(idArg);
 		} catch (NumberFormatException e) {
@@ -40,6 +42,7 @@ public class EditarUsuario extends HttpServlet {
 			return;
 		}
 		
+		// Obtiene un usuario de la base de datos y lo muestra para editar
 		UsuarioFullInfo usuario = usuariosEJB.getDatabaseUser(id);
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/editarUsuario.jsp");
 		request.setAttribute("usuario", usuario);
@@ -47,7 +50,7 @@ public class EditarUsuario extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Método post
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rs = null;
@@ -81,6 +84,7 @@ public class EditarUsuario extends HttpServlet {
 		usuario.setPasswd(passwd);
 		usuario.setAdministrador(false);
 	
+		// El usuario no es administrador o no existe
 		if(usuarioSesion == null || !usuarioSesion.isAdministrador() || usuarioSesion.getId() != usuario.getId()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 			request.setAttribute("titulo", "No tiene permiso");

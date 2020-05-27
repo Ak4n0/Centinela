@@ -7,6 +7,11 @@ import org.apache.ibatis.annotations.Param;
 import modelo.pojo.BlackboxFullInfo;
 import modelo.pojo.BlackboxAdminInfo;
 
+/**
+ * Interface del mapper
+ * @author mique
+ *
+ */
 public interface BlackboxMapper {
 
 	List<BlackboxAdminInfo> getBlackboxes();

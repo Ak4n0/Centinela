@@ -14,14 +14,21 @@ import modelo.pojo.PeticionNuevoUsuario;
 
 @Stateless
 @LocalBean
+/**
+ * Temporizador interno para trabajos automáticos
+ * @author mique
+ *
+ */
 public class TimerEJB {
 
     @EJB
     UsuariosEJB operacionesUsuario;
 	
-	@SuppressWarnings("unused")
-	@Schedule(second="0", minute="*/10", hour="*")
-    private void eliminarUsuariosNoValidados(final Timer t) {
+    /**
+     * Borra usuarios que no han validado su cuenta
+     */
+	@Schedule(second="*", minute="*/10", hour="*")
+    private void eliminarUsuariosNoValidados() {
         List<PeticionNuevoUsuario> lista = operacionesUsuario.getNewUserPetitions();
 		for(PeticionNuevoUsuario peticion: lista) {
 			Date ahora = new Date();

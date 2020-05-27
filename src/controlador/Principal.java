@@ -17,7 +17,7 @@ import modelo.pojo.BlackboxAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Servlet implementation class Principal
+ * Clase Principal, la que debe llamarse cuándo se conecta un usuario
  */
 @WebServlet("/Principal")
 public class Principal extends HttpServlet {
@@ -30,7 +30,7 @@ public class Principal extends HttpServlet {
 	BlackboxEJB blackboxEJB;
 	
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Método get
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsuarioFullInfo usuarioFullInfo = controlUsuarioEJB.getSessionUser(request);
@@ -50,14 +50,6 @@ public class Principal extends HttpServlet {
 			rs = getServletContext().getRequestDispatcher("/index.jsp");
 		}
 		rs.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

@@ -14,7 +14,7 @@ import modelo.ejb.UsuariosEJB;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Servlet implementation class EliminarUsuario
+ * Elimina un usuario
  */
 @WebServlet("/EliminarUsuario")
 public class EliminarUsuario extends HttpServlet {
@@ -22,17 +22,9 @@ public class EliminarUsuario extends HttpServlet {
 
 	@EJB
 	UsuariosEJB usuariosEJB;
-	
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Método post
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// A esta págian solo puede entrar un administrador
@@ -50,19 +42,19 @@ public class EliminarUsuario extends HttpServlet {
 			String idArg = request.getParameter("id");
 			int id;
 			
-			// Falta algún dato
+			// Si no está el dato de identificador del usuario, regresar
 			if(idArg == null) {
 				return;
 			}
 			
-			// Comprueba que idCliente es un número válido
+			// Si el id del usuario no es un número regresar
 			try {
 				id = Integer.parseInt(idArg);
 			} catch(NumberFormatException e) {
 				return;
 			}
 			
-			// Inserta una nueva blackbox
+			// borra el usuario
 			usuariosEJB.removeDatabaseUser(id);
 		}
 	}

@@ -11,6 +11,11 @@ import modelo.pojo.TokenNuevoPassword;
 
 @LocalBean
 @Stateless
+/**
+ * Clase que maneja los tokens relacionados a que los usuarios quieran cambiar de clave
+ * @author mique
+ *
+ */
 public class TokenNuevoPasswordEJB {
 
 	@EJB
@@ -19,11 +24,21 @@ public class TokenNuevoPasswordEJB {
 	@EJB
 	UtilidadesEJB utilidadesEJB;
 	
+	/**
+	 * Obtiene el token del usuario a partir de su e-mail
+	 * @param email Email del usuario
+	 * @return TokenNuevoPassword con información del token del usuario
+	 */
 	public TokenNuevoPassword getTokenFromEmail(String email) {
 		if(email == null) return null;
 		return TokenNuevoPasswordDAO.obtenerTokenDesdeEmail(email);
 	}
 
+	/**
+	 * Genera un nuevo token para un usuario
+	 * @param email Email del usuario
+	 * @return Objeto TokenNuevoPassword con la información necesaria
+	 */
 	public TokenNuevoPassword createToken(String email) {
 		if(email == null) return null;
 		
@@ -49,6 +64,11 @@ public class TokenNuevoPasswordEJB {
 		return exito? tokenNuevoPassword : null;
 	}
 
+	/**
+	 * Añade un nuevo token al sistema de persistencia
+	 * @param tokenNuevoPassword Token a guardar
+	 * @return Devuelve true si se consiguió insertar el token, false en caso contrario
+	 */
 	private boolean setToken(TokenNuevoPassword tokenNuevoPassword) {
 		if(tokenNuevoPassword == null) return false;
 		return TokenNuevoPasswordDAO.insertarToken(tokenNuevoPassword);

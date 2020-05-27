@@ -121,8 +121,11 @@ public class JwtEJB {
 		return jwt;
 	}
 	
-
-	
+	/**
+	 * Envia a una blackbox información para inicializarla
+	 * @param jwt JWT recibido desde la blackbox
+	 * @return Devuelve un token jwt para ser enviado a la blackbox
+	 */
 	private String inicializarBlackbox(DecodedJWT jwt) {
 		String uid = jwt.getIssuer();
 		String token = null;

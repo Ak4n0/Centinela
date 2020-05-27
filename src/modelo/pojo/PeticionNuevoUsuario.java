@@ -2,48 +2,53 @@ package modelo.pojo;
 
 import java.util.Date;
 
+/**
+ * Clase que sirve para anotar el momento en que un nuevo usuario se registra
+ * @author mique
+ *
+ */
 public class PeticionNuevoUsuario {
 	private String id;
 	private Integer idUsuario;
 	private Date fechaHora;
 	
 	/**
-	 * @return the id
+	 * @return Devuelve el id de la petición
 	 */
 	public String getId() {
 		return id;
 	}
 	
 	/**
-	 * @param id the id to set
+	 * @param id Id de la petición a establecer
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 	
 	/**
-	 * @return the idUsuario
+	 * @return Devuelve el id del usuario
 	 */
 	public Integer getIdUsuario() {
 		return idUsuario;
 	}
 	
 	/**
-	 * @param idUsuario the idUsuario to set
+	 * @param idUsuario id del usuario a establecer
 	 */
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 	
 	/**
-	 * @return the fechaHora
+	 * @return Devuelve el momento en que el usuario se registra
 	 */
 	public Date getFechaHora() {
 		return fechaHora;
 	}
 	
 	/**
-	 * @param fechaHora the fechaHora to set
+	 * @param fechaHora Momento en que el usuario se registra a establecer
 	 */
 	public void setFechaHora(Date fechaHora) {
 		this.fechaHora = fechaHora;

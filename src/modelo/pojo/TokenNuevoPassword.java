@@ -2,6 +2,11 @@ package modelo.pojo;
 
 import java.util.Date;
 
+/**
+ * Representa los datos para una petición de una nueva contraseña
+ * @author mique
+ *
+ */
 public class TokenNuevoPassword {
 	private String id;
 	private Integer idUsuario;
@@ -10,42 +15,42 @@ public class TokenNuevoPassword {
 	public TokenNuevoPassword() {}
 
 	/**
-	 * @return the id
+	 * @return Devuelve el id del token
 	 */
 	public String getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id Id del token a establecer
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the idUsuario
+	 * @return Devuelve el id del usuario
 	 */
 	public Integer getIdUsuario() {
 		return idUsuario;
 	}
 
 	/**
-	 * @param idUsuario the idUsuario to set
+	 * @param idUsuario id del usuario a establecer
 	 */
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
 	/**
-	 * @return the fechaHora
+	 * @return Devuelve el momento en que se produce la petición
 	 */
 	public Date getFechaHora() {
 		return fechaHora;
 	}
 
 	/**
-	 * @param fechaHora the fechaHora to set
+	 * @param fechaHora Momento en que se establece la petición a establecer
 	 */
 	public void setFechaHora(Date fechaHora) {
 		this.fechaHora = fechaHora;

@@ -16,7 +16,7 @@ import modelo.pojo.UsuarioAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Servlet implementation class ObtenerUsuarios
+ * Obtiene una lista de usuarios para el administrador
  */
 @WebServlet("/ObtenerUsuarios")
 public class ObtenerUsuarios extends HttpServlet {
@@ -32,26 +32,19 @@ public class ObtenerUsuarios extends HttpServlet {
 		// A esta págian solo puede entrar un administrador
 		UsuarioFullInfo usuario = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
+		// Sólo el administrador puede acceder a esta sección
 		if(usuario == null || !usuario.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 			request.setAttribute("titulo", "No tiene permiso");
-			request.setAttribute("mensaje", "<p>No dispones permiso para acceder a esta sección.</p>" +
-											"<p>Si tienes una cuenta de administrador <a href='Login'>inicia sesión</a> con ella.</a>. " +
-											"Si no eres administrador regresa a la página principal haciendo <a href='Principal'>click aquí</a>.");
+			request.setAttribute("mensaje", "<p>No dispone permiso para acceder a esta sección.</p>" +
+											"<p>Si tienes una cuenta de administrador <a href='Login'>inicie sesión</a> con ella.</a>. " +
+											"Si no es administrador regrese a la página principal haciendo <a href='Principal'>click aquí</a>.");
 		} else {
 			rs = getServletContext().getRequestDispatcher("/vistaUsuarios.jsp");
 			List<UsuarioAdminInfo> listaUsuarios = usuariosEJB.getDatabaseUsersForAdmin();
 			request.setAttribute("listaUsuarios", listaUsuarios);
 		}
 		rs.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

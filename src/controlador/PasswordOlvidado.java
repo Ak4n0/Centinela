@@ -18,7 +18,7 @@ import modelo.enumeracion.TipoError;
 import modelo.pojo.TokenNuevoPassword;
 
 /**
- * Servlet implementation class PasswordOlvidado
+ * Recuperación de contraseña perdida para un usuario
  */
 @WebServlet("/PasswordOlvidado")
 public class PasswordOlvidado extends HttpServlet {
@@ -37,27 +37,32 @@ public class PasswordOlvidado extends HttpServlet {
 	UtilidadesEJB utilidadesEJB;
 	
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Método get
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Muestra la página para recuperar el password
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/password-olvidado.jsp");
 		rs.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Método post
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		
 		// Control de parámetros
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/password-olvidado.jsp");
+		
+		// No ha dado el e-mail, informar del error
 		if(email == null) {
 			request.setAttribute("error", TipoError.DATOS_INCOMPLETOS);
 			rs.forward(request, response);
 			return;
 		}
 		
+		
+		// El usuario no ha escrito bien su e-mail, informar del error
 		if(!usuariosEJB.existeUsuario(email)) {
 			request.setAttribute("error", TipoError.CREDENCIALES);
 			rs.forward(request, response);

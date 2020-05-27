@@ -17,7 +17,7 @@ import modelo.pojo.BlackboxAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Servlet implementation class ObtenerBlackboxes
+ * Obtiene las blackboxes existentes para mostrarselas al administrador
  */
 @WebServlet("/ObtenerBlackboxes")
 public class ObtenerBlackboxes extends HttpServlet {
@@ -35,6 +35,7 @@ public class ObtenerBlackboxes extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsuarioFullInfo usuarioFullInfo = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
+		// El usuario debe ser el único que pueda acceder a esta página
 		if(usuarioFullInfo == null || !usuarioFullInfo.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 			request.setAttribute("titulo", "No tiene permiso");
@@ -42,19 +43,12 @@ public class ObtenerBlackboxes extends HttpServlet {
 											"<p>Si tienes una cuenta de administrador <a href='Login'>inicia sesión</a> con ella.</a>. " +
 											"Si no eres administrador regresa a la página principal haciendo <a href='Principal'>click aquí</a>.");
 		} else {
+			// Muestra la lista al administrador
 			rs = getServletContext().getRequestDispatcher("/vistaBlackboxes.jsp");
 			List<BlackboxAdminInfo> listaBlackboxes = blackboxEJB.getDatabaseBlackboxes();
 			request.setAttribute("listaBlackboxes", listaBlackboxes);
 		}
 		rs.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

@@ -27,6 +27,11 @@ import modelo.pojo.IOPort;
 @Singleton
 @ApplicationScoped
 @ServerEndpoint("/ws")
+/**
+ * Manejo de las funcionalidades de websocket
+ * @author mique
+ *
+ */
 public class WebSocketEJB {
 
 	@EJB
@@ -37,18 +42,28 @@ public class WebSocketEJB {
 	
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(WebSocketEJB.class);
 
-	
-	// private static Set<Session> sessions = new HashSet<>();
-	// En el map está:
-	//	Session: guarda información conocer el cliente
-	//  String: guarda la uid de la blackbox
+	/**
+	 * private static Set<Session> sessions = new HashSet<>();
+	 * En el map está:
+	 *	Session: guarda información conocer el cliente
+	 *  String: guarda la uid de la blackbox
+	 */
 	private static Map<Session, String> sessions = new HashMap<>();
 	
+	/**
+	 * Guarda una sesión ws
+	 * @param session Sesión ws
+	 */
 	@OnOpen
 	public void onOpen(Session session) {
 		sessions.put(session, null);
 	}
 	
+	/**
+	 * Trata los mensajes que llegan a través del websocket
+	 * @param message Mensaje que ha llegado
+	 * @param session Sesión del cliente
+	 */
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		JSONParser parser = new JSONParser();
@@ -131,13 +146,16 @@ public class WebSocketEJB {
 					break;
 				}
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("No se pudo parsear: " + e.getMessage());
 			}
 		}
 		
 	}
 
+	/**
+	 * Al cerrar la sesión se elimina el cliente
+	 * @param session
+	 */
 	@OnClose
 	public void onClose(Session session) {
 		sessions.remove(session);
@@ -145,13 +163,18 @@ public class WebSocketEJB {
 	
 	@OnError
 	public void onError(Throwable e) {
-		
+		logger.error("Ocurrió un error durante una transmisión websocket: " + e.getMessage());
 	}
 	
+	/**
+	 * Envia información de los puertos de la blackbox a su cliente
+	 * @param infoPuertos Objeto IOPort con la información de puertos que se quiere transmitir
+	 */
 	public void enviarData(IOPort infoPuertos) {
-		// Obtener blackbox
 		Session session = null;
+		// Obtener blackbox a la que pertenecen los puertos
 		BlackboxAdminInfo blackbox = blackboxEJB.getBlackbox(infoPuertos.getIdBlackbox());
+		// Si la blackbox existe obtener la sesión del usuario a la que pertenece 
 		if(blackbox != null) {
 			String uid = blackbox.getIdentificador();
 			if(sessions.containsValue(blackbox.getIdentificador())) {
@@ -161,18 +184,23 @@ public class WebSocketEJB {
 									.findFirst().get().getKey();
 			}
 		}
+		// Si la sesión existe enviar el información
 		if(session != null) {
 			String mensaje = getJson(infoPuertos);
 			try {
 				session.getBasicRemote().sendText(mensaje, true);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("No se pudo enviar la información por websocket: " + e.getMessage());
 			}
 		}
 	}
 
 	@SuppressWarnings("unchecked")
+	/**
+	 * Crea un Json a partir de un objeto IOPort
+	 * @param io Objeto IOPort con información de los puertos
+	 * @return Objeto Json convertido a cadena con información de de E/S
+	 */
 	private String getJson(IOPort io) {
 		JSONObject obj = new JSONObject();
 		obj.put("I0", io.getI0());

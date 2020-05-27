@@ -9,7 +9,7 @@ import modelo.pojo.UsuarioAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Interfaz usada por MyBatis para acceder a la tabla Usuarios
+ * Interface del mapper
  * @author mique
  *
  */

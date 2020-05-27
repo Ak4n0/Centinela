@@ -1,5 +1,10 @@
 package modelo.pojo;
 
+/**
+ * Clase abstracta para representar a un usuario
+ * @author mique
+ *
+ */
 public abstract class Usuario {
 
 	protected Integer id;
@@ -8,62 +13,63 @@ public abstract class Usuario {
 	protected Boolean administrador;
 	
 	/**
-	 * @return the id
+	 * @return Devuelve el id del usuario
 	 */
 	public Integer getId() {
 		return id;
 	}
 	
 	/**
-	 * @param id the id to set
+	 * @param id Id del usuario a establecer
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 	
 	/**
-	 * @return the nombre
+	 * @return Devuelve el nombre del usuario
 	 */
 	public String getNombre() {
 		return nombre;
 	}
 	
 	/**
-	 * @param nombre the nombre to set
+	 * @param nombre Nombre del usuario a establecer
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	
 	/**
-	 * @return the email
+	 * @return Devuelve el email del usuario
 	 */
 	public String getEmail() {
 		return email;
 	}
 	
 	/**
-	 * @param email the email to set
+	 * @param email email del usuario a establecer
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	
-
-	
 	/**
-	 * @return the administrador
+	 * @return Devuelve si el usuario es administrador
 	 */
 	public Boolean getAdministrador() {
 		return administrador;
 	}
 	
+	/**
+	 * @return Devuelve si el usuario es administrador
+	 */
 	public Boolean isAdministrador() {
 		return getAdministrador();
 	}
 	
 	/**
-	 * @param administrador the administrador to set
+	 * @param administrador Booleano que establece si el usuario es administrador
 	 */
 	public void setAdministrador(Boolean administrador) {
 		this.administrador = administrador;

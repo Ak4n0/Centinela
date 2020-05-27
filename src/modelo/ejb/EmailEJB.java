@@ -18,12 +18,32 @@ import javax.mail.internet.MimeMultipart;
 
 @Stateless
 @LocalBean
+/**
+ * Maneja el envio de e-mails
+ * @author mique
+ *
+ */
 public class EmailEJB {
 	
+	/**
+	 * Envia un e-mail
+	 * @param para Dirección e-mail destinatario
+	 * @param asunto Asunto del e-mail
+	 * @param mensaje Cuerpo del mensaje
+	 * @return retorna true si se pudo mandar el e-mail, false en caso contrario
+	 */
 	public boolean sendMail(String para, String asunto, String mensaje) {
 		return this.sendMail(para, asunto, mensaje, null);
 	}
 	
+	/**
+	 * Envia un e-mail con archivos adjuntos
+	 * @param para Dirección e-mail destinatario
+	 * @param asunto Asunto del e-mail
+	 * @param mensaje Cuerpo del mensaje
+	 * @param archivos Dirección de los archivos a adjuntar
+	 * @return retorna true si se pudo mandar el e-mail, false en caso contrario
+	 */
 	public boolean sendMail(String para, String asunto, String mensaje, String[] archivos) {
 		boolean exito = true;
 		
@@ -76,6 +96,12 @@ public class EmailEJB {
         return exito;
     }
 	
+	/**
+	 * Devuelve una cadena con un cuerpo de mensaje predefinido para que el usuario pueda crear una nueva contraseña
+	 * @param nombre Nombre del usuario
+	 * @param enlace Enlace que debe seguir el usuario para crear una nueva contraseña
+	 * @return Cadena con el texto del cuerpo del mensaje
+	 */
 	public String cuerpoMensajeNuevaClave(String nombre, String enlace) {
 		return 	"<!DOCTYPE html>" +
 				"<html>" +
@@ -99,6 +125,12 @@ public class EmailEJB {
 				"</html>";
 	}
 	
+	/**
+	 * Devuelve una cadena de un cuerpo predefinido para que un usuario pueda validar su cuenta
+	 * @param nombre Nombre del usuario
+	 * @param enlace Enlace que debe seguir el usuario para validar
+	 * @return Retorna una cadena con el cuerpo del mensaje
+	 */
 	public String cuerpoMensajeNuevoUsuario(String nombre, String enlace) {
 		return 	"<!DOCTYPE html>" +
 				"<html>" +
@@ -120,6 +152,13 @@ public class EmailEJB {
 				"</html>";
 	}
 	
+	/**
+	 * Devuelve una cadena predefinida que informa a un usuario de que ha saltado una alarma
+	 * @param nombre Nombre del usuario
+	 * @param nombreBlackbox Nombre de la blackbox
+	 * @param nombrePuerto Puerto de la blackbox que hizo saltar la alarma
+	 * @return Devuelve una cadena con el cuerpo del mensaje
+	 */
 	public String cuerpoMensajeAlarma(String nombre, String nombreBlackbox, String nombrePuerto) {
 		return 	"<!DOCTYPE html>" +
 				"<html>" +

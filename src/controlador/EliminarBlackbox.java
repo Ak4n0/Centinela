@@ -15,7 +15,7 @@ import modelo.ejb.UsuariosEJB;
 import modelo.pojo.UsuarioFullInfo;
 
 /**
- * Servlet implementation class EliminarBlackbox
+ * Borra una blackbox de la DDBB
  */
 @WebServlet("/EliminarBlackbox")
 public class EliminarBlackbox extends HttpServlet {
@@ -26,14 +26,6 @@ public class EliminarBlackbox extends HttpServlet {
 	
 	@EJB
 	UsuariosEJB usuariosEJB;
-	
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,6 +34,7 @@ public class EliminarBlackbox extends HttpServlet {
 		// A esta págian solo puede entrar un administrador
 		UsuarioFullInfo usuario = usuariosEJB.getSessionUser(request);
 		RequestDispatcher rs = null;
+		// Sólo tiene permiso para borrar un administrador
 		if(usuario == null || !usuario.isAdministrador()) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 			request.setAttribute("titulo", "No tiene permiso");
@@ -54,19 +47,19 @@ public class EliminarBlackbox extends HttpServlet {
 			String idArg = request.getParameter("id");
 			int id;
 			
-			// Falta algún dato
+			// Falta la id, por lo tanto no hacer nada
 			if(idArg == null) {
 				return;
 			}
 			
-			// Comprueba que idCliente es un número válido
+			// Si la id no es un número regresar sin hacer nada.
 			try {
 				id = Integer.parseInt(idArg);
 			} catch(NumberFormatException e) {
 				return;
 			}
 			
-			// Inserta una nueva blackbox
+			// Borra la blackbox
 			blackboxEJB.deleteBlackbox(id);
 		}	
 	}

@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Logout
+ * Cierra la sesión de un usuario
  */
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Método get
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Elimina la sesión del usuario
 		HttpSession session = request.getSession(false);
 		
+		// Sólo se cierra una sesión si existe
 		if(session != null) {
 			session.invalidate();
 		}
