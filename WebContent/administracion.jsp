@@ -73,13 +73,9 @@
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="nav navbar-nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="#">Home</a>
+							<li class="nav-item"><a class="nav-link" id="menu-blackbox" href="#">Adm. Blackbox</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="#">About</a>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="#">Portfolio</a>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="#">Contact</a>
+							<li class="nav-item"><a class="nav-link" id="menu-usuarios" href="#">Adm. Usuarios</a>
 							</li>
 						</ul>
 					</div>
@@ -106,16 +102,32 @@
 	<script>
 		$(function() {
 			$("#linkUsuarios").click(function() {
-				$.get("ObtenerUsuarios", function(htmlExterno) {
-					$("#contenido").html(htmlExterno)
-				});
+				obtenerUsuarios();
 			});
 			
 			$("#linkBlackboxes").click(function() {
+				obtenerBlackbox();
+			});
+			
+			$("#menu-usuarios").click(function() {
+				obtenerUsuarios();
+			});
+			
+			$("#menu-blackbox").click(function() {
+				obtenerBlackbox();
+			});
+			
+			function obtenerUsuarios() {
+				$.get("ObtenerUsuarios", function(htmlExterno) {
+					$("#contenido").html(htmlExterno)
+				});
+			}
+			
+			function obtenerBlackbox() {
 				$.get("ObtenerBlackboxes", function(htmlExterno) {
 					$("#contenido").html(htmlExterno)
 				});
-			});
+			}
 		});
 	</script>
 </body>

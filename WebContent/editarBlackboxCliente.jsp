@@ -70,7 +70,7 @@
 		<input type="number" class="form-control" id="I0inf" placeholder="Introduzca el valor umbral">
 	</div>
 	<div class="form-group">
-		<label for="I1sup">Umbral superior de para entrada 2:</label>
+		<label for="I1sup">Umbral superior para entrada 2:</label>
 		<input type="number" class="form-control" id="I1sup" placeholder="Introduzca el valor umbral">
 	</div>
 	<div class="form-group">
