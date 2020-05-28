@@ -50,21 +50,21 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="nombre" class="form-control"
+							<input type="text" name="nombre" class="form-control" maxlength="100" 
 								placeholder="nombre" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 							</div>
-							<input type="email" name="email" class="form-control"
+							<input type="email" name="email" class="form-control" maxlength="320" 
 								placeholder="e-mail" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="passwd" class="form-control"
+							<input type="password" name="passwd" class="form-control" maxlength="25" 
 								placeholder="contraseña" required>
 						</div>
 						<div class="form-group">

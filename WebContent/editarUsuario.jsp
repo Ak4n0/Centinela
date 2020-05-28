@@ -12,19 +12,19 @@
 <form class="needs-validation" novalidate>
   <div class="form-group">
     <label for="nombre">Nombre:</label>
-    <input type="text" class="form-control" id="nombre" placeholder="Introduce tu nombre" name="nombre" required>
+    <input type="text" class="form-control" id="nombre" maxlength="100" placeholder="Introduce tu nombre" name="nombre" required>
     <div class="valid-feedback">Correcto.</div>
     <div class="invalid-feedback">Debes rellenar este campo.</div>
   </div>
   <div class="form-group">
     <label for="email">Email:</label>
-    <input type="email" class="form-control" id="email" placeholder="Introduce tu email" name="email" required>
+    <input type="email" class="form-control" id="email" maxlength="320" placeholder="Introduce tu email" name="email" required>
     <div class="valid-feedback">Correcto.</div>
     <div class="invalid-feedback">Debes rellenar este campo.</div>
   </div>
   <div class="form-group">
     <label for="passwd">Contraseña:</label>
-    <input type="password" class="form-control" id="passwd" placeholder="Introduce tu contraseña" name="passwd" required>
+    <input type="password" class="form-control" id="passwd" maxlength="25" placeholder="Introduce tu contraseña" name="passwd" required>
     <div class="valid-feedback">Correcto.</div>
     <div class="invalid-feedback">Debes rellenar este campo.</div>
   </div>

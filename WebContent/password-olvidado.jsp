@@ -45,7 +45,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 							</div>
-							<input type="email" class="form-control" placeholder="e-mail" required>
+							<input type="email" class="form-control" maxlength="320" placeholder="e-mail" required>
 						</div>
 						
 						<br>

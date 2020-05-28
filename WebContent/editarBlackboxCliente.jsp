@@ -14,49 +14,49 @@
 	<legend>Información general</legend>
 	<div class="form-group">
 		<label for="nombre">Nombre de la blackbox:</label>
-		<input type="text" class="form-control" id="nombre" placeholder="Introduzca el nombre de la blackbox">
+		<input type="text" class="form-control" id="nombre" maxlength="32" placeholder="Introduzca el nombre de la blackbox">
 	</div>
 	<div class="form-group">
 		<label for="descr">Descripción:</label>
-		<textarea class="form-control" id="descr" placeholder="Introduzca una descripción para la blackbox"></textarea>
+		<textarea class="form-control" id="descr" maxlength="255" placeholder="Introduzca una descripción para la blackbox"></textarea>
 	</div>
 	</fieldset>
 	<fieldset>
 	<legend>Entradas</legend>
 	<div class="form-group">
 		<label for="I0">Nombre entrada 1:</label>
-		<input type="text" class="form-control" id="I0" placeholder="Introduzca el identificador para la entrada">
+		<input type="text" class="form-control" id="I0" maxlength="32" placeholder="Introduzca el identificador para la entrada">
 	</div>
 	<div class="form-group">
 		<label for="I1">Nombre entrada 2:</label>
-		<input type="text" class="form-control" id="I1" placeholder="Introduzca el identificador para la entrada">
+		<input type="text" class="form-control" id="I1" maxlength="32" placeholder="Introduzca el identificador para la entrada">
 	</div>
 	<div class="form-group">
 		<label for="I2">Nombre entrada 3:</label>
-		<input type="text" class="form-control" id="I2" placeholder="Introduzca el identificador para la entrada">
+		<input type="text" class="form-control" id="I2" maxlength="32" placeholder="Introduzca el identificador para la entrada">
 	</div>
 	<div class="form-group">
 		<label for="I3">Nombre entrada 4:</label>
-		<input type="text" class="form-control" id="I3" placeholder="Introduzca el identificador para la entrada">
+		<input type="text" class="form-control" id="I3" maxlength="32" placeholder="Introduzca el identificador para la entrada">
 	</div>
 	</fieldset>
 	<fieldset>
 	<legend>Salidas</legend>
 	<div class="form-group">
 		<label for="O0">Nombre salida 1:</label>
-		<input type="text" class="form-control" id="O0" placeholder="Introduzca el identificador para la salida">
+		<input type="text" class="form-control" id="O0" maxlength="32" placeholder="Introduzca el identificador para la salida">
 	</div>
 	<div class="form-group">
 		<label for="O1">Nombre salida 2:</label>
-		<input type="text" class="form-control" id="O1" placeholder="Introduzca el identificador para la salida">
+		<input type="text" class="form-control" id="O1" maxlength="32" placeholder="Introduzca el identificador para la salida">
 	</div>
 	<div class="form-group">
 		<label for="O2">Nombre salida 3:</label>
-		<input type="text" class="form-control" id="O2" placeholder="Introduzca el identificador para la salida">
+		<input type="text" class="form-control" id="O2" maxlength="32" placeholder="Introduzca el identificador para la salida">
 	</div>
 	<div class="form-group">
 		<label for="O3">Nombre salida 4:</label>
-		<input type="text" class="form-control" id="O3" placeholder="Introduzca el identificador para la salida">
+		<input type="text" class="form-control" id="O3" maxlength="32" placeholder="Introduzca el identificador para la salida">
 	</div>
 	</fieldset>
 	<fieldset>

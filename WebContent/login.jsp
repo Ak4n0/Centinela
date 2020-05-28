@@ -50,14 +50,14 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 							</div>
-							<input type="email" name="email" class="form-control"
+							<input type="email" name="email" class="form-control" maxlength="320" 
 								placeholder="e-mail" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="passwd" class="form-control"
+							<input type="password" name="passwd" class="form-control" maxlength="25" 
 								placeholder="password" required>
 						</div>
 <!-- 						<div class="row align-items-center remember"> -->

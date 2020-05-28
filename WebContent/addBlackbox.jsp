@@ -11,14 +11,14 @@
 	<!-- UID blackbox -->
 	<div class="form-group">
 		<label for="id">Identificador Blackbox:</label>
-		<input type="text" class="form-control" id="id" placeholder="Introduzca el identificador para la Blackbox" name="id" required>
+		<input type="text" class="form-control" id="id" maxlength="20" placeholder="Introduzca el identificador para la Blackbox" name="id" required>
 		<div class="valid-feedback">Correcto.</div>
 		<div class="invalid-feedback">Debes rellenar este campo.</div>
 	</div>
 	<!-- Password -->
 	<div class="form-group">
 		<label for="passwd">Password Blackbox:</label>
-		<input type="text" class="form-control" id="passwd" placeholder="Intorduzca la contraseña para la Blackbox" name="passwd" required>
+		<input type="text" class="form-control" maxlength="25" id="passwd" placeholder="Intorduzca la contraseña para la Blackbox" name="passwd" required>
 		<div class="valid-feedback">Correcto.</div>
 		<div class="invalid-feedback">Debes rellenar este campo.</div>
 	</div>
@@ -41,7 +41,7 @@
 	<legend>Entrada <%= n %></legend>
 	<div class="form-group">
 		<label for="unidades_I<%= n %>">Unidades de la entrada:</label>
-		<input type="text" class="form-control" id="unidades_I<%= n %>"  placeholder="Unidades: cm, ºC, lm..." name="unidades_I<%= n %>" required>
+		<input type="text" class="form-control" maxlength="15" id="unidades_I<%= n %>"  placeholder="Unidades: cm, ºC, lm..." name="unidades_I<%= n %>" required>
 		<div class="valid-feedback">Correcto.</div>
 		<div class="invalid-feedback">Debes rellenar este campo.</div>
 	</div>
