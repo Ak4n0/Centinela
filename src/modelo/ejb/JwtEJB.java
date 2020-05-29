@@ -1,5 +1,6 @@
 package modelo.ejb;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -147,10 +148,10 @@ public class JwtEJB {
 			// Sólo se enviarán los datos que no sean null en sus respectivos campos
 			jwtResponse.withSubject("SUB");
 			// Añadir las salidas digitales que haya
-			jwtResponse.withClaim("O0", io.getO0() == null? false: io.getO0());
-			jwtResponse.withClaim("O1", io.getO1() == null? false: io.getO1());
-			jwtResponse.withClaim("O2", io.getO2() == null? false: io.getO2());
-			jwtResponse.withClaim("O3", io.getO3() == null? false: io.getO3());
+			jwtResponse.withClaim("O0", io == null || io.getO0() == null? false: io.getO0());
+			jwtResponse.withClaim("O1", io == null || io.getO1() == null? false: io.getO1());
+			jwtResponse.withClaim("O2", io == null || io.getO2() == null? false: io.getO2());
+			jwtResponse.withClaim("O3", io == null || io.getO3() == null? false: io.getO3());
 			
 			// Añadir nuevos límites si los hay
 			/*
@@ -163,48 +164,30 @@ public class JwtEJB {
 			 * Incluyendo x y/o y sólo en caso de que existan. Si ninguno de los dos existe el atributo I0
 			 * no se incluye
 			 */
-			if(blackbox.getUmbralInferiorI0() != null || blackbox.getUmbralSuperiorI0() != null) {
-				Map<String, Integer> salidas = new HashMap<>();
-				if(blackbox.getUmbralInferiorI0() != null) {
-					salidas.put("inf", blackbox.getUmbralInferiorI0());
-				}
-				if(blackbox.getUmbralSuperiorI0() != null) {
-					salidas.put("sup", blackbox.getUmbralSuperiorI0());
-				}
-				jwtResponse.withClaim("I0", salidas);
-			}
-			if(blackbox.getUmbralInferiorI1() != null || blackbox.getUmbralSuperiorI1() != null) {
-				Map<String, Integer> salidas = new HashMap<>();
-				if(blackbox.getUmbralInferiorI1() != null) {
-					salidas.put("inf", blackbox.getUmbralInferiorI1());
-				}
-				if(blackbox.getUmbralSuperiorI1() != null) {
-					salidas.put("sup", blackbox.getUmbralSuperiorI1());
-				}
-				jwtResponse.withClaim("I1", salidas);
-			}
-			if(blackbox.getUmbralInferiorI2() != null || blackbox.getUmbralSuperiorI2() != null) {
-				Map<String, Integer> salidas = new HashMap<>();
-				if(blackbox.getUmbralInferiorI2() != null) {
-					salidas.put("inf", blackbox.getUmbralInferiorI2());
-				}
-				if(blackbox.getUmbralSuperiorI2() != null) {
-					salidas.put("sup", blackbox.getUmbralSuperiorI2());
-				}
-				jwtResponse.withClaim("I2", salidas);
-			}
-			if(blackbox.getUmbralInferiorI3() != null || blackbox.getUmbralSuperiorI3() != null) {
-				Map<String, Integer> salidas = new HashMap<>();
-				if(blackbox.getUmbralInferiorI3() != null) {
-					salidas.put("inf", blackbox.getUmbralInferiorI3());
-				}
-				if(blackbox.getUmbralSuperiorI3() != null) {
-					salidas.put("sup", blackbox.getUmbralSuperiorI3());
-				}
-				jwtResponse.withClaim("I3", salidas);
-			}
+			Map<String, String> I0umbr = new HashMap<>();
+			I0umbr.put("inf", blackbox.getUmbralInferiorI0() == null? "" : String.valueOf(blackbox.getUmbralInferiorI0()));
+			I0umbr.put("sup", blackbox.getUmbralSuperiorI0() == null? "" : String.valueOf(blackbox.getUmbralInferiorI0()));
+			jwtResponse.withClaim("I0", I0umbr);
+			
+			Map<String, String> I1umbr = new HashMap<>();
+			I1umbr.put("inf", blackbox.getUmbralInferiorI1() == null? "" : String.valueOf(blackbox.getUmbralInferiorI1()));
+			I1umbr.put("sup", blackbox.getUmbralSuperiorI1() == null? "" : String.valueOf(blackbox.getUmbralInferiorI1()));
+			jwtResponse.withClaim("I1", I1umbr);
+			
+			Map<String, String> I2umbr = new HashMap<>();
+			I2umbr.put("inf", blackbox.getUmbralInferiorI2() == null? "" : String.valueOf(blackbox.getUmbralInferiorI2()));
+			I2umbr.put("sup", blackbox.getUmbralSuperiorI2() == null? "" : String.valueOf(blackbox.getUmbralInferiorI2()));
+			jwtResponse.withClaim("I2", I2umbr);
+			
+			Map<String, String> I3umbr = new HashMap<>();
+			I3umbr.put("inf", blackbox.getUmbralInferiorI3() == null? "" : String.valueOf(blackbox.getUmbralInferiorI3()));
+			I3umbr.put("sup", blackbox.getUmbralSuperiorI3() == null? "" : String.valueOf(blackbox.getUmbralInferiorI3()));
+			jwtResponse.withClaim("I3", I3umbr);
 			
 			token = sign(jwtResponse, passwd);
+
+			System.out.println("Mandando la información de inicialización");
+			System.out.println(verPayload(token));
 		}
 		return token;
 	}
@@ -390,49 +373,30 @@ public class JwtEJB {
 				 * Incluyendo x y/o y sólo en caso de que existan. Si ninguno de los dos existe el atributo I0
 				 * no se incluye
 				 */
-				if(blackbox.getLimiteInferiorI0() != null || blackbox.getLimiteSuperiorI0() != null) {
+				if(blackbox.getCambioUmbral() != null && blackbox.getCambioUmbral() == true) {
+					Map<String, String> I0umbr = new HashMap<>();
+					I0umbr.put("inf", blackbox.getUmbralInferiorI0() == null? "" : String.valueOf(blackbox.getUmbralInferiorI0()));
+					I0umbr.put("sup", blackbox.getUmbralSuperiorI0() == null? "" : String.valueOf(blackbox.getUmbralSuperiorI0()));
+					jwt.withClaim("I0", I0umbr);
 					
-					Map<String, Integer> salidas = new HashMap<>();
-					if(blackbox.getLimiteInferiorI0() != null) {
-						salidas.put("inf", blackbox.getLimiteInferiorI0());
-					}
-					if(blackbox.getLimiteSuperiorI0() != null) {
-						salidas.put("sup", blackbox.getLimiteSuperiorI0());
-					}
-					jwt.withClaim("I0", salidas);
-				}
-				if(blackbox.getLimiteInferiorI1() != null || blackbox.getLimiteSuperiorI1() != null) {
-					Map<String, Integer> salidas = new HashMap<>();
-					if(blackbox.getLimiteInferiorI1() != null) {
-						salidas.put("inf", blackbox.getLimiteInferiorI1());
-					}
-					if(blackbox.getLimiteSuperiorI1() != null) {
-						salidas.put("sup", blackbox.getLimiteSuperiorI1());
-					}
-					jwt.withClaim("I1", salidas);
-				}
-				if(blackbox.getLimiteInferiorI2() != null || blackbox.getLimiteSuperiorI2() != null) {
-					Map<String, Integer> salidas = new HashMap<>();
-					if(blackbox.getLimiteInferiorI2() != null) {
-						salidas.put("inf", blackbox.getLimiteInferiorI2());
-					}
-					if(blackbox.getLimiteSuperiorI2() != null) {
-						salidas.put("sup", blackbox.getLimiteSuperiorI2());
-					}
-					jwt.withClaim("I2", salidas);
-				}
-				if(blackbox.getLimiteInferiorI3() != null || blackbox.getLimiteSuperiorI3() != null) {
-					Map<String, Integer> salidas = new HashMap<>();
-					if(blackbox.getLimiteInferiorI3() != null) {
-						salidas.put("inf", blackbox.getLimiteInferiorI3());
-					}
-					if(blackbox.getLimiteSuperiorI3() != null) {
-						salidas.put("sup", blackbox.getLimiteSuperiorI3());
-					}
-					jwt.withClaim("I3", salidas);
+					Map<String, String> I1umbr = new HashMap<>();
+					I1umbr.put("inf", blackbox.getUmbralInferiorI1() == null? "" : String.valueOf(blackbox.getUmbralInferiorI1()));
+					I1umbr.put("sup", blackbox.getUmbralSuperiorI1() == null? "" : String.valueOf(blackbox.getUmbralSuperiorI1()));
+					jwt.withClaim("I1", I1umbr);
+					
+					Map<String, String> I2umbr = new HashMap<>();
+					I2umbr.put("inf", blackbox.getUmbralInferiorI2() == null? "" : String.valueOf(blackbox.getUmbralInferiorI2()));
+					I2umbr.put("sup", blackbox.getUmbralSuperiorI2() == null? "" : String.valueOf(blackbox.getUmbralSuperiorI2()));
+					jwt.withClaim("I2", I2umbr);
+					
+					Map<String, String> I3umbr = new HashMap<>();
+					I3umbr.put("inf", blackbox.getUmbralInferiorI3() == null? "" : String.valueOf(blackbox.getUmbralInferiorI3()));
+					I3umbr.put("sup", blackbox.getUmbralSuperiorI3() == null? "" : String.valueOf(blackbox.getUmbralSuperiorI3()));
+					jwt.withClaim("I3", I3umbr);
 				}
 			}
 			token = sign(jwt, passwd);
+			
 		}
 		return token;
 	}
@@ -470,5 +434,17 @@ public class JwtEJB {
 	private String sign(Builder token, String passwd) {
 		Algorithm algorithm = Algorithm.HMAC256(passwd);
 		return token.sign(algorithm);
+	}
+	
+	/**
+	 * Muestra el payload de un jwt
+	 * @param jwt jwt del que se desea ver el payload
+	 * @return Cadena con la información del payload
+	 */
+	private String verPayload(String jwt) {
+		String payload = JWT.decode(jwt).getPayload();
+		byte[] decodedBytes = Base64.getDecoder().decode(payload);
+		String retValue = new String(decodedBytes);
+		return retValue;
 	}
 }

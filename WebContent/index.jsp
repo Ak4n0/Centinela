@@ -25,6 +25,15 @@
 		-o-background-size: cover;
 		background-size: cover;
 	}
+	
+	.carousel-caption {
+		background-color: rgba(0,0,0,0.75);
+	}
+	
+	.display-4 {
+		font-weight: 500;
+	}
+	
 </style>
 </head>
 <body>
@@ -76,7 +85,7 @@
       <!-- Slide Three - Set the background image for this slide in the line below -->
       <div class="carousel-item" style="background-image: url('images/multimetro.png')">
         <div class="carousel-caption d-none d-md-block">
-          <h3 class="display-4">Culaquier cosa que imagine bajo su control</h3>
+          <h3 class="display-4">Tenga todo bajo su control</h3>
           <p class="lead">Póngase en contacto con nosotros y le haremos un estudio personalizado sobre sus necesidades.</p>
         </div>
       </div>

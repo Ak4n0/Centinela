@@ -68,8 +68,10 @@ public class ObtenerDatosBlackbox extends HttpServlet {
 				return;
 			}
 			List<IOPort> io = blackboxEJB.getIOPorts(blackbox.getId());
+			IOPort ultimaIO = blackboxEJB.getLastIO(blackbox.getId());
 			request.setAttribute("blackbox", blackbox);
 			request.setAttribute("io", io);
+			request.setAttribute("ultimaIO", ultimaIO);
 			
 		}
 		rs.forward(request, response);

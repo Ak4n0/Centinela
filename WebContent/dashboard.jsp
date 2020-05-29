@@ -26,7 +26,7 @@
 <script src="js/main.js" defer></script>
 </head>
 <body>
-
+	<!-- Menú side izquierda -->
 	<div class="wrapper d-flex align-items-stretch">
 		<nav id="sidebar">
 			<div class="p-4 pt-5">
@@ -79,14 +79,16 @@
 
 		<!-- Page Content  -->
 		<div id="content" class="p-4 p-md-5">
-
+			<!-- Barra superior de la navegación -->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div id="container-bar" class="container-fluid">
-
+					<!-- Botón para esconder/mostrar menú de la izquierda -->
 					<button type="button" id="sidebarCollapse" class="btn btn-primary">
 						<i class="fa fa-bars"></i> <span class="sr-only">Toggle
 							Menu</span>
 					</button>
+					
+					<!-- Botón para mostrar menú selección página blackbox -->
 					<button id="btn-menu" class="btn btn-dark d-inline-block d-lg-none ml-auto"
 						type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
@@ -95,7 +97,7 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent" style="visibility: hidden">
 						<ul class="nav navbar-nav ml-auto">
 							<li class="nav-item"><a id="btn-dashboard" class="nav-link" href="#">Dashboard</a></li>
 							<li class="nav-item"><a id="btn-editar" class="nav-link" href="#">Editar blackbox</a></li>

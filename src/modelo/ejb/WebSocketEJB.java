@@ -115,30 +115,30 @@ public class WebSocketEJB {
 					switch(port) {
 					case "I0":
 						if(umbral.equals("sup")) {
-							blackbox.setLimiteSuperiorI0((Integer) obj.get("valor"));
+							blackbox.setUmbralSuperiorI0((Integer) obj.get("valor"));
 						} else if(umbral.equals("inf")) {
-							blackbox.setLimiteInferiorI0((Integer) obj.get("valor"));
+							blackbox.setUmbralInferiorI0((Integer) obj.get("valor"));
 						}
 						break;
 					case "I1":
 						if(umbral.equals("sup")) {
-							blackbox.setLimiteSuperiorI1((Integer) obj.get("valor"));
+							blackbox.setUmbralSuperiorI1((Integer) obj.get("valor"));
 						} else if(umbral.equals("inf")) {
-							blackbox.setLimiteInferiorI1((Integer) obj.get("valor"));
+							blackbox.setUmbralInferiorI1((Integer) obj.get("valor"));
 						}
 						break;
 					case "I2":
 						if(umbral.equals("sup")) {
-							blackbox.setLimiteSuperiorI2((Integer) obj.get("valor"));
+							blackbox.setUmbralSuperiorI2((Integer) obj.get("valor"));
 						} else if(umbral.equals("inf")) {
-							blackbox.setLimiteInferiorI2((Integer) obj.get("valor"));
+							blackbox.setUmbralInferiorI2((Integer) obj.get("valor"));
 						}
 						break;
 					case "I3":
 						if(umbral.equals("sup")) {
-							blackbox.setLimiteSuperiorI3((Integer) obj.get("valor"));
+							blackbox.setUmbralSuperiorI3((Integer) obj.get("valor"));
 						} else if(umbral.equals("inf")) {
-							blackbox.setLimiteInferiorI3((Integer) obj.get("valor"));
+							blackbox.setUmbralInferiorI3((Integer) obj.get("valor"));
 						}
 						break;
 					}

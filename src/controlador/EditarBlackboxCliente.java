@@ -228,14 +228,15 @@ public class EditarBlackboxCliente extends HttpServlet {
 				blackboxBuffer = new BlackboxBuffer();
 				blackboxBuffer.setIdentificador(blackbox.getIdentificador());
 			}
-			blackboxBuffer.setLimiteSuperiorI0(I0sup);
-			blackboxBuffer.setLimiteInferiorI0(I0inf);
-			blackboxBuffer.setLimiteSuperiorI1(I1sup);
-			blackboxBuffer.setLimiteInferiorI1(I1inf);
-			blackboxBuffer.setLimiteSuperiorI2(I2sup);
-			blackboxBuffer.setLimiteInferiorI2(I2inf);
-			blackboxBuffer.setLimiteSuperiorI3(I3sup);
-			blackboxBuffer.setLimiteInferiorI3(I3inf);
+			blackboxBuffer.setCambioUmbral(true);
+			blackboxBuffer.setUmbralSuperiorI0(I0sup);
+			blackboxBuffer.setUmbralInferiorI0(I0inf);
+			blackboxBuffer.setUmbralSuperiorI1(I1sup);
+			blackboxBuffer.setUmbralInferiorI1(I1inf);
+			blackboxBuffer.setUmbralSuperiorI2(I2sup);
+			blackboxBuffer.setUmbralInferiorI2(I2inf);
+			blackboxBuffer.setUmbralSuperiorI3(I3sup);
+			blackboxBuffer.setUmbralInferiorI3(I3inf);
 			
 			// Insertar las modificaciones en la lista de futuras modificaciones
 			bufferEJB.insertar(blackboxBuffer);

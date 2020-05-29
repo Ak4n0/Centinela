@@ -8,6 +8,7 @@
 <%
 	BlackboxFullInfo blackbox = (BlackboxFullInfo) request.getAttribute("blackbox");
 	List<IOPort> puertos = (List<IOPort>) request.getAttribute("io");
+	IOPort ultimaIO = (IOPort) request.getAttribute("ultimaIO");
 %>
 
 <h2>
@@ -25,16 +26,32 @@
 	<legend>Salidas</legend>
 	<ul class="list-group list-group-flush">
 		<li class="list-group-item custom-control custom-switch" style="padding-left: 2.5rem">
-			<input type="checkbox" class="custom-control-input" id="O0" /><label class="custom-control-label" for="O0"><%= blackbox.getNombre_O0() %></label>
+			<input type="checkbox" class="custom-control-input" id="O0"
+			<% if(ultimaIO != null && ultimaIO.getO0() != null && ultimaIO.getO0() == true) { %>
+			checked
+			<% } %>
+			/><label class="custom-control-label" for="O0"><%= blackbox.getNombre_O0() %></label>
 		</li>
 		<li class="list-group-item custom-control custom-switch" style="padding-left: 2.5rem">
-			<input type="checkbox" class="custom-control-input" id="O1" /><label class="custom-control-label" for="O1"><%= blackbox.getNombre_O1() %></label>
+			<input type="checkbox" class="custom-control-input" id="O1" 
+			<% if(ultimaIO != null && ultimaIO.getO1() != null && ultimaIO.getO1() == true) { %>
+			checked
+			<% } %>
+			/><label class="custom-control-label" for="O1"><%= blackbox.getNombre_O1() %></label>
 		</li>
 		<li class="list-group-item custom-control custom-switch" style="padding-left: 2.5rem">
-			<input type="checkbox" class="custom-control-input" id="O2" /><label class="custom-control-label" for="O2"><%= blackbox.getNombre_O2() %></label>
+			<input type="checkbox" class="custom-control-input" id="O2" 
+			<% if(ultimaIO != null && ultimaIO.getO2() != null && ultimaIO.getO2() == true) { %>
+			checked
+			<% } %>
+			/><label class="custom-control-label" for="O2"><%= blackbox.getNombre_O2() %></label>
 		</li>
 		<li class="list-group-item custom-control custom-switch" style="padding-left: 2.5rem">
-			<input type="checkbox" class="custom-control-input" id="O3" /><label class="custom-control-label" for="O3"><%= blackbox.getNombre_O3() %></label>
+			<input type="checkbox" class="custom-control-input" id="O3" 
+			<% if(ultimaIO != null && ultimaIO.getO3() != null && ultimaIO.getO3() == true) { %>
+			checked
+			<% } %>
+			/><label class="custom-control-label" for="O3"><%= blackbox.getNombre_O3() %></label>
 		</li>
 	</ul>
 </fieldset>
@@ -204,8 +221,11 @@
 		socket.send(JSON.stringify(obj))
 	});
 	
+	// Mostrar los menús de la barra superior de la blackbox
 	document.getElementById("btn-menu").style.visibility = "visible";
+	document.getElementById("navbarSupportedContent").style.visibility = "visible";
 	
+	// Dar funcionalidad a los botones
 	document.getElementById("btn-dashboard").addEventListener("click", function() {
 		let uid = $(this).attr("id");
 		$.get("ObtenerDatosBlackbox", {"id": "<%= blackbox.getIdentificador() %>"}, function(htmlExterno) {

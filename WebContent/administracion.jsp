@@ -1,3 +1,4 @@
+<%@page import="modelo.pojo.UsuarioFullInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -28,7 +29,7 @@
 						data-toggle="collapse" aria-expanded="false"
 						class="dropdown-toggle">Mi cuenta</a>
 						<ul class="collapse list-unstyled" id="cuentaMenu">
-							<li><a href="#">Administrar</a></li>
+							<li><a href="#" id="administrarUsuario">Administrar</a></li>
 							<li><a href="Logout">Cerrar sesión</a></li>
 						</ul>
 					</li>
@@ -101,6 +102,13 @@
 	</div>
 	<script>
 		$(function() {
+			$("#administrarUsuario").click(function() {
+				$.get("EditarUsuario", {id: <%= ((UsuarioFullInfo) session.getAttribute("usuario")).getId() %>}, function(htmlExterno) {
+					$("#contenido").html(htmlExterno);
+				});
+				document.getElementById("btn-menu").style.visibility = "hidden";
+			});
+			
 			$("#linkUsuarios").click(function() {
 				obtenerUsuarios();
 			});

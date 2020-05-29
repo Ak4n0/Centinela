@@ -204,27 +204,27 @@
     
     function enviar() {
     	// Impedir que se mande la información con umbrales discordantes
-    	if($("#I0sup").val() != null && $("#I0inf").val()) {
-    		if($("#I0sup").val() < $("#I0inf").val()) {
-    			alert("El umbral superior de Entrada 1 no puede ser inferior al umbral inferior.");
+    	if($("#I0sup").val() != "" && $("#I0inf").val() != "") {
+    		if(parseInt($("#I0sup").val()) < parseInt($("#I0inf").val())) {
+    			alert("El umbral superior de Entrada 1 no puede ser inferior al umbral inferior: " + $("#I0sup").val() + " y " + $("#I0inf").val() + " respectivamente.");
     			return;
     		}
     	}
-    	if($("#I1sup").val() != null && $("#I1inf").val()) {
-    		if($("#I1sup").val() < $("#I1inf").val()) {
-    			alert("El umbral superior de Entrada 2 no puede ser inferior al umbral inferior.");
+    	if($("#I1sup").val() != "" && $("#I1inf").val() != "") {
+    		if(parseInt($("#I1sup").val()) < parseInt($("#I1inf").val())) {
+    			alert("El umbral superior de Entrada 2 no puede ser inferior al umbral inferior: " + $("#I1sup").val() + " y " + $("#I1inf").val() + " respectivamente.");
     			return;
     		}
     	}
-    	if($("#I2sup").val() != null && $("#I2inf").val()) {
-    		if($("#I2sup").val() < $("#I2inf").val()) {
-    			alert("El umbral superior de Entrada 3 no puede ser inferior al umbral inferior.");
+    	if($("#I2sup").val() != "" && $("#I2inf").val() != "") {
+    		if(parseInt($("#I2sup").val()) < parseInt($("#I2inf").val())) {
+    			alert("El umbral superior de Entrada 3 no puede ser inferior al umbral inferior: " + $("#I2sup").val() + " y " + $("#I2inf").val() + " respectivamente.");
     			return;
     		}
     	}
-    	if($("#I3sup").val() != null && $("#I3inf").val()) {
-    		if($("#I3sup").val() < $("#I3inf").val()) {
-    			alert("El umbral superior de Entrada 3 no puede ser inferior al umbral inferior.");
+    	if($("#I3sup").val() != "" && $("#I3inf").val() != "") {
+    		if(parseInt($("#I3sup").val()) < parseInt($("#I3inf").val())) {
+    			alert("El umbral superior de Entrada 3 no puede ser inferior al umbral inferior: " + $("#I3sup").val() + " y " + $("#I3inf").val() + " respectivamente.");
     			return;
     		}
     	}
