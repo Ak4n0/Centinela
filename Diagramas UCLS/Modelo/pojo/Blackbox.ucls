@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="modelo.pojo.BlackboxAdminInfo" project="Centinela" 
     file="/Centinela/src/modelo/pojo/BlackboxAdminInfo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="501" y="-173"/>    
+    <position height="-1" width="-1" x="110" y="-142"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,25 +12,25 @@
   </class>  
   <class id="2" language="java" name="modelo.pojo.Blackbox" project="Centinela" 
     file="/Centinela/src/modelo/pojo/Blackbox.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="500" y="242"/>    
+    <position height="-1" width="-1" x="108" y="275"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="modelo.pojo.BlackboxBuffer" project="Centinela" 
-    file="/Centinela/src/modelo/pojo/BlackboxBuffer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="783" width="181" x="42" y="-295"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="modelo.pojo.BlackboxFullInfo" project="Centinela" 
+  <class id="3" language="java" name="modelo.pojo.BlackboxFullInfo" project="Centinela" 
     file="/Centinela/src/modelo/pojo/BlackboxFullInfo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="986" y="434"/>    
+    <position height="-1" width="-1" x="509" y="438"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="modelo.pojo.BlackboxBuffer" project="Centinela" 
+    file="/Centinela/src/modelo/pojo/BlackboxBuffer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="981" y="166"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -42,12 +42,12 @@
     <end type="TARGET" refId="2"/>  
   </generalization>  
   <generalization id="6">    
-    <end type="SOURCE" refId="4"/>    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
   <generalization id="7">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
