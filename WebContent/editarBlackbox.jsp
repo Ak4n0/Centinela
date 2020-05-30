@@ -106,9 +106,14 @@
 				if (form.checkValidity() === false) {
 					event.stopPropagation();
 				} else {
-					let paramId = $("#idUnico").val();
+					let paramId = $("#uid").val();
 					let paramPasswd = $("#passwd").val();
 					let paramUsuario = $("#usuario").val();
+					<% for(int n = 0; n < 4; ++n) { %>
+	        		let paramUnidadesI<%= n %> = $("#unidades_I<%= n %>").val();
+	        		let paramFuncTransI<%= n %> = $("#func_trans_I<%= n %>").val();
+	        		paramFuncTransInvI<%= n %> = $("#func_trans_inv_I<%= n %>").val();
+	        		<% } %>
 		        	$.post("EditarBlackbox",
 		        	{
 		        		id: <%= blackbox.getId() %>,

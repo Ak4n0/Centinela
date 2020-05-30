@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -107,7 +108,10 @@ public class EditarBlackbox extends HttpServlet {
 					unidadesI0 == null || unidadesI1 == null || unidadesI2 == null || unidadesI3 == null ||
 					funcTransI0 == null || funcTransI1 == null || funcTransI2 == null || funcTransI3 == null ||
 					funcTransInvI0 == null || funcTransInvI1 == null || funcTransInvI2 == null || funcTransInvI3 == null) {
-				logger.debug("Faltaron datos en los argumentos");
+				logger.debug("Faltan argumentos. Parámetros desde la web:");
+				for(String param: request.getParameterMap().keySet()) {
+					logger.debug(param + " : " + request.getParameterMap().get(param)[0]);
+				}
 				response.sendRedirect("ObtenerBlackboxes");
 				return;
 			}
@@ -118,6 +122,7 @@ public class EditarBlackbox extends HttpServlet {
 				idUsuario = Integer.parseInt(idUsuarioArg);
 			} catch(NumberFormatException e) {
 				logger.error("No se pudieron transformar cadenas a números: id o idUsuario");
+				System.out.println("Editar Blackbox: no se pudieron transformar id o idUsuario");
 				response.sendRedirect("ObtenerBlackboxes");
 				return;
 			}
