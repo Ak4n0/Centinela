@@ -70,8 +70,6 @@ public class EditarUsuario extends HttpServlet {
 		try {
 			id = Integer.parseInt(idArg);
 		} catch(NumberFormatException e) {
-			// TODO: usar el logger para mostrar el error
-			e.printStackTrace();
 			response.sendRedirect("ObtenerUsuarios");
 			return;
 		}
@@ -83,9 +81,8 @@ public class EditarUsuario extends HttpServlet {
 		usuario.setEmail(email);
 		usuario.setPasswd(passwd);
 		usuario.setAdministrador(false);
-	
 		// El usuario no es administrador o no existe
-		if(usuarioSesion == null || !usuarioSesion.isAdministrador() || usuarioSesion.getId() != usuario.getId()) {
+		if(usuarioSesion == null || (usuarioSesion.isAdministrador() == false && (usuarioSesion.getId() != usuario.getId()))) {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
 			request.setAttribute("titulo", "No tiene permiso");
 			request.setAttribute("mensaje", "<p>No dispones permiso para acceder a esta sección.</p>" +
@@ -94,6 +91,7 @@ public class EditarUsuario extends HttpServlet {
 			rs.forward(request, response);
 		} else {
 			usuariosEJB.updateDatabaseUser(usuario);
+			response.sendRedirect("ObtenerUsuarios");
 		}
 	}
 

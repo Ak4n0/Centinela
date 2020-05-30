@@ -2,7 +2,6 @@ package controlador;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;

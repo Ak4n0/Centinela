@@ -71,9 +71,8 @@
 		        		nombre: paramNombre,
 		        		email: paramEmail,
 		        		passwd: paramPasswd
-		        	});
-		        	$.get("ObtenerUsuarios", function(respuesta) {
-		        		$("#contenido").html(respuesta);
+		        	}, function(data, status) {
+		        		$("#contenido").html(data);
 		        	});
 				}
 				form.classList.add('was-validated');
