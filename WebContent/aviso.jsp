@@ -38,5 +38,8 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$("#navbar-horizontal").hide;
+	</script>
 </body>
 </html>

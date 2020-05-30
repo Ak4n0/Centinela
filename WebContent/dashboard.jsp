@@ -80,7 +80,7 @@
 		<!-- Page Content  -->
 		<div id="content" class="p-4 p-md-5">
 			<!-- Barra superior de la navegación -->
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-horizontal">
 				<div id="container-bar" class="container-fluid">
 					<!-- Botón para esconder/mostrar menú de la izquierda -->
 					<button type="button" id="sidebarCollapse" class="btn btn-primary">

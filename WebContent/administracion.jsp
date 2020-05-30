@@ -57,7 +57,7 @@
 		<!-- Page Content  -->
 		<div id="content" class="p-4 p-md-5">
 
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-horizontal">
 				<div class="container-fluid">
 
 					<button type="button" id="sidebarCollapse" class="btn btn-primary">
