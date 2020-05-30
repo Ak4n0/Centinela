@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<script>
-		$("#navbar-horizontal").hide;
+		$("#navbar-horizontal").hide();
 	</script>
 </body>
 </html>
