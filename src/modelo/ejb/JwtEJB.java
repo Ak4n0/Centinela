@@ -345,10 +345,7 @@ public class JwtEJB {
 				// SUB marca que habrá modificaciones
 				// Sólo se enviarán los datos que no sean null en sus respectivos campos
 				jwt.withSubject("SUB");
-				// Añadir password, si lo hay
-				if(blackbox.getNuevoPasswd() != null) {
-					jwt.withClaim("pwd", blackbox.getNuevoPasswd());
-				}
+				
 				// Añadir las salidas digitales que haya
 				if(blackbox.getSalidaO0() != null) {
 					jwt.withClaim("O0", blackbox.getSalidaO0());
