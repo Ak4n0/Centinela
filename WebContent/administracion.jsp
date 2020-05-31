@@ -86,12 +86,15 @@
 				<h1 class="mb-4">Administración</h1>
 				<h5>Ten en cuenta lo siguiente</h5>
 				<ol>
-					<li>Puedes crear, editar y eliminar tanto usuarios como blackboxes.</li>
-					<li>Ten en cuenta que un usuario creado desde la administración está
-						directamente validado, por tanto si hay un error en la dirección
-						de su email no los recibiría.</li>
-					<li>Igualmente revisa el propietaro al cuál le asignas una blackbox,
-						por un despiste podría ser sencillo asignársela a otro.</li>
+					<li>Puede editar y eliminar usuarios ya registrados.</li>
+					<li>Puedes crear, editar y eliminar blackbox y reasignarlas a los diferentes usuarios.</li>
+					<li>Tenga en cuenta que si modifica los datos de un usuario deberá
+						comunicarselo pues no se le realiza ningún aviso automático de ello.</li>
+					<li>Tenga cuidado al modificar una blackbox pues un cambio en el identificador único
+						o la contraseña sin cambiar los datos internos en el aparato producirá que este
+						no se pueda conectar con Centinela</li>
+					<li>Igualmente revise la asignación de las blackbox para no darle la propiedad
+						al usuario erróneo.</li>
 					<li>En la lista de propietarios de la blackbox únicamente aparecen
 						los usuarios que han validado su cuenta de email. Si un usuario
 						acaba de hacerse una cuenta pero no está validada no se le puede
