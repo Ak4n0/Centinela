@@ -62,6 +62,11 @@
 
 				<div class="footer">
 					<p>
+						<!-- Link de contacto con la administración de Centinela -->
+						Contacta con nosotros:<br>
+						<a href="mailto:centinela.soluciones@gmail.com"><i class="fas fa-envelope"></i> Administración Centinela</a>
+					</p>
+					<p>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						Copyright &copy;
 						<script>
