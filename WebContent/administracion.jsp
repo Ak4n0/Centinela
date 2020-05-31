@@ -34,7 +34,7 @@
 						</ul>
 					</li>
 					<li><a href="#" id="linkUsuarios">Usuarios</a></li>
-					<li><a href="#" id="linkBlackboxes">Blackboxes</a></li>
+					<li><a href="#" id="linkBlackboxes">Blackbox</a></li>
 				</ul>
 
 				<div class="footer">
@@ -74,9 +74,9 @@
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="nav navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link" id="menu-blackbox" href="#">Adm. Blackbox</a>
-							</li>
 							<li class="nav-item"><a class="nav-link" id="menu-usuarios" href="#">Adm. Usuarios</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" id="menu-blackbox" href="#">Adm. Blackbox</a>
 							</li>
 						</ul>
 					</div>
