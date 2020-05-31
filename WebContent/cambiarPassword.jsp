@@ -57,7 +57,7 @@
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-center text-white justify-content-center">
-						Recibirá en su e-mail las instrucciones para restablecer la contraseña
+						Introduzca su nueva contraseña
 					</div>
 				</div>
 			</div>
