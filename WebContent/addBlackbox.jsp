@@ -48,7 +48,7 @@
 	<!-- Funcion transferencia I<%= n %> -->
 	<div class="form-group">
 		<label for="func_trans_I<%= n %>">Función de transferencia:</label>
-		<p style="font-family: monospace; color: black">function transFuncInv_I<%= n %>(val) {</p>
+		<p style="font-family: monospace; color: black">function funcTrans_I<%= n %>(val) {</p>
 		<textarea style="font-family: monospace" class="form-control" id="func_trans_I<%= n %>" maxlength="1024" placeholder="Introduzca la función de transferencia para esta entrada." name="func_trans_I<%= n %>" required></textarea>
 		<p style="font-family: monospace; color: black">}</p>
 		<div class="valid-feedback">Correcto.</div>
@@ -57,7 +57,7 @@
 	<!-- Función inversa transferencia I<%= n %> -->
 	<div class="form-group">
 		<label for="func_trans_inv_I<%= n %>">Función de transferencia inversa:</label>
-		<p style="font-family: monospace; color: black">function transFuncInv_I<%= n %>(val) {</p>
+		<p style="font-family: monospace; color: black">function funcTransInv_I<%= n %>(val) {</p>
 		<textarea style="font-family: monospace" class="form-control" id="func_trans_inv_I<%= n %>" maxlength="1024" placeholder="Introduzca la función de transferencia para esta entrada." name="func_trans_inv_I<%= n %>" required></textarea>
 		<p style="font-family: monospace; color: black">}</p>
 		<div class="valid-feedback">Correcto.</div>
