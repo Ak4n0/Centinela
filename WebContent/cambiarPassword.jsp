@@ -1,26 +1,27 @@
-<%@ page import="modelo.enumeracion.TipoError" %>
+<%@page import="modelo.enumeracion.TipoError"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
-
+	
 <%
+	Integer idUsuario = (Integer) request.getAttribute("usuario");
 	TipoError error = (TipoError) request.getAttribute("error");
 	String titulo = null;
 	String mensaje = null;
 	if(error != null) {
 		switch(error) {
 		case DATOS_INCOMPLETOS:
-	titulo = "Información incompleta";
-	mensaje = "Es obligatorio rellenar todos los campos del formulario.";
-	break;
+			titulo = "Información incompleta";
+			mensaje = "Es obligatorio rellenar todos los campos del formulario.";
+			break;
 		case CREDENCIALES:
-	titulo = "El email ya está en uso";
-	mensaje = "Ya existe un usuario con el mismo email. Debes utilizar otra dirección para esta cuenta.";
-	break;
+			titulo = "Usuario no reconocido";
+			mensaje = "No existe un usuario con este e-mail.";
+			break;
 		default:
-	titulo = "Error inesperado";
-	mensaje = "Ha ocurrido un error durante su proceso de registro.";
+			titulo = "Error inesperado";
+			mensaje = "Ha ocurrido un error en la toma de datos.";
 		}
-	}
+	}	
 %>
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Centinela</title>
-<%@ include file="bootstrap_header.html" %>
+<%@include file="bootstrap_header.html"%>
 <link rel="stylesheet" type="text/css" href="css/aviso.css" />
 </head>
 <body>
@@ -36,39 +37,28 @@
 		<div class="d-flex justify-content-center h-100">
 			<div class="card">
 				<div class="card-header">
-					<h3>Nuevo usuario</h3>
+					<h3>Restablecer contraseña</h3>
 				</div>
 				<div class="card-body">
-					<form action="Signin" id="formulario" method="post">
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" name="nombre" class="form-control" maxlength="100" 
-								placeholder="nombre" required>
-						</div>
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-							</div>
-							<input type="email" name="email" class="form-control" maxlength="320" 
-								placeholder="e-mail" required>
-						</div>
+					<form action="CambiarPassword" method="post">
+						<input type="hidden" name="usuario" value="<%= idUsuario %>">
+						<br>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="passwd" class="form-control" maxlength="25" 
-								placeholder="contraseña" required>
+							<input type="password" name="passwd" class="form-control" maxlength="25" placeholder="Introduzca nuevo password" required><br>
 						</div>
+						<br>
 						<div class="form-group">
-							<input type="submit" value="Registrar"
-								class="btn float-right btn-yellow">
+							<input type="submit" value="Enviar" class="btn float-right btn-yellow">
 						</div>
 					</form>
 				</div>
 				<div class="card-footer">
-					<p>¿Ya tengo una cuenta? <a href="Login">Inicia sesión</a></p>
+					<div class="d-flex justify-content-center text-white justify-content-center">
+						Recibirá en su e-mail las instrucciones para restablecer la contraseña
+					</div>
 				</div>
 			</div>
 		</div>

@@ -24,10 +24,10 @@ public class Principal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	UsuariosEJB controlUsuarioEJB;
+	private UsuariosEJB controlUsuarioEJB;
 	
 	@EJB
-	BlackboxEJB blackboxEJB;
+	private BlackboxEJB blackboxEJB;
 	
 	/**
 	 * Método get

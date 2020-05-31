@@ -30,13 +30,13 @@ public class EditarBlackboxCliente extends HttpServlet {
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(EditarBlackboxCliente.class);
 	
 	@EJB
-	UsuariosEJB usuariosEJB;
+	private UsuariosEJB usuariosEJB;
 	
 	@EJB
-	BlackboxEJB blackboxEJB;
+	private BlackboxEJB blackboxEJB;
 	
 	@EJB
-	BlackboxBufferEJB bufferEJB;
+	private BlackboxBufferEJB bufferEJB;
 	
 	/**
 	 * Método get

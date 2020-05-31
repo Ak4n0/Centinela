@@ -25,16 +25,16 @@ public class PasswordOlvidado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	UsuariosEJB usuariosEJB;
+	private UsuariosEJB usuariosEJB;
 	
 	@EJB
-	EmailEJB emailEJB;
+	private EmailEJB emailEJB;
 	
 	@EJB
-	TokenNuevoPasswordEJB tokenNuevoPasswordEJB;
+	private TokenNuevoPasswordEJB tokenNuevoPasswordEJB;
 	
 	@EJB
-	UtilidadesEJB utilidadesEJB;
+	private UtilidadesEJB utilidadesEJB;
 	
 	/**
 	 * Método get
@@ -88,7 +88,7 @@ public class PasswordOlvidado extends HttpServlet {
 			rs = getServletContext().getRequestDispatcher("/aviso.jsp");	
 			request.setAttribute("titulo", "Ocurrió un error");
 			request.setAttribute("mensaje", "<p>Ha ocurrido un error al acceder a la base de datos.</p>" +
-					"<p>Por favor inténtalo más tarde. Si los problemas persisten envía " +
+					"<p>Por favor inténtelo más tarde. Si los problemas persisten envíe " +
 						"un email a esta direccion <a href='mailto:centinela.soluciones@gmail.com?subject=Aviso%20de%20error%20web'>" + 
 						"centinela.soluciones@gmail.com</a> explicando el problema.</p>");
 			rs.forward(request, response);
@@ -97,26 +97,18 @@ public class PasswordOlvidado extends HttpServlet {
 		
 		// Se pudieron conseguir todos los datos, por lo que se manda por email
 		// Primero conseguir la ip del servidor
-		String enlace = utilidadesEJB.getServerPublicIp(request);
-		// Si no se obtuvo la ip del servidor avisar al usuario
-		if(enlace == null) {
-			rs = getServletContext().getRequestDispatcher("/aviso.jsp");
-			rs = getServletContext().getRequestDispatcher("/aviso.jsp");	
-			request.setAttribute("titulo", "Ocurrió un error");
-			request.setAttribute("mensaje", "<p>Ha ocurrido un error servidor.</p>" +
-					"<p>Por favor inténtalo más tarde. Si los problemas persisten envia " +
-						"un email a esta direccion <a href='mailto:centinela.soluciones@gmail.com?subject=Aviso%20de%20error%20web'>" + 
-						"centinela.soluciones@gmail.com</a> explicando el problema.</p>");
-			rs.forward(request, response);
-			return;
-		}
+		String enlace = utilidadesEJB.getServerPublicIp(request) + ":8080" + request.getContextPath() + "/CambiarPassword?solicitud=" + tokenNuevoPassword.getId();
 		
 		// No ocurrió ningún error en la toma de datos
 		String cuerpoMensajeEmail = emailEJB.cuerpoMensajeNuevaClave(nombre, enlace);
 		emailEJB.sendMail(email, "Centinela Servicios. Solicitud de cambio de contraseña", cuerpoMensajeEmail);
 		
-		// Regresar Principal
-		response.sendRedirect("Principal");
+		
+		// Notificar el envio del e-mail
+		rs = getServletContext().getRequestDispatcher("/aviso.jsp");	
+		request.setAttribute("titulo", "Compruebe e-mail");
+		request.setAttribute("mensaje", "<p>En breve recibirá un e-mail con las instrucciones a proceder para el cambio de su contraseña.</p>");
+		rs.forward(request, response);
 	}
 
 }

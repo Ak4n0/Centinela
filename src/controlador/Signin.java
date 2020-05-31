@@ -25,13 +25,13 @@ public class Signin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	UsuariosEJB usuariosEJB;
+	private UsuariosEJB usuariosEJB;
 	
 	@EJB
-	EmailEJB emailEJB;
+	private EmailEJB emailEJB;
 	
 	@EJB
-	UtilidadesEJB utilidadesEJB;
+	private UtilidadesEJB utilidadesEJB;
 	
 	/**
 	 * Método get

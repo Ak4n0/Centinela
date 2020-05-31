@@ -34,19 +34,19 @@ import modelo.pojo.UsuarioFullInfo;
 public class JwtEJB {
 
 	@EJB
-	BlackboxEJB blackboxEJB;
+	private BlackboxEJB blackboxEJB;
 	
 	@EJB
-	BlackboxBufferEJB blackboxBufferEJB;
+	private BlackboxBufferEJB blackboxBufferEJB;
 	
 	@EJB
-	EmailEJB emailEJB;
+	private EmailEJB emailEJB;
 	
 	@EJB
-	UsuariosEJB usuarioEJB;
+	private UsuariosEJB usuarioEJB;
 	
 	@EJB
-	WebSocketEJB webSocketEJB;
+	private WebSocketEJB webSocketEJB;
 	
 	/**
 	 * Valida e interpreta un JWT

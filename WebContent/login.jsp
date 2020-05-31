@@ -14,7 +14,7 @@
 	break;
 		case CREDENCIALES:
 	titulo = "Usuario no reconocido";
-	mensaje = "El e-mail y/o la contrasenya son incorectos.";
+	mensaje = "El e-mail y/o la contrasenya son incorrectos.";
 	break;
 		default:
 	titulo = "Error inesperado";

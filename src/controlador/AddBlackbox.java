@@ -25,10 +25,10 @@ public class AddBlackbox extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	@EJB
-	UsuariosEJB usuariosEJB;
+	private UsuariosEJB usuariosEJB;
 	
 	@EJB
-	BlackboxEJB blackboxEJB;
+	private BlackboxEJB blackboxEJB;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

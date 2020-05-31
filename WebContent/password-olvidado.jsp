@@ -45,7 +45,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 							</div>
-							<input type="email" class="form-control" maxlength="320" placeholder="e-mail" required>
+							<input type="email" name="email" class="form-control" maxlength="320" placeholder="e-mail de registro" required>
 						</div>
 						
 						<br>
@@ -62,5 +62,30 @@
 			</div>
 		</div>
 	</div>
+	<% if(error != null) {%>
+	<div class="modal" id="modalError" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"><%= titulo %></h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p><%= mensaje %></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						aria-label="Entendido">Entendido</button>
+				</div>
+			</div>
+		</div>
+	</div>
+ 	<script>
+		$('#modalError').modal('show');
+	</script>
+	<% } %>
 </body>
 </html>

@@ -88,8 +88,6 @@ public class EmailEJB {
                 Transport.send(message);
 
         } catch (Exception e) {
-        	// TODO: Informar del fallo con el logger
-        	e.printStackTrace();
         	exito = false;
         }
         
@@ -113,14 +111,16 @@ public class EmailEJB {
 				    "<body>" +
 				        "<h1>Centinela Soluciones</h1>" +
 				        "<p>Hola " + nombre + ",</p>" +
-				        "<p>Recibes este e-mail porque has solicitado un cambio de contraseña." +
-				            "Para ellos debes hacer click en el siguiente <a href='" + enlace + "'>enlace</a>.</p>" +
-				        "<p>En la página del <a href='" + enlace + "'>enlace</a> debes introducir tu" +
-				            "nueva contraseña. Hecho esto podrás entrar en nuestros servicios con la nueva credencial.</p>" +
-				        "<p>La petición de cambio de contraseña caduca a los sesenta minutos desde la petición en la web." +
-				            "Si antes de que pase ese tiempo no has completado el proceso la petición quedará anulada.</p>" +
+				        "<p>Recibe este e-mail porque ha solicitado un cambio de contraseña. " +
+				            "Para ellos debe hacer click en el siguiente <a href='" + enlace + "'>enlace</a>.</p>" +
+				        "<p>En la página del <a href='" + enlace + "'>enlace</a> debe introducir su " +
+				            "nueva contraseña. Hecho esto podrá entrar en nuestros servicios con la nueva credencial.</p>" +
+				        "<p>La petición de cambio de contraseña caduca a los sesenta minutos desde la petición en la web. " +
+				            "Si antes de que pase ese tiempo no ha completado el proceso la petición quedará anulada.</p>" +
+				        "<p>Si el enlace no funciona correctamente copie y pegue la siguiente dirección el en omnibox de su explorador:<br>" + 
+				            enlace + "</p>" +
 				        "<hr>" +
-				        "<p>Si no quieres realizar el cambio de contraseña simplemente ignora o borra este e-mail.</p>" +
+				        "<p>Si no quiere realizar el cambio de contraseña simplemente ignore o borre este e-mail.</p>" +
 				    "</body>" +
 				"</html>";
 	}
@@ -142,12 +142,12 @@ public class EmailEJB {
 				    "<body>" +
 				        "<h1>Centinela Soluciones</h1>" +
 				        "<p>Hola " + nombre + ",</p>" +
-				        "<p>Desde Centinela Soluciones te damos las gracias por haber confiado en nosotros. " +
-				            "Para completar el registro debes hacer click en este <a href='" + enlace + "'>enlace</a>.</p>" +
-				        "<p>Si el enlace no funciona copia la siguiente dirección y pégala en el omnibox de tu navegador: <a href='" + enlace + "'>" + enlace + "</a></p>" +
-				            "<p>Tienes 24 horas desde que iniciaste el registro para validar el email, en caso contrario tu cuenta será borrada.</p>" +
+				        "<p>Desde Centinela Soluciones le damos las gracias por haber confiado en nosotros. " +
+				            "Para completar su registro debe hacer click en este <a href='" + enlace + "'>enlace</a>.</p>" +
+				        "<p>Si el enlace no funciona copie la siguiente dirección y pégala en el omnibox de su navegador: <a href='" + enlace + "'>" + enlace + "</a></p>" +
+				            "<p>Tiene 24 horas desde que inició el registro para validar el email, en caso contrario su cuenta será borrada.</p>" +
 				        "<hr>" +
-				        "<p>En caso de que no hayas iniciado un registro y este mensaje es un error óbvialo y bórralo.</p>" +
+				        "<p>En caso de que no haya iniciado un registro y este mensaje es un error ignórelo o bórrelo.</p>" +
 				    "</body>" +
 				"</html>";
 	}
@@ -173,8 +173,6 @@ public class EmailEJB {
 				        "<p>La blackbox " + nombreBlackbox + " ha informado de una alarma en la entrada " + nombrePuerto + ".</p>" +
 				        "<p>Esto es debido a que el valor capturado por el sensor ha traspasado el umbral.</p>" +
 				        "<p>Debería atender a la blackbox " + nombreBlackbox + " lo antes posible y revisar que pudo causar que se sobrepasara el límite establecido.</p>" +
-				        "<hr>" +
-				        "<p>En caso de que no hayas iniciado un registro y este mensaje es un error óbvialo y bórralo.</p>" +
 				    "</body>" +
 				"</html>";
 	}

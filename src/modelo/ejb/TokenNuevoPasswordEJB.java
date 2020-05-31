@@ -1,6 +1,7 @@
 package modelo.ejb;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -12,17 +13,17 @@ import modelo.pojo.TokenNuevoPassword;
 @LocalBean
 @Stateless
 /**
- * Clase que maneja los tokens relacionados a que los usuarios quieran cambiar de clave
+ * Maneja la tabla de tokens de petición de nuevo password
  * @author mique
  *
  */
 public class TokenNuevoPasswordEJB {
 
 	@EJB
-	UsuariosEJB usuariosEJB;
+	private UsuariosEJB usuariosEJB;
 	
 	@EJB
-	UtilidadesEJB utilidadesEJB;
+	private UtilidadesEJB utilidadesEJB;
 	
 	/**
 	 * Obtiene el token del usuario a partir de su e-mail
@@ -72,6 +73,40 @@ public class TokenNuevoPasswordEJB {
 	private boolean setToken(TokenNuevoPassword tokenNuevoPassword) {
 		if(tokenNuevoPassword == null) return false;
 		return TokenNuevoPasswordDAO.insertarToken(tokenNuevoPassword);
+	}
+
+	/**
+	 * Comprueba si un token existe en el sistema de persistencia
+	 * @param token token a comprobar
+	 * @return Devuelve true si el token existe, false en caso contrario
+	 */
+	public boolean existeToken(String token) {
+		return TokenNuevoPasswordDAO.existeToken(token);
+	}
+
+	/**
+	 * Obtiene una lista de todos los tokens activos
+	 * @return Lista de objetos TokenNuevoPassword
+	 */
+	public List<TokenNuevoPassword> getListaTokens() {
+		return TokenNuevoPasswordDAO.getListaTokens();
+	}
+
+	/**
+	 * Borra un token de la base de datos
+	 * @param id Id del token a borrar
+	 */
+	public void deleteToken(String id) {
+		TokenNuevoPasswordDAO.borrarToken(id);
+	}
+
+	/**
+	 * Obtiene toda la información de un token a partir de su Id
+	 * @param id Id del token a obtener
+	 * @return Devuelve un TokenNuevoPassword con toda la información rellenada
+	 */
+	public TokenNuevoPassword getTokenFromId(String id) {
+		return TokenNuevoPasswordDAO.obtenerTokenDesdeId(id);
 	}
 	
 }

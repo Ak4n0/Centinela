@@ -35,10 +35,10 @@ import modelo.pojo.IOPort;
 public class WebSocketEJB {
 
 	@EJB
-	BlackboxEJB blackboxEJB;
+	private BlackboxEJB blackboxEJB;
 	
 	@EJB
-	BlackboxBufferEJB blackboxBufferEJB;
+	private BlackboxBufferEJB blackboxBufferEJB;
 	
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(WebSocketEJB.class);
 

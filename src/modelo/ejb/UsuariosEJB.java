@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import modelo.dao.UsuarioDAO;
 import modelo.pojo.PeticionNuevoUsuario;
+import modelo.pojo.TokenNuevoPassword;
 import modelo.pojo.UsuarioAdminInfo;
 import modelo.pojo.UsuarioFullInfo;
 
