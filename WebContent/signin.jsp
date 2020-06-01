@@ -68,7 +68,7 @@
 					</form>
 				</div>
 				<div class="card-footer">
-					<p>¿Ya tengo una cuenta? <a href="Login">Inicia sesión</a></p>
+					<p>¿Ya tiene una cuenta? <a href="Login">Inicie sesión</a></p>
 				</div>
 			</div>
 		</div>

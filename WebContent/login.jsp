@@ -37,12 +37,6 @@
 			<div class="card">
 				<div class="card-header">
 					<h3>Login</h3>
-					<!-- Íconos innecesarios por ahora -->
-					<!-- 					<div class="d-flex justify-content-end social_icon"> -->
-					<!-- 						<span><i class="fab fa-facebook-square"></i></span> -->
-					<!-- 						<span><i class="fab fa-google-plus-square"></i></span> -->
-					<!-- 						<span><i class="fab fa-twitter-square"></i></span> -->
-					<!-- 					</div> -->
 				</div>
 				<div class="card-body">
 					<form action="Login" method="post">
@@ -74,7 +68,7 @@
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-center links">
-						¿Notienes cuenta?<a href="Signin">Regístrate</a>
+						¿No tiene cuenta?<a href="Signin">Regístrese</a>
 					</div>
 					<div class="d-flex justify-content-center">
 						<a href="PasswordOlvidado">Olvidé mi contraseña</a>
