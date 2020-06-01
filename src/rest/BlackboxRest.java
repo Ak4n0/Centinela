@@ -18,10 +18,10 @@ import modelo.ejb.BlackboxEJB;
 public class BlackboxRest {
 	
 	@EJB
-	JwtEJB jwtEJB;
+	private JwtEJB jwtEJB;
 	
 	@EJB
-	BlackboxEJB blackboxEJB;
+	private BlackboxEJB blackboxEJB;
 	
 	/**
 	 * Recibe mensajes de las blackboxes, los procesa y regresa la respuesta
