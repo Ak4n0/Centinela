@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.ejb.BlackboxEJB;
 import modelo.ejb.UsuariosEJB;
+import modelo.ejb.UtilidadesEJB;
 import modelo.pojo.BlackboxFullInfo;
 import modelo.pojo.IOPort;
 import modelo.pojo.UsuarioFullInfo;
@@ -29,6 +30,9 @@ public class ObtenerDatosBlackbox extends HttpServlet {
 
 	@EJB
 	private BlackboxEJB blackboxEJB;
+	
+	@EJB
+	private UtilidadesEJB utilidadesEJB;
 	
 	/**
 	 * Método get
@@ -72,6 +76,7 @@ public class ObtenerDatosBlackbox extends HttpServlet {
 			request.setAttribute("blackbox", blackbox);
 			request.setAttribute("io", io);
 			request.setAttribute("ultimaIO", ultimaIO);
+			request.setAttribute("ip", utilidadesEJB.getServerPublicIp(request));
 			
 		}
 		rs.forward(request, response);

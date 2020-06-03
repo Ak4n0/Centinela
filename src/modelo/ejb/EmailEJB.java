@@ -64,7 +64,6 @@ public class EmailEJB {
         Message message = new MimeMessage(session);
 
         try {
-//                Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress("centinela.soluciones@gmail.com"));
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(para));
                 message.setSubject(asunto);

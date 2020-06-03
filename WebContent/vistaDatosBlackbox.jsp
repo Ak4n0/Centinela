@@ -9,6 +9,7 @@
 	BlackboxFullInfo blackbox = (BlackboxFullInfo) request.getAttribute("blackbox");
 	List<IOPort> puertos = (List<IOPort>) request.getAttribute("io");
 	IOPort ultimaIO = (IOPort) request.getAttribute("ultimaIO");
+	String serverIP = (String) request.getAttribute("ip");
 %>
 
 <h2>
@@ -163,7 +164,7 @@
 		} 
 	);
 	
-	socket = new WebSocket("ws://" + "<%= request.getLocalAddr() %>" + ":8080/Centinela/ws");
+	socket = new WebSocket("ws://" + "<%= serverIP %>" + ":8080/ws");
 	socket.onopen = function() {
 		let obj = {
 			"op": "conn",

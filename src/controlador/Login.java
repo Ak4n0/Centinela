@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.ejb.UsuariosEJB;
 import modelo.enumeracion.TipoError;
 import modelo.pojo.UsuarioFullInfo;
@@ -21,6 +24,8 @@ import modelo.pojo.UsuarioFullInfo;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(Login.class);
 	
 	@EJB
 	private UsuariosEJB usuariosEJB;
@@ -77,6 +82,8 @@ public class Login extends HttpServlet {
 		
 		// Si existe guardarlo en la sesión con el objeto UsuarioFullInfo
 		usuariosEJB.setSessionUser(request, usuarioRegistrado);
+		
+		logger.warn("Usuario en la sesión : " + usuariosEJB.getSessionUser(request).getNombre());
 		
 		// Regresar a la página principal
 		response.sendRedirect("Principal");

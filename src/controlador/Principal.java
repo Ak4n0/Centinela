@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.ejb.BlackboxEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.BlackboxAdminInfo;
@@ -23,6 +26,8 @@ import modelo.pojo.UsuarioFullInfo;
 public class Principal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(Principal.class);
+	
 	@EJB
 	private UsuariosEJB controlUsuarioEJB;
 	
@@ -35,6 +40,8 @@ public class Principal extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsuarioFullInfo usuarioFullInfo = controlUsuarioEJB.getSessionUser(request);
 		RequestDispatcher rs;
+		
+		logger.warn("Existe usuario = " + (usuarioFullInfo != null));
 		
 		// Comprobar si el usuario tiene una cuenta
 		if(usuarioFullInfo != null) {

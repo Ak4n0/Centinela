@@ -1,7 +1,6 @@
 package modelo.ejb;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -63,14 +62,11 @@ public class UtilidadesEJB {
 		String localAddress = null;
 		// Busca en el archivo 'servidor.properties' la propiedad 'direccion'
 		// Si lo consigue y esa propiedad no se llama auto toma el valor de esa propiedad
-		try (FileInputStream in = new FileInputStream("servidor.properties")){
+		try (FileInputStream in = new FileInputStream(request.getServletContext().getRealPath("/servidor.properties"))) {
 			prop.load(in);
-			if(prop.containsKey("direccion")) {
-				if(!prop.get("direccion").equals("auto")) {
-					localAddress = prop.getProperty("direccion");
-				}
-			}
+			localAddress = prop.getProperty("direccion");
 		} catch (IOException e) {
+			logger.error("No se pudo adquirir la propertie 'direccion': " + e.getLocalizedMessage());
 			// No hacer nada
 		}
 		
@@ -78,7 +74,7 @@ public class UtilidadesEJB {
 		if(localAddress == null) {
 			localAddress = request.getLocalAddr();
 		}
-		return request.getLocalAddr();
+		return localAddress;
 	}
 	
 }
