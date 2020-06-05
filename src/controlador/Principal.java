@@ -50,7 +50,7 @@ public class Principal extends HttpServlet {
 				rs = getServletContext().getRequestDispatcher("/administracion.jsp");
 			} else { // el usuario no es administrador, enviarlo a su dashboard
 				rs = getServletContext().getRequestDispatcher("/dashboard.jsp");
-				List<BlackboxAdminInfo> listaBlackboxes = blackboxEJB.getDatabaseBlackboxes();
+				List<BlackboxAdminInfo> listaBlackboxes = blackboxEJB.getDatabaseBlackboxesForUser(usuarioFullInfo.getId());
 				request.setAttribute("listaBlackboxes", listaBlackboxes);
 			}
 		} else { // El usuario no ha iniciado sesión. Mostrar la página genérica.

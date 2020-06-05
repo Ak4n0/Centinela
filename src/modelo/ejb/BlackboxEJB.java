@@ -145,5 +145,14 @@ public class BlackboxEJB {
 	public IOPort getLastIO(int id) {
 		return IOPortDAO.getLastIO(id);
 	}
+
+	/**
+	 * Obtiene las blackbox de un usuario
+	 * @param id Id en la base de datos del usuario
+	 * @return Retorna una lista de BlackboxAdminInfo con todas la blackbox que le pertenecen
+	 */
+	public List<BlackboxAdminInfo> getDatabaseBlackboxesForUser(Integer id) {
+		return BlackboxDAO.getDatabaseBlackboxesPorUsuario(id);
+	}
 	
 }

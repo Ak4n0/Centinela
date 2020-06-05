@@ -32,6 +32,8 @@ public interface BlackboxMapper {
 
 	BlackboxFullInfo getBlackboxFullInfo(String uid);
 
-	void editarBlackboxFullInfo(BlackboxFullInfo blackbox); 
+	void editarBlackboxFullInfo(BlackboxFullInfo blackbox);
+
+	List<BlackboxAdminInfo> getDatabaseBlackboxesPorUsuario(Integer id); 
 
 }

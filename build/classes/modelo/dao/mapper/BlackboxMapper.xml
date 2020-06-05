@@ -121,4 +121,14 @@
 		   	   I3_alto = #{umbralSuperiorI3}
 		 WHERE id = #{id}
 	</update>
+	
+	<select id='getDatabaseBlackboxesPorUsuario' resultType='BlackboxAdminInfo' parameterType="Integer">
+		SELECT BLACKBOX.id as id, identificador_unico as identificador, BLACKBOX.nombre as nombre,
+				BLACKBOX.passwd as passwd, DATO_USUARIO.id as idUsuario, DATO_USUARIO.nombre as nombreUsuario
+		  FROM BLACKBOX, (
+		SELECT id, nombre
+		  FROM USUARIO) as DATO_USUARIO
+		 WHERE DATO_USUARIO.id = BLACKBOX.usuario_id
+		   AND DATO_USUARIO.id = #{id};
+	</select>
 </mapper>
